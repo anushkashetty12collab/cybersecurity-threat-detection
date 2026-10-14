@@ -1,0 +1,62 @@
+{
+  "best_model": "RandomForest",
+  "split_timestamp": "2026-09-05 17:55:55.400000",
+  "results": [
+    {
+      "model": "LogisticRegression",
+      "precision": 0.7374,
+      "recall": 0.993,
+      "f1": 0.8463,
+      "pr_auc": 0.9658,
+      "confusion_matrix": {
+        "tn": 7598,
+        "fp": 151,
+        "fn": 3,
+        "tp": 424
+      },
+      "false_positive_rate": 0.01949
+    },
+    {
+      "model": "RandomForest",
+      "precision": 0.9656,
+      "recall": 0.9859,
+      "f1": 0.9757,
+      "pr_auc": 0.9967,
+      "confusion_matrix": {
+        "tn": 7734,
+        "fp": 15,
+        "fn": 6,
+        "tp": 421
+      },
+      "false_positive_rate": 0.00194
+    },
+    {
+      "model": "GradientBoosting",
+      "precision": 0.9681,
+      "recall": 0.9251,
+      "f1": 0.9461,
+      "pr_auc": 0.9893,
+      "confusion_matrix": {
+        "tn": 7736,
+        "fp": 13,
+        "fn": 32,
+        "tp": 395
+      },
+      "false_positive_rate": 0.00168
+    },
+    {
+      "model": "IsolationForest (unsupervised)",
+      "precision": 0.5199,
+      "recall": 0.8244,
+      "f1": 0.6377,
+      "pr_auc": 0.6419,
+      "confusion_matrix": {
+        "tn": 7424,
+        "fp": 325,
+        "fn": 75,
+        "tp": 352
+      },
+      "false_positive_rate": 0.04194
+    }
+  ]
+}

@@ -1,0 +1,5387 @@
+[
+  {
+    "finding_id": "INC-0001-F1",
+    "incident_id": "INC-0001",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "backup-01"
+    ],
+    "source_ips": [
+      "91.193.119.146"
+    ],
+    "evidence": [
+      "127 blocked connection attempts across 127 distinct ports on backup-01 from 91.193.119.146 within 1m 57s",
+      "first alert 2026-09-01 00:03:03, last alert 2026-09-01 00:04:59",
+      "mean model score 1.00; example reason: model score 1.00; 127 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0001-F2",
+    "incident_id": "INC-0001",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "backup-01"
+    ],
+    "source_ips": [
+      "91.193.119.146"
+    ],
+    "evidence": [
+      "3 anomalous events from 91.193.119.146 on backup-01",
+      "first alert 2026-09-01 00:05:00, last alert 2026-09-01 00:05:02",
+      "mean model score 0.99; example reason: model score 0.99; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      133,
+      134,
+      135
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0002-F1",
+    "incident_id": "INC-0002",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "evidence": [
+      "3 large outbound transfers (4.3 MB total) from db-01 (10.0.4.40) to external 203.149.95.122",
+      "first alert 2026-09-01 00:15:45, last alert 2026-09-01 00:22:45",
+      "mean model score 0.92; example reason: model score 0.88; 1,618,734 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      141,
+      144,
+      146
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0003-F1",
+    "incident_id": "INC-0003",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.10.49"
+    ],
+    "evidence": [
+      "1 administrative action(s) on db-01 by user37 from 10.0.10.49 (1 by non-admin accounts, 1 outside business hours)",
+      "first alert 2026-09-01 00:51:00, last alert 2026-09-01 00:51:00",
+      "mean model score 0.68; example reason: model score 0.68; administrative action by non-admin account (user37) during off-hours"
+    ],
+    "sample_event_ids": [
+      156
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0004-F1",
+    "incident_id": "INC-0004",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.10.58"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-01 by admin_ravi from 10.0.10.58 (0 by non-admin accounts, 2 outside business hours)",
+      "first alert 2026-09-01 02:49:00, last alert 2026-09-01 02:49:30",
+      "mean model score 0.94; example reason: model score 0.94; administrative action by admin account (admin_ravi) during off-hours"
+    ],
+    "sample_event_ids": [
+      199,
+      200
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0005-F1",
+    "incident_id": "INC-0005",
+    "finding_type": "c2_beaconing",
+    "title": "Periodic outbound connections consistent with C2 beaconing",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-07",
+        "title": "Threat intelligence and context are integrated into analysis"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      },
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.5.7",
+        "title": "Threat intelligence"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.33"
+    ],
+    "evidence": [
+      "24 outbound connections from 10.0.10.33 to 103.12.1.86 at a regular ~123s interval (small payloads, ~195 bytes each)",
+      "first alert 2026-09-01 03:12:40, last alert 2026-09-01 03:59:53",
+      "mean model score 1.00; example reason: model score 1.00; 24 connections to the same external IP in 1 h, interval ~123s (std 17.9s)"
+    ],
+    "sample_event_ids": [
+      208,
+      212,
+      213,
+      216,
+      218,
+      221,
+      223,
+      226,
+      227,
+      228
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Isolate the host and run EDR/malware triage",
+      "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+      "Hunt for the same destination across other hosts",
+      "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+    ]
+  },
+  {
+    "finding_id": "INC-0005-F2",
+    "incident_id": "INC-0005",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.33"
+    ],
+    "evidence": [
+      "4 anomalous events from 10.0.10.33 on mail-01, web-01",
+      "first alert 2026-09-01 04:01:53, last alert 2026-09-01 04:07:41",
+      "mean model score 0.96; example reason: model score 0.98; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      253,
+      256,
+      258,
+      260
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0006-F1",
+    "incident_id": "INC-0006",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "10.0.10.52"
+    ],
+    "evidence": [
+      "1 administrative action(s) on auth-01 by user34 from 10.0.10.52 (1 by non-admin accounts, 1 outside business hours)",
+      "first alert 2026-09-01 03:19:00, last alert 2026-09-01 03:19:00",
+      "mean model score 0.88; example reason: model score 0.88; administrative action by non-admin account (user34) during off-hours"
+    ],
+    "sample_event_ids": [
+      215
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0007-F1",
+    "incident_id": "INC-0007",
+    "finding_type": "c2_beaconing",
+    "title": "Periodic outbound connections consistent with C2 beaconing",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-07",
+        "title": "Threat intelligence and context are integrated into analysis"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      },
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.5.7",
+        "title": "Threat intelligence"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.32"
+    ],
+    "evidence": [
+      "45 outbound connections from 10.0.10.32 to 45.3.118.160 at a regular ~120s interval (small payloads, ~199 bytes each)",
+      "first alert 2026-09-01 04:08:21, last alert 2026-09-01 05:36:20",
+      "mean model score 1.00; example reason: model score 1.00; 26 connections to the same external IP in 1 h, interval ~120s (std 17.6s)"
+    ],
+    "sample_event_ids": [
+      263,
+      265,
+      266,
+      269,
+      270,
+      272,
+      275,
+      277,
+      279,
+      282
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Isolate the host and run EDR/malware triage",
+      "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+      "Hunt for the same destination across other hosts",
+      "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+    ]
+  },
+  {
+    "finding_id": "INC-0008-F1",
+    "incident_id": "INC-0008",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.2.21"
+    ],
+    "evidence": [
+      "3 large outbound transfers (4.3 MB total) from file-01 (10.0.2.21) to external 103.10.28.153",
+      "first alert 2026-09-01 07:13:49, last alert 2026-09-01 07:23:49",
+      "mean model score 0.86; example reason: model score 0.90; 670,980 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      381,
+      384,
+      393
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0009-F1",
+    "incident_id": "INC-0009",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "10.0.10.41"
+    ],
+    "evidence": [
+      "1 administrative action(s) on auth-01 by user14 from 10.0.10.41 (1 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-01 11:10:00, last alert 2026-09-01 11:10:00",
+      "mean model score 0.92; example reason: model score 0.92; administrative action by non-admin account (user14) during business hours"
+    ],
+    "sample_event_ids": [
+      1377
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0010-F1",
+    "incident_id": "INC-0010",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "103.53.176.163"
+    ],
+    "evidence": [
+      "22 failed logins from 103.53.176.163 against auth-01 (account: user26) within 6m 14s",
+      "first alert 2026-09-01 11:57:45, last alert 2026-09-01 12:03:58",
+      "mean model score 1.00; example reason: model score 1.00; 9 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      1678,
+      1680,
+      1683,
+      1685,
+      1688,
+      1690,
+      1692,
+      1693,
+      1695,
+      1699
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0010-F2",
+    "incident_id": "INC-0010",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "103.53.176.163"
+    ],
+    "evidence": [
+      "successful login to auth-01 by user26 from 103.53.176.163 after 22 failed attempts in the preceding 10 min",
+      "first alert 2026-09-01 12:04:18, last alert 2026-09-01 12:04:18",
+      "mean model score 0.92; example reason: model score 0.92; successful login preceded by 22 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      1745
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0011-F1",
+    "incident_id": "INC-0011",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.10.51"
+    ],
+    "evidence": [
+      "1 large outbound transfers (12.0 MB total) from file-01 (10.0.10.51) to external 91.56.246.196",
+      "first alert 2026-09-01 12:36:22, last alert 2026-09-01 12:36:22",
+      "mean model score 0.51; example reason: model score 0.51; 12,567,046 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      1982
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0012-F1",
+    "incident_id": "INC-0012",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.12"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-02 by user04 from 10.0.10.12 (2 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-01 14:42:00, last alert 2026-09-01 14:42:30",
+      "mean model score 0.84; example reason: model score 0.81; administrative action by non-admin account (user04) during business hours"
+    ],
+    "sample_event_ids": [
+      2871,
+      2875
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0013-F1",
+    "incident_id": "INC-0013",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "203.126.115.203"
+    ],
+    "evidence": [
+      "11 failed logins from 203.126.115.203 against web-01 (account: user11) within 3m 14s",
+      "first alert 2026-09-01 16:06:28, last alert 2026-09-01 16:09:41",
+      "mean model score 1.00; example reason: model score 1.00; 11 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      3327,
+      3332,
+      3333,
+      3335,
+      3338,
+      3342,
+      3345,
+      3347,
+      3348,
+      3349
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0013-F2",
+    "incident_id": "INC-0013",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "203.126.115.203"
+    ],
+    "evidence": [
+      "2 anomalous events from 203.126.115.203 on web-01",
+      "first alert 2026-09-01 16:10:21, last alert 2026-09-01 16:10:56",
+      "mean model score 0.99; example reason: model score 0.99; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      3353,
+      3355
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0013-F3",
+    "incident_id": "INC-0013",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "203.126.115.203"
+    ],
+    "evidence": [
+      "successful login to web-01 by user11 from 203.126.115.203 after 13 failed attempts in the preceding 10 min",
+      "first alert 2026-09-01 16:11:06, last alert 2026-09-01 16:11:06",
+      "mean model score 0.95; example reason: model score 0.95; successful login preceded by 13 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      3356
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0014-F1",
+    "incident_id": "INC-0014",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "103.132.170.163"
+    ],
+    "evidence": [
+      "6 failed logins from 103.132.170.163 against db-01 (account: user25) within 2m 28s",
+      "first alert 2026-09-01 22:32:21, last alert 2026-09-01 22:34:49",
+      "mean model score 1.00; example reason: model score 1.00; 6 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      3997,
+      3998,
+      4000,
+      4001,
+      4002,
+      4003
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0014-F2",
+    "incident_id": "INC-0014",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "103.132.170.163"
+    ],
+    "evidence": [
+      "2 anomalous events from 103.132.170.163 on db-01",
+      "first alert 2026-09-01 22:35:07, last alert 2026-09-01 22:35:20",
+      "mean model score 0.97; example reason: model score 0.97; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      4004,
+      4005
+    ],
+    "risk_level": "High",
+    "risk_rationale": "medium severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0015-F1",
+    "incident_id": "INC-0015",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "10.0.10.55"
+    ],
+    "evidence": [
+      "2 administrative action(s) on auth-01 by admin_john from 10.0.10.55 (0 by non-admin accounts, 2 outside business hours)",
+      "first alert 2026-09-02 02:17:00, last alert 2026-09-02 02:17:30",
+      "mean model score 0.89; example reason: model score 0.94; administrative action by admin account (admin_john) during off-hours"
+    ],
+    "sample_event_ids": [
+      4107,
+      4108
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0016-F1",
+    "incident_id": "INC-0016",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.2.20"
+    ],
+    "evidence": [
+      "5 large outbound transfers (9.2 MB total) from file-01 (10.0.2.20) to external 91.38.7.12",
+      "first alert 2026-09-02 03:40:30, last alert 2026-09-02 03:55:30",
+      "mean model score 0.98; example reason: model score 0.98; 2,048,407 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      4142,
+      4143,
+      4145,
+      4146,
+      4147
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0017-F1",
+    "incident_id": "INC-0017",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "185.152.145.170"
+    ],
+    "evidence": [
+      "23 failed logins from 185.152.145.170 against db-01 (account: user03) within 1m 7s",
+      "first alert 2026-09-02 06:00:43, last alert 2026-09-02 06:01:49",
+      "mean model score 1.00; example reason: model score 1.00; 23 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      4201,
+      4202,
+      4203,
+      4205,
+      4206,
+      4207,
+      4208,
+      4209,
+      4210,
+      4211
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0017-F2",
+    "incident_id": "INC-0017",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "185.152.145.170"
+    ],
+    "evidence": [
+      "successful login to db-01 by user03 from 185.152.145.170 after 23 failed attempts in the preceding 10 min",
+      "first alert 2026-09-02 06:01:53, last alert 2026-09-02 06:01:53",
+      "mean model score 0.97; example reason: model score 0.97; successful login preceded by 23 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      4225
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0018-F1",
+    "incident_id": "INC-0018",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "185.250.159.192"
+    ],
+    "evidence": [
+      "60 failed logins from 185.250.159.192 against auth-01 (account: user19) within 3m 40s",
+      "first alert 2026-09-02 06:09:04, last alert 2026-09-02 06:12:44",
+      "mean model score 1.00; example reason: model score 1.00; 16 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      4232,
+      4233,
+      4234,
+      4235,
+      4236,
+      4237,
+      4238,
+      4239,
+      4240,
+      4241
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0019-F1",
+    "incident_id": "INC-0019",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.10.44"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-01 by user22 from 10.0.10.44 (2 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-02 09:12:00, last alert 2026-09-02 09:12:30",
+      "mean model score 0.94; example reason: model score 0.94; administrative action by non-admin account (user22) during business hours"
+    ],
+    "sample_event_ids": [
+      4683,
+      4684
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0020-F1",
+    "incident_id": "INC-0020",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "91.177.122.166"
+    ],
+    "evidence": [
+      "68 blocked connection attempts across 68 distinct ports on db-01 from 91.177.122.166 within 13m 27s",
+      "first alert 2026-09-02 10:15:45, last alert 2026-09-02 10:29:12",
+      "mean model score 1.00; example reason: model score 1.00; 23 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      4932,
+      4933,
+      4936,
+      4937,
+      4938,
+      4939,
+      4941,
+      4944,
+      4945,
+      4946
+    ],
+    "risk_level": "High",
+    "risk_rationale": "medium severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0021-F1",
+    "incident_id": "INC-0021",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.10.54"
+    ],
+    "evidence": [
+      "1 large outbound transfers (6.8 MB total) from file-01 (10.0.10.54) to external 91.234.242.146",
+      "first alert 2026-09-02 11:02:47, last alert 2026-09-02 11:02:47",
+      "mean model score 0.55; example reason: model score 0.55; 7,122,029 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      5235
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0022-F1",
+    "incident_id": "INC-0022",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "10.0.10.56"
+    ],
+    "evidence": [
+      "1 administrative action(s) on auth-01 by user33 from 10.0.10.56 (1 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-02 11:59:00, last alert 2026-09-02 11:59:00",
+      "mean model score 0.86; example reason: model score 0.86; administrative action by non-admin account (user33) during business hours"
+    ],
+    "sample_event_ids": [
+      5572
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0023-F1",
+    "incident_id": "INC-0023",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.6"
+    ],
+    "evidence": [
+      "1 administrative action(s) on db-02 by admin_john from 10.0.10.6 (0 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-02 16:33:00, last alert 2026-09-02 16:33:00",
+      "mean model score 0.54; example reason: model score 0.54; administrative action by admin account (admin_john) during business hours"
+    ],
+    "sample_event_ids": [
+      7247
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0024-F1",
+    "incident_id": "INC-0024",
+    "finding_type": "c2_beaconing",
+    "title": "Periodic outbound connections consistent with C2 beaconing",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-07",
+        "title": "Threat intelligence and context are integrated into analysis"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      },
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.5.7",
+        "title": "Threat intelligence"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.44"
+    ],
+    "evidence": [
+      "42 outbound connections from 10.0.10.44 to 185.90.79.211 at a regular ~301s interval (small payloads, ~205 bytes each)",
+      "first alert 2026-09-02 18:13:54, last alert 2026-09-02 21:38:26",
+      "mean model score 0.99; example reason: model score 1.00; 10 connections to the same external IP in 1 h, interval ~301s (std 12.6s)"
+    ],
+    "sample_event_ids": [
+      7532,
+      7545,
+      7552,
+      7558,
+      7568,
+      7574,
+      7584,
+      7716,
+      7729,
+      7740
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Isolate the host and run EDR/malware triage",
+      "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+      "Hunt for the same destination across other hosts",
+      "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+    ]
+  },
+  {
+    "finding_id": "INC-0025-F1",
+    "incident_id": "INC-0025",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "mail-01"
+    ],
+    "source_ips": [
+      "185.186.43.216"
+    ],
+    "evidence": [
+      "125 blocked connection attempts across 125 distinct ports on mail-01 from 185.186.43.216 within 1m 57s",
+      "first alert 2026-09-02 18:44:35, last alert 2026-09-02 18:46:32",
+      "mean model score 1.00; example reason: model score 1.00; 25 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      7585,
+      7586,
+      7587,
+      7588,
+      7589,
+      7590,
+      7591,
+      7592,
+      7593,
+      7594
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0026-F1",
+    "incident_id": "INC-0026",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.2.20"
+    ],
+    "evidence": [
+      "2 large outbound transfers (14.6 MB total) from file-01 (10.0.2.20) to external 185.236.33.252",
+      "first alert 2026-09-02 19:02:08, last alert 2026-09-02 19:08:08",
+      "mean model score 0.84; example reason: model score 0.85; 2,707,460 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      7809,
+      7814
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0027-F1",
+    "incident_id": "INC-0027",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.59"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-02 by user12 from 10.0.10.59 (2 by non-admin accounts, 2 outside business hours)",
+      "first alert 2026-09-03 02:37:00, last alert 2026-09-03 02:37:30",
+      "mean model score 0.98; example reason: model score 0.98; administrative action by non-admin account (user12) during off-hours"
+    ],
+    "sample_event_ids": [
+      8025,
+      8026
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0028-F1",
+    "incident_id": "INC-0028",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.10.47"
+    ],
+    "evidence": [
+      "1 administrative action(s) on db-01 by user06 from 10.0.10.47 (1 by non-admin accounts, 1 outside business hours)",
+      "first alert 2026-09-03 02:55:00, last alert 2026-09-03 02:55:00",
+      "mean model score 0.83; example reason: model score 0.83; administrative action by non-admin account (user06) during off-hours"
+    ],
+    "sample_event_ids": [
+      8034
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0029-F1",
+    "incident_id": "INC-0029",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.37"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-02 by user23 from 10.0.10.37 (2 by non-admin accounts, 2 outside business hours)",
+      "first alert 2026-09-03 03:17:00, last alert 2026-09-03 03:17:30",
+      "mean model score 0.96; example reason: model score 0.96; administrative action by non-admin account (user23) during off-hours"
+    ],
+    "sample_event_ids": [
+      8042,
+      8043
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0030-F1",
+    "incident_id": "INC-0030",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "194.110.213.233"
+    ],
+    "evidence": [
+      "32 failed logins from 194.110.213.233 against db-01 (account: user11) within 1m 52s",
+      "first alert 2026-09-03 07:17:00, last alert 2026-09-03 07:18:52",
+      "mean model score 1.00; example reason: model score 1.00; 32 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      8129,
+      8130,
+      8131,
+      8132,
+      8133,
+      8134,
+      8135,
+      8136,
+      8137,
+      8138
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0030-F2",
+    "incident_id": "INC-0030",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "194.110.213.233"
+    ],
+    "evidence": [
+      "successful login to db-01 by user11 from 194.110.213.233 after 32 failed attempts in the preceding 10 min",
+      "first alert 2026-09-03 07:18:57, last alert 2026-09-03 07:18:57",
+      "mean model score 0.97; example reason: model score 0.97; successful login preceded by 32 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      8161
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0031-F1",
+    "incident_id": "INC-0031",
+    "finding_type": "c2_beaconing",
+    "title": "Periodic outbound connections consistent with C2 beaconing",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-07",
+        "title": "Threat intelligence and context are integrated into analysis"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      },
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.5.7",
+        "title": "Threat intelligence"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.49"
+    ],
+    "evidence": [
+      "50 outbound connections from 10.0.10.49 to 185.224.10.220 at a regular ~61s interval (small payloads, ~203 bytes each)",
+      "first alert 2026-09-03 10:02:31, last alert 2026-09-03 10:52:06",
+      "mean model score 1.00; example reason: model score 1.00; 50 connections to the same external IP in 1 h, interval ~61s (std 7.9s)"
+    ],
+    "sample_event_ids": [
+      8717,
+      8720,
+      8723,
+      8729,
+      8734,
+      8742,
+      8752,
+      8759,
+      8765,
+      8774
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Isolate the host and run EDR/malware triage",
+      "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+      "Hunt for the same destination across other hosts",
+      "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+    ]
+  },
+  {
+    "finding_id": "INC-0032-F1",
+    "incident_id": "INC-0032",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "evidence": [
+      "2 large outbound transfers (4.3 MB total) from db-02 (10.0.4.40) to external 91.247.80.28",
+      "first alert 2026-09-03 11:59:28, last alert 2026-09-03 12:03:28",
+      "mean model score 0.67; example reason: model score 0.66; 888,100 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      9425,
+      9462
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0033-F1",
+    "incident_id": "INC-0033",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.10.37"
+    ],
+    "evidence": [
+      "1 administrative action(s) on db-01 by user39 from 10.0.10.37 (1 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-03 14:29:00, last alert 2026-09-03 14:29:00",
+      "mean model score 0.93; example reason: model score 0.93; administrative action by non-admin account (user39) during business hours"
+    ],
+    "sample_event_ids": [
+      10555
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0034-F1",
+    "incident_id": "INC-0034",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.52"
+    ],
+    "evidence": [
+      "1 administrative action(s) on db-02 by user21 from 10.0.10.52 (1 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-03 14:49:00, last alert 2026-09-03 14:49:00",
+      "mean model score 0.93; example reason: model score 0.93; administrative action by non-admin account (user21) during business hours"
+    ],
+    "sample_event_ids": [
+      10676
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0035-F1",
+    "incident_id": "INC-0035",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.38"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-02 by user04 from 10.0.10.38 (2 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-03 16:16:00, last alert 2026-09-03 16:16:30",
+      "mean model score 0.93; example reason: model score 0.87; administrative action by non-admin account (user04) during business hours"
+    ],
+    "sample_event_ids": [
+      11092,
+      11094
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0036-F1",
+    "incident_id": "INC-0036",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "91.38.7.12"
+    ],
+    "evidence": [
+      "22 failed logins from 91.38.7.12 against web-01 (account: admin_meera) within 7m 46s",
+      "first alert 2026-09-03 17:42:10, last alert 2026-09-03 17:49:55",
+      "mean model score 1.00; example reason: model score 1.00; 9 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      11408,
+      11411,
+      11413,
+      11414,
+      11415,
+      11417,
+      11418,
+      11421,
+      11422,
+      11423
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0036-F2",
+    "incident_id": "INC-0036",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "91.38.7.12"
+    ],
+    "evidence": [
+      "2 anomalous events from 91.38.7.12 on web-01",
+      "first alert 2026-09-03 17:50:31, last alert 2026-09-03 17:50:58",
+      "mean model score 1.00; example reason: model score 1.00; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      11446,
+      11448
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0036-F3",
+    "incident_id": "INC-0036",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "91.38.7.12"
+    ],
+    "evidence": [
+      "successful login to web-01 by admin_meera from 91.38.7.12 after 24 failed attempts in the preceding 10 min",
+      "first alert 2026-09-03 17:51:26, last alert 2026-09-03 17:51:26",
+      "mean model score 0.97; example reason: model score 0.97; successful login preceded by 24 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      11450
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0037-F1",
+    "incident_id": "INC-0037",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.2.21"
+    ],
+    "evidence": [
+      "3 large outbound transfers (7.5 MB total) from file-01 (10.0.2.21) to external 185.65.214.21",
+      "first alert 2026-09-03 22:11:01, last alert 2026-09-03 22:14:01",
+      "mean model score 0.95; example reason: model score 0.95; 1,800,945 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      11776,
+      11777,
+      11780
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0038-F1",
+    "incident_id": "INC-0038",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "10.0.10.6"
+    ],
+    "evidence": [
+      "1 administrative action(s) on auth-01 by admin_meera from 10.0.10.6 (0 by non-admin accounts, 1 outside business hours)",
+      "first alert 2026-09-03 23:00:00, last alert 2026-09-03 23:00:00",
+      "mean model score 0.54; example reason: model score 0.54; administrative action by admin account (admin_meera) during off-hours"
+    ],
+    "sample_event_ids": [
+      11801
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0039-F1",
+    "incident_id": "INC-0039",
+    "finding_type": "c2_beaconing",
+    "title": "Periodic outbound connections consistent with C2 beaconing",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-07",
+        "title": "Threat intelligence and context are integrated into analysis"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      },
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.5.7",
+        "title": "Threat intelligence"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.30"
+    ],
+    "evidence": [
+      "30 outbound connections from 10.0.10.30 to 185.214.140.181 at a regular ~120s interval (small payloads, ~215 bytes each)",
+      "first alert 2026-09-04 03:00:50, last alert 2026-09-04 03:58:35",
+      "mean model score 1.00; example reason: model score 1.00; 30 connections to the same external IP in 1 h, interval ~120s (std 4.6s)"
+    ],
+    "sample_event_ids": [
+      11881,
+      11883,
+      11884,
+      11885,
+      11887,
+      11889,
+      11890,
+      11891,
+      11893,
+      11894
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Isolate the host and run EDR/malware triage",
+      "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+      "Hunt for the same destination across other hosts",
+      "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+    ]
+  },
+  {
+    "finding_id": "INC-0039-F2",
+    "incident_id": "INC-0039",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.30"
+    ],
+    "evidence": [
+      "2 anomalous events from 10.0.10.30 on web-01",
+      "first alert 2026-09-04 04:00:39, last alert 2026-09-04 04:02:33",
+      "mean model score 0.91; example reason: model score 0.92; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      11938,
+      11940
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0040-F1",
+    "incident_id": "INC-0040",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.48"
+    ],
+    "evidence": [
+      "1 administrative action(s) on db-02 by user32 from 10.0.10.48 (1 by non-admin accounts, 1 outside business hours)",
+      "first alert 2026-09-04 03:27:00, last alert 2026-09-04 03:27:00",
+      "mean model score 0.89; example reason: model score 0.89; administrative action by non-admin account (user32) during off-hours"
+    ],
+    "sample_event_ids": [
+      11904
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0041-F1",
+    "incident_id": "INC-0041",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "10.0.10.4"
+    ],
+    "evidence": [
+      "1 administrative action(s) on auth-01 by user11 from 10.0.10.4 (1 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-04 11:07:00, last alert 2026-09-04 11:07:00",
+      "mean model score 0.76; example reason: model score 0.76; administrative action by non-admin account (user11) during business hours"
+    ],
+    "sample_event_ids": [
+      12943
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0042-F1",
+    "incident_id": "INC-0042",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "backup-01"
+    ],
+    "source_ips": [
+      "185.89.187.202"
+    ],
+    "evidence": [
+      "34 anomalous events from 185.89.187.202 on backup-01",
+      "first alert 2026-09-04 11:55:59, last alert 2026-09-04 12:02:54",
+      "mean model score 1.00; example reason: model score 1.00; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      13263,
+      13264,
+      13266,
+      13267,
+      13271,
+      13272,
+      13276,
+      13278,
+      13281,
+      13282
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0043-F1",
+    "incident_id": "INC-0043",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.10.31"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-01 by user30 from 10.0.10.31 (2 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-04 16:20:00, last alert 2026-09-04 16:20:30",
+      "mean model score 0.97; example reason: model score 0.98; administrative action by non-admin account (user30) during business hours"
+    ],
+    "sample_event_ids": [
+      15000,
+      15004
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0044-F1",
+    "incident_id": "INC-0044",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "203.64.171.27"
+    ],
+    "evidence": [
+      "38 failed logins from 203.64.171.27 against web-01 (account: user18) within 2m 10s",
+      "first alert 2026-09-04 19:50:43, last alert 2026-09-04 19:52:53",
+      "mean model score 1.00; example reason: model score 1.00; 38 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      15496,
+      15497,
+      15498,
+      15499,
+      15500,
+      15501,
+      15502,
+      15503,
+      15504,
+      15505
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0044-F2",
+    "incident_id": "INC-0044",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "203.64.171.27"
+    ],
+    "evidence": [
+      "successful login to web-01 by user18 from 203.64.171.27 after 38 failed attempts in the preceding 10 min",
+      "first alert 2026-09-04 19:52:54, last alert 2026-09-04 19:52:54",
+      "mean model score 0.98; example reason: model score 0.98; successful login preceded by 38 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      15535
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0045-F1",
+    "incident_id": "INC-0045",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "evidence": [
+      "3 large outbound transfers (14.0 MB total) from file-01 (10.0.4.40) to external 91.125.55.91",
+      "first alert 2026-09-04 20:05:59, last alert 2026-09-04 20:15:59",
+      "mean model score 0.96; example reason: model score 0.96; 4,667,914 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      15542,
+      15546,
+      15547
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0046-F1",
+    "incident_id": "INC-0046",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "103.200.144.227"
+    ],
+    "evidence": [
+      "20 failed logins from 103.200.144.227 against web-01 (account: user10) within 7m 23s",
+      "first alert 2026-09-04 20:41:59, last alert 2026-09-04 20:49:21",
+      "mean model score 1.00; example reason: model score 1.00; 8 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      15554,
+      15555,
+      15556,
+      15557,
+      15559,
+      15561,
+      15562,
+      15563,
+      15564,
+      15565
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0046-F2",
+    "incident_id": "INC-0046",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "103.200.144.227"
+    ],
+    "evidence": [
+      "successful login to web-01 by user10 from 103.200.144.227 after 20 failed attempts in the preceding 10 min",
+      "first alert 2026-09-04 20:50:00, last alert 2026-09-04 20:50:00",
+      "mean model score 0.96; example reason: model score 0.96; successful login preceded by 20 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      15577
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0047-F1",
+    "incident_id": "INC-0047",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "185.88.48.248"
+    ],
+    "evidence": [
+      "4 anomalous events from 185.88.48.248 on db-01",
+      "first alert 2026-09-04 21:58:47, last alert 2026-09-04 21:59:54",
+      "mean model score 0.94; example reason: model score 0.96; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      15601,
+      15602,
+      15603,
+      15604
+    ],
+    "risk_level": "High",
+    "risk_rationale": "medium severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0047-F2",
+    "incident_id": "INC-0047",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "185.88.48.248"
+    ],
+    "evidence": [
+      "17 failed logins from 185.88.48.248 against db-01 (account: user04) within 6m 29s",
+      "first alert 2026-09-04 22:00:32, last alert 2026-09-04 22:07:01",
+      "mean model score 1.00; example reason: model score 1.00; 12 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      15605,
+      15606,
+      15607,
+      15608,
+      15609,
+      15610,
+      15611,
+      15613,
+      15614,
+      15615
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0047-F3",
+    "incident_id": "INC-0047",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "185.88.48.248"
+    ],
+    "evidence": [
+      "successful login to db-01 by user04 from 185.88.48.248 after 21 failed attempts in the preceding 10 min",
+      "first alert 2026-09-04 22:07:19, last alert 2026-09-04 22:07:19",
+      "mean model score 0.97; example reason: model score 0.97; successful login preceded by 21 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      15626
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0048-F1",
+    "incident_id": "INC-0048",
+    "finding_type": "c2_beaconing",
+    "title": "Periodic outbound connections consistent with C2 beaconing",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-07",
+        "title": "Threat intelligence and context are integrated into analysis"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      },
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.5.7",
+        "title": "Threat intelligence"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.57"
+    ],
+    "evidence": [
+      "50 outbound connections from 10.0.10.57 to 91.237.239.61 at a regular ~122s interval (small payloads, ~202 bytes each)",
+      "first alert 2026-09-05 10:08:15, last alert 2026-09-05 11:46:51",
+      "mean model score 1.00; example reason: model score 1.00; 26 connections to the same external IP in 1 h, interval ~122s (std 4.7s)"
+    ],
+    "sample_event_ids": [
+      16425,
+      16435,
+      16443,
+      16449,
+      16455,
+      16472,
+      16481,
+      16497,
+      16506,
+      16525
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Isolate the host and run EDR/malware triage",
+      "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+      "Hunt for the same destination across other hosts",
+      "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+    ]
+  },
+  {
+    "finding_id": "INC-0049-F1",
+    "incident_id": "INC-0049",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.51"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-02 by admin_ravi from 10.0.10.51 (0 by non-admin accounts, 0 outside business hours)",
+      "first alert 2026-09-05 14:01:00, last alert 2026-09-05 14:01:30",
+      "mean model score 0.71; example reason: model score 0.63; administrative action by admin account (admin_ravi) during business hours"
+    ],
+    "sample_event_ids": [
+      17986,
+      17990
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0050-F1",
+    "incident_id": "INC-0050",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-02"
+    ],
+    "source_ips": [
+      "194.26.19.138"
+    ],
+    "evidence": [
+      "17 anomalous events from 194.26.19.138 on web-02",
+      "first alert 2026-09-05 15:31:36, last alert 2026-09-05 15:34:57",
+      "mean model score 1.00; example reason: model score 1.00; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      18485,
+      18486,
+      18490,
+      18491,
+      18493,
+      18494,
+      18496,
+      18497,
+      18499,
+      18500
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0050-F2",
+    "incident_id": "INC-0050",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-02"
+    ],
+    "source_ips": [
+      "194.26.19.138"
+    ],
+    "evidence": [
+      "53 blocked connection attempts across 53 distinct ports on web-02 from 194.26.19.138 within 9m 18s",
+      "first alert 2026-09-05 15:35:01, last alert 2026-09-05 15:44:19",
+      "mean model score 1.00; example reason: model score 1.00; 29 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      18518,
+      18521,
+      18527,
+      18529,
+      18530,
+      18533,
+      18536,
+      18537,
+      18538,
+      18541
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0051-F1",
+    "incident_id": "INC-0051",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.46"
+    ],
+    "evidence": [
+      "13 anomalous events from 10.0.10.46 on web-01",
+      "first alert 2026-09-06 00:35:05, last alert 2026-09-06 00:59:02",
+      "mean model score 0.53; example reason: model score 0.53; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      19379,
+      19380,
+      19383,
+      19384,
+      19385,
+      19386,
+      19388,
+      19389,
+      19391,
+      19392
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0052-F1",
+    "incident_id": "INC-0052",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "source_ips": [
+      "10.0.10.47"
+    ],
+    "evidence": [
+      "2 administrative action(s) on auth-01 by admin_ravi from 10.0.10.47 (0 by non-admin accounts, 2 outside business hours)",
+      "first alert 2026-09-06 03:05:00, last alert 2026-09-06 03:05:30",
+      "mean model score 0.59; example reason: model score 0.57; administrative action by admin account (admin_ravi) during off-hours"
+    ],
+    "sample_event_ids": [
+      19495,
+      19497
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) auth-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0053-F1",
+    "incident_id": "INC-0053",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "backup-01"
+    ],
+    "source_ips": [
+      "91.52.215.6"
+    ],
+    "evidence": [
+      "107 blocked connection attempts across 107 distinct ports on backup-01 from 91.52.215.6 within 1m 33s",
+      "first alert 2026-09-06 03:37:50, last alert 2026-09-06 03:39:22",
+      "mean model score 0.99; example reason: model score 0.99; 107 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      19513,
+      19514,
+      19515,
+      19516,
+      19517,
+      19518,
+      19519,
+      19520,
+      19521,
+      19522
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0054-F1",
+    "incident_id": "INC-0054",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "185.246.93.163"
+    ],
+    "evidence": [
+      "49 blocked connection attempts across 49 distinct ports on db-02 from 185.246.93.163 within 8m 13s",
+      "first alert 2026-09-06 07:31:44, last alert 2026-09-06 07:39:57",
+      "mean model score 0.98; example reason: model score 0.98; 21 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      19708,
+      19709,
+      19710,
+      19711,
+      19712,
+      19713,
+      19714,
+      19715,
+      19716,
+      19717
+    ],
+    "risk_level": "High",
+    "risk_rationale": "medium severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0054-F2",
+    "incident_id": "INC-0054",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "185.246.93.163"
+    ],
+    "evidence": [
+      "17 anomalous events from 185.246.93.163 on db-02",
+      "first alert 2026-09-06 07:40:13, last alert 2026-09-06 07:43:01",
+      "mean model score 0.98; example reason: model score 0.98; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      19762,
+      19763,
+      19764,
+      19765,
+      19766,
+      19767,
+      19768,
+      19769,
+      19770,
+      19771
+    ],
+    "risk_level": "High",
+    "risk_rationale": "medium severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0055-F1",
+    "incident_id": "INC-0055",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-02"
+    ],
+    "source_ips": [
+      "103.132.170.163"
+    ],
+    "evidence": [
+      "10 anomalous events from 103.132.170.163 on web-02",
+      "first alert 2026-09-06 12:13:38, last alert 2026-09-06 12:14:50",
+      "mean model score 0.97; example reason: model score 0.97; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      21094,
+      21096,
+      21097,
+      21098,
+      21099,
+      21100,
+      21103,
+      21106,
+      21109,
+      21112
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0055-F2",
+    "incident_id": "INC-0055",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-02"
+    ],
+    "source_ips": [
+      "103.132.170.163"
+    ],
+    "evidence": [
+      "22 blocked connection attempts across 22 distinct ports on web-02 from 103.132.170.163 within 3m 51s",
+      "first alert 2026-09-06 12:15:08, last alert 2026-09-06 12:18:59",
+      "mean model score 1.00; example reason: model score 1.00; 22 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      21116,
+      21117,
+      21119,
+      21121,
+      21124,
+      21125,
+      21127,
+      21129,
+      21130,
+      21131
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0056-F1",
+    "incident_id": "INC-0056",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "194.64.149.153"
+    ],
+    "evidence": [
+      "4 anomalous events from 194.64.149.153 on db-01",
+      "first alert 2026-09-06 13:39:48, last alert 2026-09-06 13:45:27",
+      "mean model score 0.94; example reason: model score 0.89; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      21715,
+      21761,
+      21762,
+      21765
+    ],
+    "risk_level": "High",
+    "risk_rationale": "medium severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0056-F2",
+    "incident_id": "INC-0056",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "194.64.149.153"
+    ],
+    "evidence": [
+      "15 failed logins from 194.64.149.153 against db-01 (account: user32) within 4m 22s",
+      "first alert 2026-09-06 13:40:22, last alert 2026-09-06 13:44:44",
+      "mean model score 1.00; example reason: model score 1.00; 15 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      21717,
+      21721,
+      21723,
+      21727,
+      21731,
+      21732,
+      21734,
+      21735,
+      21737,
+      21743
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0056-F3",
+    "incident_id": "INC-0056",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "194.64.149.153"
+    ],
+    "evidence": [
+      "successful login to db-01 by user32 from 194.64.149.153 after 19 failed attempts in the preceding 10 min",
+      "first alert 2026-09-06 13:45:58, last alert 2026-09-06 13:45:58",
+      "mean model score 0.90; example reason: model score 0.90; successful login preceded by 19 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      21767
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0057-F1",
+    "incident_id": "INC-0057",
+    "finding_type": "c2_beaconing",
+    "title": "Periodic outbound connections consistent with C2 beaconing",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-07",
+        "title": "Threat intelligence and context are integrated into analysis"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      },
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.5.7",
+        "title": "Threat intelligence"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.3"
+    ],
+    "evidence": [
+      "45 outbound connections from 10.0.10.3 to 91.131.122.204 at a regular ~291s interval (small payloads, ~208 bytes each)",
+      "first alert 2026-09-06 14:26:23, last alert 2026-09-06 17:56:26",
+      "mean model score 0.94; example reason: model score 0.95; 8 connections to the same external IP in 1 h, interval ~273s (std 36.7s)"
+    ],
+    "sample_event_ids": [
+      21999,
+      22036,
+      22071,
+      22100,
+      22119,
+      22143,
+      22189,
+      22215,
+      22243,
+      22279
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Isolate the host and run EDR/malware triage",
+      "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+      "Hunt for the same destination across other hosts",
+      "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+    ]
+  },
+  {
+    "finding_id": "INC-0058-F1",
+    "incident_id": "INC-0058",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "evidence": [
+      "2 large outbound transfers (10.5 MB total) from db-01 (10.0.4.40) to external 45.65.241.221",
+      "first alert 2026-09-06 17:21:11, last alert 2026-09-06 17:26:11",
+      "mean model score 0.58; example reason: model score 0.59; 4,194,228 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      22904,
+      22927
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0059-F1",
+    "incident_id": "INC-0059",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "mail-01"
+    ],
+    "source_ips": [
+      "91.50.108.171"
+    ],
+    "evidence": [
+      "13 anomalous events from 91.50.108.171 on mail-01",
+      "first alert 2026-09-06 18:28:53, last alert 2026-09-06 18:41:12",
+      "mean model score 0.98; example reason: model score 0.98; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      23079,
+      23080,
+      23081,
+      23082,
+      23083,
+      23085,
+      23152,
+      23153,
+      23155,
+      23156
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0059-F2",
+    "incident_id": "INC-0059",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "mail-01"
+    ],
+    "source_ips": [
+      "91.50.108.171"
+    ],
+    "evidence": [
+      "50 blocked connection attempts across 50 distinct ports on mail-01 from 91.50.108.171 within 9m 39s",
+      "first alert 2026-09-06 18:30:09, last alert 2026-09-06 18:39:49",
+      "mean model score 1.00; example reason: model score 1.00; 26 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      23087,
+      23088,
+      23089,
+      23090,
+      23092,
+      23095,
+      23096,
+      23097,
+      23099,
+      23100
+    ],
+    "risk_level": "Medium",
+    "risk_rationale": "medium severity",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0060-F1",
+    "incident_id": "INC-0060",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.10.14"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-02 by user07 from 10.0.10.14 (2 by non-admin accounts, 2 outside business hours)",
+      "first alert 2026-09-07 00:44:00, last alert 2026-09-07 00:44:30",
+      "mean model score 0.80; example reason: model score 0.69; administrative action by non-admin account (user07) during off-hours"
+    ],
+    "sample_event_ids": [
+      23478,
+      23479
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-02",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0061-F1",
+    "incident_id": "INC-0061",
+    "finding_type": "port_scan",
+    "title": "Network port scanning / reconnaissance",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "PR.IR-01",
+        "title": "Networks and environments are protected from unauthorised logical access"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "203.0.113.77"
+    ],
+    "evidence": [
+      "90 blocked connection attempts across 90 distinct ports on db-01 from 203.0.113.77 within 1m 29s",
+      "first alert 2026-09-07 03:00:00, last alert 2026-09-07 03:01:29",
+      "mean model score 0.95; example reason: model score 0.95; 90 distinct ports probed by this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      23546,
+      23547,
+      23548,
+      23549,
+      23550,
+      23551,
+      23552,
+      23553,
+      23554,
+      23555
+    ],
+    "risk_level": "High",
+    "risk_rationale": "medium severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block the scanning source and review firewall rules to expose only required ports",
+      "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+      "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+    ]
+  },
+  {
+    "finding_id": "INC-0061-F2",
+    "incident_id": "INC-0061",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "203.0.113.77"
+    ],
+    "evidence": [
+      "45 failed logins from 203.0.113.77 against db-01 (account: user17) within 2m 12s",
+      "first alert 2026-09-07 03:08:00, last alert 2026-09-07 03:10:12",
+      "mean model score 0.87; example reason: model score 0.87; 40 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      23639,
+      23640,
+      23641,
+      23642,
+      23643,
+      23644,
+      23645,
+      23646,
+      23647,
+      23648
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0061-F3",
+    "incident_id": "INC-0061",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "203.0.113.77"
+    ],
+    "evidence": [
+      "successful login to db-01 by user17 from 203.0.113.77 after 45 failed attempts in the preceding 10 min",
+      "first alert 2026-09-07 03:10:15, last alert 2026-09-07 03:10:15",
+      "mean model score 0.78; example reason: model score 0.78; successful login preceded by 45 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      23685
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0061-F4",
+    "incident_id": "INC-0061",
+    "finding_type": "priv_escalation",
+    "title": "Suspicious administrative activity (possible privilege escalation)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.2",
+        "title": "Privileged access rights"
+      },
+      {
+        "id": "A.5.18",
+        "title": "Access rights"
+      },
+      {
+        "id": "A.8.15",
+        "title": "Logging"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "203.0.113.77"
+    ],
+    "evidence": [
+      "2 administrative action(s) on db-01 by user17 from 203.0.113.77 (2 by non-admin accounts, 2 outside business hours)",
+      "first alert 2026-09-07 03:22:00, last alert 2026-09-07 03:22:30",
+      "mean model score 0.82; example reason: model score 0.82; administrative action by non-admin account (user17) during off-hours"
+    ],
+    "sample_event_ids": [
+      23696,
+      23697
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Verify with the account owner; disable the account if the activity is not legitimate",
+      "Remove unnecessary admin rights and require just-in-time privileged access",
+      "Alert on admin actions by non-admin accounts or outside change windows"
+    ]
+  },
+  {
+    "finding_id": "INC-0061-F5",
+    "incident_id": "INC-0061",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "10.0.2.20"
+    ],
+    "evidence": [
+      "4 large outbound transfers (77.4 MB total) from db-01 (10.0.2.20) to external 198.51.100.23",
+      "first alert 2026-09-07 03:35:00, last alert 2026-09-07 03:41:00",
+      "mean model score 0.75; example reason: model score 0.76; 12,846,076 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      23700,
+      23701,
+      23704,
+      23706
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0062-F1",
+    "incident_id": "INC-0062",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "evidence": [
+      "2 large outbound transfers (2.7 MB total) from db-02 (10.0.4.40) to external 203.112.1.134",
+      "first alert 2026-09-07 05:21:01, last alert 2026-09-07 05:24:01",
+      "mean model score 0.78; example reason: model score 0.79; 1,778,123 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      23733,
+      23734
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0063-F1",
+    "incident_id": "INC-0063",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "185.90.79.211"
+    ],
+    "evidence": [
+      "24 failed logins from 185.90.79.211 against web-01 (account: admin_meera) within 1m 26s",
+      "first alert 2026-09-07 06:24:23, last alert 2026-09-07 06:25:48",
+      "mean model score 0.99; example reason: model score 0.98; 11 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      23762,
+      23763,
+      23764,
+      23765,
+      23766,
+      23767,
+      23768,
+      23769,
+      23770,
+      23771
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0063-F2",
+    "incident_id": "INC-0063",
+    "finding_type": "login_success",
+    "title": "Successful login after repeated failures (possible account compromise)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "PR.AA-05",
+        "title": "Access permissions are managed with least privilege and separation of duties"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-03",
+        "title": "Information on adverse events is correlated from multiple sources"
+      },
+      {
+        "id": "DE.AE-08",
+        "title": "Incidents are declared when events meet defined incident criteria"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.5.15",
+        "title": "Access control"
+      },
+      {
+        "id": "A.5.26",
+        "title": "Response to information security incidents"
+      }
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "source_ips": [
+      "185.90.79.211"
+    ],
+    "evidence": [
+      "successful login to web-01 by admin_meera from 185.90.79.211 after 24 failed attempts in the preceding 10 min",
+      "first alert 2026-09-07 06:25:53, last alert 2026-09-07 06:25:53",
+      "mean model score 0.95; example reason: model score 0.95; successful login preceded by 24 failures in 10 min"
+    ],
+    "sample_event_ids": [
+      23786
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+      "Review everything the account did after the login (commands, files, new accounts)",
+      "Enforce MFA and restrict the service to trusted source networks"
+    ]
+  },
+  {
+    "finding_id": "INC-0064-F1",
+    "incident_id": "INC-0064",
+    "finding_type": "c2_beaconing",
+    "title": "Periodic outbound connections consistent with C2 beaconing",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      },
+      {
+        "id": "DE.AE-07",
+        "title": "Threat intelligence and context are integrated into analysis"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      },
+      {
+        "id": "A.8.20",
+        "title": "Networks security"
+      },
+      {
+        "id": "A.5.7",
+        "title": "Threat intelligence"
+      }
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "source_ips": [
+      "10.0.10.41"
+    ],
+    "evidence": [
+      "31 outbound connections from 10.0.10.41 to 45.79.94.231 at a regular ~122s interval (small payloads, ~210 bytes each)",
+      "first alert 2026-09-07 06:35:01, last alert 2026-09-07 07:35:40",
+      "mean model score 0.89; example reason: model score 0.90; 13 connections to the same external IP in 1 h, interval ~120s (std 15.8s)"
+    ],
+    "sample_event_ids": [
+      23789,
+      23790,
+      23791,
+      23793,
+      23794,
+      23795,
+      23798,
+      23799,
+      23802,
+      23804
+    ],
+    "risk_level": "High",
+    "risk_rationale": "high severity",
+    "remediation": [
+      "Isolate the host and run EDR/malware triage",
+      "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+      "Hunt for the same destination across other hosts",
+      "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+    ]
+  },
+  {
+    "finding_id": "INC-0065-F1",
+    "incident_id": "INC-0065",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.10.36"
+    ],
+    "evidence": [
+      "1 large outbound transfers (3.9 MB total) from file-01 (10.0.10.36) to external 203.44.137.187",
+      "first alert 2026-09-07 07:16:05, last alert 2026-09-07 07:16:05",
+      "mean model score 0.57; example reason: model score 0.57; 4,125,170 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      23826
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  },
+  {
+    "finding_id": "INC-0066-F1",
+    "incident_id": "INC-0066",
+    "finding_type": "anomalous_activity",
+    "title": "Unclassified anomalous activity flagged by the model",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "194.125.161.62"
+    ],
+    "evidence": [
+      "1 anomalous events from 194.125.161.62 on db-01",
+      "first alert 2026-09-07 08:04:28, last alert 2026-09-07 08:04:28",
+      "mean model score 0.92; example reason: model score 0.92; flagged by model, no specific rule matched"
+    ],
+    "sample_event_ids": [
+      24007
+    ],
+    "risk_level": "High",
+    "risk_rationale": "medium severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Triage manually: review the raw events and surrounding context",
+      "Feed the analyst verdict back as a label for the next model retraining"
+    ]
+  },
+  {
+    "finding_id": "INC-0066-F2",
+    "incident_id": "INC-0066",
+    "finding_type": "brute_force",
+    "title": "Brute-force authentication attempts",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.AA-03",
+        "title": "Users, services and hardware are authenticated"
+      },
+      {
+        "id": "DE.CM-03",
+        "title": "Personnel activity and technology usage are monitored"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.5",
+        "title": "Secure authentication"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "source_ips": [
+      "194.125.161.62"
+    ],
+    "evidence": [
+      "23 failed logins from 194.125.161.62 against db-01 (account: user26) within 9m 11s",
+      "first alert 2026-09-07 08:05:02, last alert 2026-09-07 08:14:13",
+      "mean model score 0.97; example reason: model score 0.98; 13 failed logins from this source in a 5-min window"
+    ],
+    "sample_event_ids": [
+      24008,
+      24010,
+      24013,
+      24015,
+      24017,
+      24018,
+      24020,
+      24022,
+      24024,
+      24026
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "high severity raised one level: affects high-criticality asset(s) db-01",
+    "remediation": [
+      "Block or rate-limit the offending source IP at the firewall/WAF",
+      "Enforce account lockout or progressive delays and require MFA on the targeted service",
+      "Alert on N failed logins per source/account per window",
+      "Reset credentials of any account that received a successful login after the failures"
+    ]
+  },
+  {
+    "finding_id": "INC-0067-F1",
+    "incident_id": "INC-0067",
+    "finding_type": "exfiltration",
+    "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+    "framework": "NIST CSF 2.0",
+    "controls": [
+      {
+        "id": "PR.DS-02",
+        "title": "Data in transit is protected (confidentiality, integrity, availability)"
+      },
+      {
+        "id": "DE.CM-01",
+        "title": "Networks and network services are monitored for adverse events"
+      },
+      {
+        "id": "DE.AE-02",
+        "title": "Potentially adverse events are analysed to understand associated activity"
+      }
+    ],
+    "iso_27001_2022": [
+      {
+        "id": "A.8.12",
+        "title": "Data leakage prevention"
+      },
+      {
+        "id": "A.5.14",
+        "title": "Information transfer"
+      },
+      {
+        "id": "A.8.16",
+        "title": "Monitoring activities"
+      }
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "source_ips": [
+      "10.0.10.56"
+    ],
+    "evidence": [
+      "1 large outbound transfers (9.1 MB total) from file-01 (10.0.10.56) to external 203.159.227.221",
+      "first alert 2026-09-07 12:54:26, last alert 2026-09-07 12:54:26",
+      "mean model score 0.51; example reason: model score 0.51; 9,508,731 bytes sent from an internal host to an external IP"
+    ],
+    "sample_event_ids": [
+      25512
+    ],
+    "risk_level": "Critical",
+    "risk_rationale": "critical severity",
+    "remediation": [
+      "Block egress to the destination and isolate the source system",
+      "Identify what data was transferred and assess breach-notification obligations",
+      "Apply egress filtering and DLP rules for large transfers from database/file servers",
+      "Rotate credentials used on the affected system"
+    ]
+  }
+]

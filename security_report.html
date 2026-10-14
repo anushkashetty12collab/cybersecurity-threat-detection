@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security Analysis Report cli-run</title>
+<style>
+:root{--bg:#fff;--fg:#1a1f2b;--muted:#5b6475;--card:#f5f7fa;--line:#dde2ea;--crit:#b3261e;--high:#d9622b;--med:#b8860b;--low:#2e7d32}
+@media (prefers-color-scheme:dark){:root{--bg:#14171d;--fg:#e8ebf0;--muted:#9aa4b5;--card:#1e232c;--line:#323a47}}
+body{font-family:system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:1100px;margin:0 auto;padding:24px;line-height:1.5}
+h1{margin-bottom:0} h2{border-bottom:2px solid var(--line);padding-bottom:4px;margin-top:36px} .muted{color:var(--muted);font-size:.9em}
+.cards{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px;min-width:130px}
+.card b{display:block;font-size:1.6em}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:8px 0} th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top} th{background:var(--card)}
+.wrap{overflow-x:auto}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;color:#fff;font-size:.8em;font-weight:600}
+.sev-critical{background:var(--crit)}.sev-high{background:var(--high)}.sev-medium{background:var(--med)}.sev-low{background:var(--low)}
+.incident{border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:18px 0}
+.finding{background:var(--card);border-radius:6px;padding:8px 12px;margin:10px 0}
+code{background:var(--card);padding:0 4px;border-radius:3px}
+</style></head><body>
+<h1>Security Analysis Report</h1>
+<p class="muted">Report cli-run &middot; generated 2026-10-14 18:18 &middot; source: data/raw/logs_demo.csv</p>
+
+<div class="cards">
+ <div class="card"><b>8318</b>events analysed</div>
+ <div class="card"><b>599</b>alerts</div>
+ <div class="card"><b>18</b>incidents</div>
+ <div class="card"><b>29</b>compliance findings</div>
+ <div class="card"><b>offline_fallback</b>threat-intel mode</div>
+</div>
+
+<h2>1. Executive summary</h2>
+<p>Incidents by severity:
+<span class="badge sev-critical">critical: 7</span> <span class="badge sev-high">high: 6</span> <span class="badge sev-medium">medium: 5</span> </p>
+<p class="muted">Threat-intel API unavailable or not configured: enrichment used the local SAMPLE blocklist (demo data, not real intelligence).</p>
+
+<div class="wrap"><table><tr><th>Incident</th><th>Severity</th><th>Start</th><th>Assets</th><th>Source IPs</th><th>Stages</th><th>Alerts</th></tr>
+<tr><td><a href="#INC-0001">INC-0001</a></td>
+<td><span class="badge sev-medium">medium</span></td><td>2026-09-06 00:35:05</td>
+<td>web-01</td><td>10.0.10.46</td>
+<td>anomalous_activity</td><td>13</td></tr><tr><td><a href="#INC-0002">INC-0002</a></td>
+<td><span class="badge sev-high">high</span></td><td>2026-09-06 03:05:00</td>
+<td>auth-01</td><td>10.0.10.47</td>
+<td>priv_escalation</td><td>2</td></tr><tr><td><a href="#INC-0003">INC-0003</a></td>
+<td><span class="badge sev-medium">medium</span></td><td>2026-09-06 03:37:50</td>
+<td>backup-01</td><td>91.52.215.6</td>
+<td>port_scan</td><td>107</td></tr><tr><td><a href="#INC-0004">INC-0004</a></td>
+<td><span class="badge sev-medium">medium</span></td><td>2026-09-06 07:31:44</td>
+<td>db-02</td><td>185.246.93.163</td>
+<td>port_scan &amp;rarr; anomalous_activity</td><td>66</td></tr><tr><td><a href="#INC-0005">INC-0005</a></td>
+<td><span class="badge sev-medium">medium</span></td><td>2026-09-06 12:13:38</td>
+<td>web-02</td><td>103.132.170.163</td>
+<td>anomalous_activity &amp;rarr; port_scan</td><td>32</td></tr><tr><td><a href="#INC-0006">INC-0006</a></td>
+<td><span class="badge sev-critical">critical</span></td><td>2026-09-06 13:39:48</td>
+<td>db-01</td><td>194.64.149.153</td>
+<td>anomalous_activity &amp;rarr; brute_force &amp;rarr; login_success</td><td>20</td></tr><tr><td><a href="#INC-0007">INC-0007</a></td>
+<td><span class="badge sev-high">high</span></td><td>2026-09-06 14:26:23</td>
+<td>mail-01, web-01</td><td>10.0.10.3</td>
+<td>c2_beaconing</td><td>45</td></tr><tr><td><a href="#INC-0008">INC-0008</a></td>
+<td><span class="badge sev-high">high</span></td><td>2026-09-06 17:02:03</td>
+<td>web-01</td><td>10.0.10.37</td>
+<td>c2_beaconing</td><td>21</td></tr><tr><td><a href="#INC-0009">INC-0009</a></td>
+<td><span class="badge sev-critical">critical</span></td><td>2026-09-06 17:21:11</td>
+<td>db-01</td><td>10.0.4.40</td>
+<td>exfiltration</td><td>2</td></tr><tr><td><a href="#INC-0010">INC-0010</a></td>
+<td><span class="badge sev-medium">medium</span></td><td>2026-09-06 18:28:53</td>
+<td>mail-01</td><td>91.50.108.171</td>
+<td>anomalous_activity &amp;rarr; port_scan</td><td>63</td></tr><tr><td><a href="#INC-0011">INC-0011</a></td>
+<td><span class="badge sev-high">high</span></td><td>2026-09-07 00:44:00</td>
+<td>db-02</td><td>10.0.10.14</td>
+<td>priv_escalation</td><td>2</td></tr><tr><td><a href="#INC-0012">INC-0012</a></td>
+<td><span class="badge sev-critical">critical</span></td><td>2026-09-07 03:00:00</td>
+<td>db-01</td><td>10.0.2.20, 203.0.113.77</td>
+<td>port_scan &amp;rarr; brute_force &amp;rarr; login_success &amp;rarr; priv_escalation &amp;rarr; exfiltration</td><td>142</td></tr><tr><td><a href="#INC-0013">INC-0013</a></td>
+<td><span class="badge sev-critical">critical</span></td><td>2026-09-07 05:21:01</td>
+<td>db-02</td><td>10.0.4.40</td>
+<td>exfiltration</td><td>2</td></tr><tr><td><a href="#INC-0014">INC-0014</a></td>
+<td><span class="badge sev-critical">critical</span></td><td>2026-09-07 06:24:23</td>
+<td>web-01</td><td>185.90.79.211</td>
+<td>brute_force &amp;rarr; login_success</td><td>25</td></tr><tr><td><a href="#INC-0015">INC-0015</a></td>
+<td><span class="badge sev-high">high</span></td><td>2026-09-07 06:35:01</td>
+<td>mail-01, web-01</td><td>10.0.10.41</td>
+<td>c2_beaconing</td><td>31</td></tr><tr><td><a href="#INC-0016">INC-0016</a></td>
+<td><span class="badge sev-critical">critical</span></td><td>2026-09-07 07:16:05</td>
+<td>file-01</td><td>10.0.10.36</td>
+<td>exfiltration</td><td>1</td></tr><tr><td><a href="#INC-0017">INC-0017</a></td>
+<td><span class="badge sev-high">high</span></td><td>2026-09-07 08:04:28</td>
+<td>db-01</td><td>194.125.161.62</td>
+<td>anomalous_activity &amp;rarr; brute_force</td><td>24</td></tr><tr><td><a href="#INC-0018">INC-0018</a></td>
+<td><span class="badge sev-critical">critical</span></td><td>2026-09-07 12:54:26</td>
+<td>file-01</td><td>10.0.10.56</td>
+<td>exfiltration</td><td>1</td></tr></table></div>
+
+
+<h2>2. Detection model</h2>
+
+<p>Best supervised model: <b>RandomForest</b> (time-based train/test split, synthetic data).</p>
+<div class="wrap"><table><tr><th>Model</th><th>Precision</th><th>Recall</th><th>F1</th><th>PR-AUC</th><th>FP</th><th>FN</th></tr>
+<tr><td>LogisticRegression</td><td>0.7374</td><td>0.993</td><td>0.8463</td><td>0.9658</td>
+<td>151</td><td>3</td></tr><tr><td>RandomForest</td><td>0.9212</td><td>0.9859</td><td>0.9525</td><td>0.9965</td>
+<td>36</td><td>6</td></tr><tr><td>GradientBoosting</td><td>0.9681</td><td>0.9251</td><td>0.9461</td><td>0.9893</td>
+<td>13</td><td>32</td></tr><tr><td>IsolationForest (unsupervised)</td><td>0.5199</td><td>0.8244</td><td>0.6377</td><td>0.6419</td>
+<td>325</td><td>75</td></tr></table></div>
+
+
+<h2>3. Incident details</h2>
+
+<div class="incident" id="INC-0001">
+<h3>INC-0001 <span class="badge sev-medium">medium</span></h3>
+<p class="muted">2026-09-06 00:35:05 &rarr; 2026-09-06 00:59:02 (1437s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;medium&#39; (single stage)</p>
+<p><b>Explanation:</b> [00:35:05] 13 anomalous events from 10.0.10.46 on web-01</p>
+<p><b>Affected assets:</b> web-01 &middot; <b>Accounts:</b> svc_monitor</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 00:35:05</td><td>2026-09-06 00:59:02</td><td>anomalous_activity</td><td>13</td><td>13 anomalous events from 10.0.10.46 on web-01</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>103.63.58.36</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0001-F1 &mdash; Unclassified anomalous activity flagged by the model</b> <span class="badge sev-medium">Medium</span>
+<p class="muted">medium severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>13 anomalous events from 10.0.10.46 on web-01</li><li>first alert 2026-09-06 00:35:05, last alert 2026-09-06 00:59:02</li><li>mean model score 0.58; example reason: model score 0.57; flagged by model, no specific rule matched</li><li>Sample event IDs: 19379, 19380, 19383, 19384, 19385, 19386, 19388, 19389, 19391, 19392</li></ul>
+<b>Recommended remediation</b><ul><li>Triage manually: review the raw events and surrounding context</li><li>Feed the analyst verdict back as a label for the next model retraining</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0002">
+<h3>INC-0002 <span class="badge sev-high">high</span></h3>
+<p class="muted">2026-09-06 03:05:00 &rarr; 2026-09-06 03:05:30 (30s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;high&#39; (single stage)</p>
+<p><b>Explanation:</b> [03:05:00] 2 administrative action(s) on auth-01 by admin_ravi from 10.0.10.47 (0 by non-admin accounts, 2 outside business hours)</p>
+<p><b>Affected assets:</b> auth-01 &middot; <b>Accounts:</b> admin_ravi</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 03:05:00</td><td>2026-09-06 03:05:30</td><td>priv_escalation</td><td>2</td><td>2 administrative action(s) on auth-01 by admin_ravi from 10.0.10.47 (0 by non-admin accounts, 2 outside business hours)</td></tr></table></div>
+
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0002-F1 &mdash; Suspicious administrative activity (possible privilege escalation)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">high severity raised one level: affects high-criticality asset(s) auth-01</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-05</code> Access permissions are managed with least privilege and separation of duties; <code>DE.CM-03</code> Personnel activity and technology usage are monitored</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.2</code> Privileged access rights; <code>A.5.18</code> Access rights; <code>A.8.15</code> Logging</p>
+<b>Evidence</b><ul><li>2 administrative action(s) on auth-01 by admin_ravi from 10.0.10.47 (0 by non-admin accounts, 2 outside business hours)</li><li>first alert 2026-09-06 03:05:00, last alert 2026-09-06 03:05:30</li><li>mean model score 0.58; example reason: model score 0.55; administrative action by admin account (admin_ravi) during off-hours</li><li>Sample event IDs: 19495, 19497</li></ul>
+<b>Recommended remediation</b><ul><li>Verify with the account owner; disable the account if the activity is not legitimate</li><li>Remove unnecessary admin rights and require just-in-time privileged access</li><li>Alert on admin actions by non-admin accounts or outside change windows</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0003">
+<h3>INC-0003 <span class="badge sev-medium">medium</span></h3>
+<p class="muted">2026-09-06 03:37:50 &rarr; 2026-09-06 03:39:22 (92s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;medium&#39; (single stage)</p>
+<p><b>Explanation:</b> [03:37:50] 107 blocked connection attempts across 107 distinct ports on backup-01 from 91.52.215.6 within 1m 33s</p>
+<p><b>Affected assets:</b> backup-01 &middot; <b>Accounts:</b> unknown</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 03:37:50</td><td>2026-09-06 03:39:22</td><td>port_scan</td><td>107</td><td>107 blocked connection attempts across 107 distinct ports on backup-01 from 91.52.215.6 within 1m 33s</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>91.52.215.6</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0003-F1 &mdash; Network port scanning / reconnaissance</b> <span class="badge sev-medium">Medium</span>
+<p class="muted">medium severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>PR.IR-01</code> Networks and environments are protected from unauthorised logical access</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.20</code> Networks security; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>107 blocked connection attempts across 107 distinct ports on backup-01 from 91.52.215.6 within 1m 33s</li><li>first alert 2026-09-06 03:37:50, last alert 2026-09-06 03:39:22</li><li>mean model score 1.00; example reason: model score 1.00; 107 distinct ports probed by this source in a 5-min window</li><li>Sample event IDs: 19513, 19514, 19515, 19516, 19517, 19518, 19519, 19520, 19521, 19522</li></ul>
+<b>Recommended remediation</b><ul><li>Block the scanning source and review firewall rules to expose only required ports</li><li>Add IDS/IPS or rate-based rules for sequential multi-port probing</li><li>Confirm whether the source is an authorised scanner; if so, allow-list it explicitly</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0004">
+<h3>INC-0004 <span class="badge sev-medium">medium</span></h3>
+<p class="muted">2026-09-06 07:31:44 &rarr; 2026-09-06 07:43:01 (677s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;medium&#39; (single stage)</p>
+<p><b>Explanation:</b> [07:31:44] 49 blocked connection attempts across 49 distinct ports on db-02 from 185.246.93.163 within 8m 13s. Also 17 related alert(s) flagged by the model but not matching a specific rule</p>
+<p><b>Affected assets:</b> db-02 &middot; <b>Accounts:</b> unknown</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 07:31:44</td><td>2026-09-06 07:39:57</td><td>port_scan</td><td>49</td><td>49 blocked connection attempts across 49 distinct ports on db-02 from 185.246.93.163 within 8m 13s</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>185.246.93.163</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0004-F1 &mdash; Network port scanning / reconnaissance</b> <span class="badge sev-high">High</span>
+<p class="muted">medium severity raised one level: affects high-criticality asset(s) db-02</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>PR.IR-01</code> Networks and environments are protected from unauthorised logical access</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.20</code> Networks security; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>49 blocked connection attempts across 49 distinct ports on db-02 from 185.246.93.163 within 8m 13s</li><li>first alert 2026-09-06 07:31:44, last alert 2026-09-06 07:39:57</li><li>mean model score 0.99; example reason: model score 0.99; 21 distinct ports probed by this source in a 5-min window</li><li>Sample event IDs: 19708, 19709, 19710, 19711, 19712, 19713, 19714, 19715, 19716, 19717</li></ul>
+<b>Recommended remediation</b><ul><li>Block the scanning source and review firewall rules to expose only required ports</li><li>Add IDS/IPS or rate-based rules for sequential multi-port probing</li><li>Confirm whether the source is an authorised scanner; if so, allow-list it explicitly</li></ul>
+</div>
+<div class="finding">
+<b>INC-0004-F2 &mdash; Unclassified anomalous activity flagged by the model</b> <span class="badge sev-high">High</span>
+<p class="muted">medium severity raised one level: affects high-criticality asset(s) db-02</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>17 anomalous events from 185.246.93.163 on db-02</li><li>first alert 2026-09-06 07:40:13, last alert 2026-09-06 07:43:01</li><li>mean model score 0.99; example reason: model score 0.99; flagged by model, no specific rule matched</li><li>Sample event IDs: 19762, 19763, 19764, 19765, 19766, 19767, 19768, 19769, 19770, 19771</li></ul>
+<b>Recommended remediation</b><ul><li>Triage manually: review the raw events and surrounding context</li><li>Feed the analyst verdict back as a label for the next model retraining</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0005">
+<h3>INC-0005 <span class="badge sev-medium">medium</span></h3>
+<p class="muted">2026-09-06 12:13:38 &rarr; 2026-09-06 12:18:59 (321s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;medium&#39; (single stage)</p>
+<p><b>Explanation:</b> [12:15:08] 22 blocked connection attempts across 22 distinct ports on web-02 from 103.132.170.163 within 3m 51s. Also 10 related alert(s) flagged by the model but not matching a specific rule</p>
+<p><b>Affected assets:</b> web-02 &middot; <b>Accounts:</b> unknown</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 12:15:08</td><td>2026-09-06 12:18:59</td><td>port_scan</td><td>22</td><td>22 blocked connection attempts across 22 distinct ports on web-02 from 103.132.170.163 within 3m 51s</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>103.132.170.163</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0005-F1 &mdash; Unclassified anomalous activity flagged by the model</b> <span class="badge sev-medium">Medium</span>
+<p class="muted">medium severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>10 anomalous events from 103.132.170.163 on web-02</li><li>first alert 2026-09-06 12:13:38, last alert 2026-09-06 12:14:50</li><li>mean model score 0.98; example reason: model score 0.98; flagged by model, no specific rule matched</li><li>Sample event IDs: 21094, 21096, 21097, 21098, 21099, 21100, 21103, 21106, 21109, 21112</li></ul>
+<b>Recommended remediation</b><ul><li>Triage manually: review the raw events and surrounding context</li><li>Feed the analyst verdict back as a label for the next model retraining</li></ul>
+</div>
+<div class="finding">
+<b>INC-0005-F2 &mdash; Network port scanning / reconnaissance</b> <span class="badge sev-medium">Medium</span>
+<p class="muted">medium severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>PR.IR-01</code> Networks and environments are protected from unauthorised logical access</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.20</code> Networks security; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>22 blocked connection attempts across 22 distinct ports on web-02 from 103.132.170.163 within 3m 51s</li><li>first alert 2026-09-06 12:15:08, last alert 2026-09-06 12:18:59</li><li>mean model score 1.00; example reason: model score 1.00; 22 distinct ports probed by this source in a 5-min window</li><li>Sample event IDs: 21116, 21117, 21119, 21121, 21124, 21125, 21127, 21129, 21130, 21131</li></ul>
+<b>Recommended remediation</b><ul><li>Block the scanning source and review firewall rules to expose only required ports</li><li>Add IDS/IPS or rate-based rules for sequential multi-port probing</li><li>Confirm whether the source is an authorised scanner; if so, allow-list it explicitly</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0006">
+<h3>INC-0006 <span class="badge sev-critical">critical</span></h3>
+<p class="muted">2026-09-06 13:39:48 &rarr; 2026-09-06 13:45:58 (370s) &middot; correlation: asset_chain_30m, same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;critical&#39; (multi-stage: brute_force -&gt; login_success; already at maximum level)</p>
+<p><b>Explanation:</b> [13:40:22] 15 failed logins from 194.64.149.153 against db-01 (account: user32) within 4m 22s; then [13:45:58] successful login to db-01 by user32 from 194.64.149.153 after 19 failed attempts in the preceding 10 min. Also 4 related alert(s) flagged by the model but not matching a specific rule</p>
+<p><b>Affected assets:</b> db-01 &middot; <b>Accounts:</b> user32</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 13:40:22</td><td>2026-09-06 13:44:44</td><td>brute_force</td><td>15</td><td>15 failed logins from 194.64.149.153 against db-01 (account: user32) within 4m 22s</td></tr><tr><td>2026-09-06 13:45:58</td><td>2026-09-06 13:45:58</td><td>login_success</td><td>1</td><td>successful login to db-01 by user32 from 194.64.149.153 after 19 failed attempts in the preceding 10 min</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>194.64.149.153</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0006-F1 &mdash; Unclassified anomalous activity flagged by the model</b> <span class="badge sev-high">High</span>
+<p class="muted">medium severity raised one level: affects high-criticality asset(s) db-01</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>4 anomalous events from 194.64.149.153 on db-01</li><li>first alert 2026-09-06 13:39:48, last alert 2026-09-06 13:45:27</li><li>mean model score 0.94; example reason: model score 0.90; flagged by model, no specific rule matched</li><li>Sample event IDs: 21715, 21761, 21762, 21765</li></ul>
+<b>Recommended remediation</b><ul><li>Triage manually: review the raw events and surrounding context</li><li>Feed the analyst verdict back as a label for the next model retraining</li></ul>
+</div>
+<div class="finding">
+<b>INC-0006-F2 &mdash; Brute-force authentication attempts</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">high severity raised one level: affects high-criticality asset(s) db-01</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-03</code> Users, services and hardware are authenticated; <code>DE.CM-03</code> Personnel activity and technology usage are monitored; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.5</code> Secure authentication; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>15 failed logins from 194.64.149.153 against db-01 (account: user32) within 4m 22s</li><li>first alert 2026-09-06 13:40:22, last alert 2026-09-06 13:44:44</li><li>mean model score 1.00; example reason: model score 1.00; 15 failed logins from this source in a 5-min window</li><li>Sample event IDs: 21717, 21721, 21723, 21727, 21731, 21732, 21734, 21735, 21737, 21743</li></ul>
+<b>Recommended remediation</b><ul><li>Block or rate-limit the offending source IP at the firewall/WAF</li><li>Enforce account lockout or progressive delays and require MFA on the targeted service</li><li>Alert on N failed logins per source/account per window</li><li>Reset credentials of any account that received a successful login after the failures</li></ul>
+</div>
+<div class="finding">
+<b>INC-0006-F3 &mdash; Successful login after repeated failures (possible account compromise)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">critical severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-03</code> Users, services and hardware are authenticated; <code>PR.AA-05</code> Access permissions are managed with least privilege and separation of duties; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.5</code> Secure authentication; <code>A.5.15</code> Access control; <code>A.5.26</code> Response to information security incidents</p>
+<b>Evidence</b><ul><li>successful login to db-01 by user32 from 194.64.149.153 after 19 failed attempts in the preceding 10 min</li><li>first alert 2026-09-06 13:45:58, last alert 2026-09-06 13:45:58</li><li>mean model score 0.91; example reason: model score 0.91; successful login preceded by 19 failures in 10 min</li><li>Sample event IDs: 21767</li></ul>
+<b>Recommended remediation</b><ul><li>Immediately disable the account, revoke active sessions/tokens and force a password reset</li><li>Review everything the account did after the login (commands, files, new accounts)</li><li>Enforce MFA and restrict the service to trusted source networks</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0007">
+<h3>INC-0007 <span class="badge sev-high">high</span></h3>
+<p class="muted">2026-09-06 14:26:23 &rarr; 2026-09-06 17:56:26 (12603s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;high&#39; (single stage)</p>
+<p><b>Explanation:</b> [14:26:23] 45 outbound connections from 10.0.10.3 to 91.131.122.204 at a regular ~291s interval (small payloads, ~208 bytes each)</p>
+<p><b>Affected assets:</b> mail-01, web-01 &middot; <b>Accounts:</b> user01, user02, user04, user05, user06</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 14:26:23</td><td>2026-09-06 17:56:26</td><td>c2_beaconing</td><td>45</td><td>45 outbound connections from 10.0.10.3 to 91.131.122.204 at a regular ~291s interval (small payloads, ~208 bytes each)</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>91.131.122.204</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0007-F1 &mdash; Periodic outbound connections consistent with C2 beaconing</b> <span class="badge sev-high">High</span>
+<p class="muted">high severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity; <code>DE.AE-07</code> Threat intelligence and context are integrated into analysis</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities; <code>A.8.20</code> Networks security; <code>A.5.7</code> Threat intelligence</p>
+<b>Evidence</b><ul><li>45 outbound connections from 10.0.10.3 to 91.131.122.204 at a regular ~291s interval (small payloads, ~208 bytes each)</li><li>first alert 2026-09-06 14:26:23, last alert 2026-09-06 17:56:26</li><li>mean model score 0.94; example reason: model score 0.96; 8 connections to the same external IP in 1 h, interval ~273s (std 36.7s)</li><li>Sample event IDs: 21999, 22036, 22071, 22100, 22119, 22143, 22189, 22215, 22243, 22279</li></ul>
+<b>Recommended remediation</b><ul><li>Isolate the host and run EDR/malware triage</li><li>Block the destination IP/domain at the proxy or firewall and check threat-intel reputation</li><li>Hunt for the same destination across other hosts</li><li>Confirm the traffic is not a legitimate monitoring/update agent before blocking</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0008">
+<h3>INC-0008 <span class="badge sev-high">high</span></h3>
+<p class="muted">2026-09-06 17:02:03 &rarr; 2026-09-06 17:58:04 (3361s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;high&#39; (single stage)</p>
+<p><b>Explanation:</b> [17:02:03] 21 outbound connections from 10.0.10.37 to 203.27.174.190 at a regular ~120s interval (small payloads, ~202 bytes each)</p>
+<p><b>Affected assets:</b> web-01 &middot; <b>Accounts:</b> svc_monitor</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 17:02:03</td><td>2026-09-06 17:58:04</td><td>c2_beaconing</td><td>21</td><td>21 outbound connections from 10.0.10.37 to 203.27.174.190 at a regular ~120s interval (small payloads, ~202 bytes each)</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>203.27.174.190</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0008-F1 &mdash; Periodic outbound connections consistent with C2 beaconing</b> <span class="badge sev-high">High</span>
+<p class="muted">high severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity; <code>DE.AE-07</code> Threat intelligence and context are integrated into analysis</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities; <code>A.8.20</code> Networks security; <code>A.5.7</code> Threat intelligence</p>
+<b>Evidence</b><ul><li>21 outbound connections from 10.0.10.37 to 203.27.174.190 at a regular ~120s interval (small payloads, ~202 bytes each)</li><li>first alert 2026-09-06 17:02:03, last alert 2026-09-06 17:58:04</li><li>mean model score 0.51; example reason: model score 0.51; 29 connections to the same external IP in 1 h, interval ~120s (std 1.8s)</li><li>Sample event IDs: 22837, 22846, 22855, 22862, 22870, 22891, 22895, 22900, 22926, 22933</li></ul>
+<b>Recommended remediation</b><ul><li>Isolate the host and run EDR/malware triage</li><li>Block the destination IP/domain at the proxy or firewall and check threat-intel reputation</li><li>Hunt for the same destination across other hosts</li><li>Confirm the traffic is not a legitimate monitoring/update agent before blocking</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0009">
+<h3>INC-0009 <span class="badge sev-critical">critical</span></h3>
+<p class="muted">2026-09-06 17:21:11 &rarr; 2026-09-06 17:26:11 (300s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;critical&#39; (single stage)</p>
+<p><b>Explanation:</b> [17:21:11] 2 large outbound transfers (10.5 MB total) from db-01 (10.0.4.40) to external 45.65.241.221</p>
+<p><b>Affected assets:</b> db-01 &middot; <b>Accounts:</b> user29, user39</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 17:21:11</td><td>2026-09-06 17:26:11</td><td>exfiltration</td><td>2</td><td>2 large outbound transfers (10.5 MB total) from db-01 (10.0.4.40) to external 45.65.241.221</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>45.65.241.221</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0009-F1 &mdash; Large outbound data transfer to an external destination (possible exfiltration)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">critical severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.DS-02</code> Data in transit is protected (confidentiality, integrity, availability); <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.12</code> Data leakage prevention; <code>A.5.14</code> Information transfer; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>2 large outbound transfers (10.5 MB total) from db-01 (10.0.4.40) to external 45.65.241.221</li><li>first alert 2026-09-06 17:21:11, last alert 2026-09-06 17:26:11</li><li>mean model score 0.59; example reason: model score 0.60; 4,194,228 bytes sent from an internal host to an external IP</li><li>Sample event IDs: 22904, 22927</li></ul>
+<b>Recommended remediation</b><ul><li>Block egress to the destination and isolate the source system</li><li>Identify what data was transferred and assess breach-notification obligations</li><li>Apply egress filtering and DLP rules for large transfers from database/file servers</li><li>Rotate credentials used on the affected system</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0010">
+<h3>INC-0010 <span class="badge sev-medium">medium</span></h3>
+<p class="muted">2026-09-06 18:28:53 &rarr; 2026-09-06 18:41:12 (739s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;medium&#39; (single stage)</p>
+<p><b>Explanation:</b> [18:30:09] 50 blocked connection attempts across 50 distinct ports on mail-01 from 91.50.108.171 within 9m 39s. Also 13 related alert(s) flagged by the model but not matching a specific rule</p>
+<p><b>Affected assets:</b> mail-01 &middot; <b>Accounts:</b> unknown</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-06 18:30:09</td><td>2026-09-06 18:39:49</td><td>port_scan</td><td>50</td><td>50 blocked connection attempts across 50 distinct ports on mail-01 from 91.50.108.171 within 9m 39s</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>91.50.108.171</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0010-F1 &mdash; Unclassified anomalous activity flagged by the model</b> <span class="badge sev-medium">Medium</span>
+<p class="muted">medium severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>13 anomalous events from 91.50.108.171 on mail-01</li><li>first alert 2026-09-06 18:28:53, last alert 2026-09-06 18:41:12</li><li>mean model score 0.99; example reason: model score 0.99; flagged by model, no specific rule matched</li><li>Sample event IDs: 23079, 23080, 23081, 23082, 23083, 23085, 23152, 23153, 23155, 23156</li></ul>
+<b>Recommended remediation</b><ul><li>Triage manually: review the raw events and surrounding context</li><li>Feed the analyst verdict back as a label for the next model retraining</li></ul>
+</div>
+<div class="finding">
+<b>INC-0010-F2 &mdash; Network port scanning / reconnaissance</b> <span class="badge sev-medium">Medium</span>
+<p class="muted">medium severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>PR.IR-01</code> Networks and environments are protected from unauthorised logical access</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.20</code> Networks security; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>50 blocked connection attempts across 50 distinct ports on mail-01 from 91.50.108.171 within 9m 39s</li><li>first alert 2026-09-06 18:30:09, last alert 2026-09-06 18:39:49</li><li>mean model score 1.00; example reason: model score 1.00; 26 distinct ports probed by this source in a 5-min window</li><li>Sample event IDs: 23087, 23088, 23089, 23090, 23092, 23095, 23096, 23097, 23099, 23100</li></ul>
+<b>Recommended remediation</b><ul><li>Block the scanning source and review firewall rules to expose only required ports</li><li>Add IDS/IPS or rate-based rules for sequential multi-port probing</li><li>Confirm whether the source is an authorised scanner; if so, allow-list it explicitly</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0011">
+<h3>INC-0011 <span class="badge sev-high">high</span></h3>
+<p class="muted">2026-09-07 00:44:00 &rarr; 2026-09-07 00:44:30 (30s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;high&#39; (single stage)</p>
+<p><b>Explanation:</b> [00:44:00] 2 administrative action(s) on db-02 by user07 from 10.0.10.14 (2 by non-admin accounts, 2 outside business hours)</p>
+<p><b>Affected assets:</b> db-02 &middot; <b>Accounts:</b> user07</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-07 00:44:00</td><td>2026-09-07 00:44:30</td><td>priv_escalation</td><td>2</td><td>2 administrative action(s) on db-02 by user07 from 10.0.10.14 (2 by non-admin accounts, 2 outside business hours)</td></tr></table></div>
+
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0011-F1 &mdash; Suspicious administrative activity (possible privilege escalation)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">high severity raised one level: affects high-criticality asset(s) db-02</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-05</code> Access permissions are managed with least privilege and separation of duties; <code>DE.CM-03</code> Personnel activity and technology usage are monitored</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.2</code> Privileged access rights; <code>A.5.18</code> Access rights; <code>A.8.15</code> Logging</p>
+<b>Evidence</b><ul><li>2 administrative action(s) on db-02 by user07 from 10.0.10.14 (2 by non-admin accounts, 2 outside business hours)</li><li>first alert 2026-09-07 00:44:00, last alert 2026-09-07 00:44:30</li><li>mean model score 0.81; example reason: model score 0.71; administrative action by non-admin account (user07) during off-hours</li><li>Sample event IDs: 23478, 23479</li></ul>
+<b>Recommended remediation</b><ul><li>Verify with the account owner; disable the account if the activity is not legitimate</li><li>Remove unnecessary admin rights and require just-in-time privileged access</li><li>Alert on admin actions by non-admin accounts or outside change windows</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0012">
+<h3>INC-0012 <span class="badge sev-critical">critical</span></h3>
+<p class="muted">2026-09-07 03:00:00 &rarr; 2026-09-07 03:41:00 (2460s) &middot; correlation: asset_chain_30m, same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;critical&#39; (multi-stage: port_scan -&gt; brute_force -&gt; login_success -&gt; priv_escalation -&gt; exfiltration; already at maximum level)</p>
+<p><b>Explanation:</b> [03:00:00] 90 blocked connection attempts across 90 distinct ports on db-01 from 203.0.113.77 within 1m 29s; then [03:08:00] 45 failed logins from 203.0.113.77 against db-01 (account: user17) within 2m 12s; then [03:10:15] successful login to db-01 by user17 from 203.0.113.77 after 45 failed attempts in the preceding 10 min; then [03:22:00] 2 administrative action(s) on db-01 by user17 from 203.0.113.77 (2 by non-admin accounts, 2 outside business hours); then [03:35:00] 4 large outbound transfers (77.4 MB total) from db-01 (10.0.2.20) to external 198.51.100.23</p>
+<p><b>Affected assets:</b> db-01 &middot; <b>Accounts:</b> unknown, user17</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-07 03:00:00</td><td>2026-09-07 03:01:29</td><td>port_scan</td><td>90</td><td>90 blocked connection attempts across 90 distinct ports on db-01 from 203.0.113.77 within 1m 29s</td></tr><tr><td>2026-09-07 03:08:00</td><td>2026-09-07 03:10:12</td><td>brute_force</td><td>45</td><td>45 failed logins from 203.0.113.77 against db-01 (account: user17) within 2m 12s</td></tr><tr><td>2026-09-07 03:10:15</td><td>2026-09-07 03:10:15</td><td>login_success</td><td>1</td><td>successful login to db-01 by user17 from 203.0.113.77 after 45 failed attempts in the preceding 10 min</td></tr><tr><td>2026-09-07 03:22:00</td><td>2026-09-07 03:22:30</td><td>priv_escalation</td><td>2</td><td>2 administrative action(s) on db-01 by user17 from 203.0.113.77 (2 by non-admin accounts, 2 outside business hours)</td></tr><tr><td>2026-09-07 03:35:00</td><td>2026-09-07 03:41:00</td><td>exfiltration</td><td>4</td><td>4 large outbound transfers (77.4 MB total) from db-01 (10.0.2.20) to external 198.51.100.23</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>198.51.100.23</td><td>local_sample_blocklist</td><td>90</td>
+<td></td><td>data-exfiltration endpoint</td></tr><tr><td>203.0.113.77</td><td>local_sample_blocklist</td><td>100</td>
+<td></td><td>brute-force, port-scan</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0012-F1 &mdash; Network port scanning / reconnaissance</b> <span class="badge sev-high">High</span>
+<p class="muted">medium severity raised one level: affects high-criticality asset(s) db-01</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>PR.IR-01</code> Networks and environments are protected from unauthorised logical access; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.20</code> Networks security; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>90 blocked connection attempts across 90 distinct ports on db-01 from 203.0.113.77 within 1m 29s</li><li>first alert 2026-09-07 03:00:00, last alert 2026-09-07 03:01:29</li><li>mean model score 0.96; example reason: model score 0.96; 90 distinct ports probed by this source in a 5-min window</li><li>Threat intel (local SAMPLE blocklist, not live data): 203.0.113.77 listed with score 100 (brute-force, port-scan)</li><li>Sample event IDs: 23546, 23547, 23548, 23549, 23550, 23551, 23552, 23553, 23554, 23555</li></ul>
+<b>Recommended remediation</b><ul><li>Block the scanning source and review firewall rules to expose only required ports</li><li>Add IDS/IPS or rate-based rules for sequential multi-port probing</li><li>Confirm whether the source is an authorised scanner; if so, allow-list it explicitly</li></ul>
+</div>
+<div class="finding">
+<b>INC-0012-F2 &mdash; Brute-force authentication attempts</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">high severity raised one level: affects high-criticality asset(s) db-01</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-03</code> Users, services and hardware are authenticated; <code>DE.CM-03</code> Personnel activity and technology usage are monitored; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.5</code> Secure authentication; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>45 failed logins from 203.0.113.77 against db-01 (account: user17) within 2m 12s</li><li>first alert 2026-09-07 03:08:00, last alert 2026-09-07 03:10:12</li><li>mean model score 0.89; example reason: model score 0.89; 40 failed logins from this source in a 5-min window</li><li>Threat intel (local SAMPLE blocklist, not live data): 203.0.113.77 listed with score 100 (brute-force, port-scan)</li><li>Sample event IDs: 23639, 23640, 23641, 23642, 23643, 23644, 23645, 23646, 23647, 23648</li></ul>
+<b>Recommended remediation</b><ul><li>Block or rate-limit the offending source IP at the firewall/WAF</li><li>Enforce account lockout or progressive delays and require MFA on the targeted service</li><li>Alert on N failed logins per source/account per window</li><li>Reset credentials of any account that received a successful login after the failures</li></ul>
+</div>
+<div class="finding">
+<b>INC-0012-F3 &mdash; Successful login after repeated failures (possible account compromise)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">critical severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-03</code> Users, services and hardware are authenticated; <code>PR.AA-05</code> Access permissions are managed with least privilege and separation of duties; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.5</code> Secure authentication; <code>A.5.15</code> Access control; <code>A.5.26</code> Response to information security incidents</p>
+<b>Evidence</b><ul><li>successful login to db-01 by user17 from 203.0.113.77 after 45 failed attempts in the preceding 10 min</li><li>first alert 2026-09-07 03:10:15, last alert 2026-09-07 03:10:15</li><li>mean model score 0.80; example reason: model score 0.80; successful login preceded by 45 failures in 10 min</li><li>Threat intel (local SAMPLE blocklist, not live data): 203.0.113.77 listed with score 100 (brute-force, port-scan)</li><li>Sample event IDs: 23685</li></ul>
+<b>Recommended remediation</b><ul><li>Immediately disable the account, revoke active sessions/tokens and force a password reset</li><li>Review everything the account did after the login (commands, files, new accounts)</li><li>Enforce MFA and restrict the service to trusted source networks</li></ul>
+</div>
+<div class="finding">
+<b>INC-0012-F4 &mdash; Suspicious administrative activity (possible privilege escalation)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">high severity raised one level: affects high-criticality asset(s) db-01</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-05</code> Access permissions are managed with least privilege and separation of duties; <code>DE.CM-03</code> Personnel activity and technology usage are monitored; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.2</code> Privileged access rights; <code>A.5.18</code> Access rights; <code>A.8.15</code> Logging</p>
+<b>Evidence</b><ul><li>2 administrative action(s) on db-01 by user17 from 203.0.113.77 (2 by non-admin accounts, 2 outside business hours)</li><li>first alert 2026-09-07 03:22:00, last alert 2026-09-07 03:22:30</li><li>mean model score 0.83; example reason: model score 0.83; administrative action by non-admin account (user17) during off-hours</li><li>Threat intel (local SAMPLE blocklist, not live data): 203.0.113.77 listed with score 100 (brute-force, port-scan)</li><li>Sample event IDs: 23696, 23697</li></ul>
+<b>Recommended remediation</b><ul><li>Verify with the account owner; disable the account if the activity is not legitimate</li><li>Remove unnecessary admin rights and require just-in-time privileged access</li><li>Alert on admin actions by non-admin accounts or outside change windows</li></ul>
+</div>
+<div class="finding">
+<b>INC-0012-F5 &mdash; Large outbound data transfer to an external destination (possible exfiltration)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">critical severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.DS-02</code> Data in transit is protected (confidentiality, integrity, availability); <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.12</code> Data leakage prevention; <code>A.5.14</code> Information transfer; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>4 large outbound transfers (77.4 MB total) from db-01 (10.0.2.20) to external 198.51.100.23</li><li>first alert 2026-09-07 03:35:00, last alert 2026-09-07 03:41:00</li><li>mean model score 0.76; example reason: model score 0.76; 12,846,076 bytes sent from an internal host to an external IP</li><li>Threat intel (local SAMPLE blocklist, not live data): 198.51.100.23 listed with score 90 (data-exfiltration endpoint)</li><li>Sample event IDs: 23700, 23701, 23704, 23706</li></ul>
+<b>Recommended remediation</b><ul><li>Block egress to the destination and isolate the source system</li><li>Identify what data was transferred and assess breach-notification obligations</li><li>Apply egress filtering and DLP rules for large transfers from database/file servers</li><li>Rotate credentials used on the affected system</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0013">
+<h3>INC-0013 <span class="badge sev-critical">critical</span></h3>
+<p class="muted">2026-09-07 05:21:01 &rarr; 2026-09-07 05:24:01 (180s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;critical&#39; (single stage)</p>
+<p><b>Explanation:</b> [05:21:01] 2 large outbound transfers (2.7 MB total) from db-02 (10.0.4.40) to external 203.112.1.134</p>
+<p><b>Affected assets:</b> db-02 &middot; <b>Accounts:</b> user01, user21</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-07 05:21:01</td><td>2026-09-07 05:24:01</td><td>exfiltration</td><td>2</td><td>2 large outbound transfers (2.7 MB total) from db-02 (10.0.4.40) to external 203.112.1.134</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>203.112.1.134</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0013-F1 &mdash; Large outbound data transfer to an external destination (possible exfiltration)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">critical severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.DS-02</code> Data in transit is protected (confidentiality, integrity, availability); <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.12</code> Data leakage prevention; <code>A.5.14</code> Information transfer; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>2 large outbound transfers (2.7 MB total) from db-02 (10.0.4.40) to external 203.112.1.134</li><li>first alert 2026-09-07 05:21:01, last alert 2026-09-07 05:24:01</li><li>mean model score 0.78; example reason: model score 0.78; 1,778,123 bytes sent from an internal host to an external IP</li><li>Sample event IDs: 23733, 23734</li></ul>
+<b>Recommended remediation</b><ul><li>Block egress to the destination and isolate the source system</li><li>Identify what data was transferred and assess breach-notification obligations</li><li>Apply egress filtering and DLP rules for large transfers from database/file servers</li><li>Rotate credentials used on the affected system</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0014">
+<h3>INC-0014 <span class="badge sev-critical">critical</span></h3>
+<p class="muted">2026-09-07 06:24:23 &rarr; 2026-09-07 06:25:53 (90s) &middot; correlation: asset_chain_30m, same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;critical&#39; (multi-stage: brute_force -&gt; login_success; already at maximum level)</p>
+<p><b>Explanation:</b> [06:24:23] 24 failed logins from 185.90.79.211 against web-01 (account: admin_meera) within 1m 26s; then [06:25:53] successful login to web-01 by admin_meera from 185.90.79.211 after 24 failed attempts in the preceding 10 min</p>
+<p><b>Affected assets:</b> web-01 &middot; <b>Accounts:</b> admin_meera</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-07 06:24:23</td><td>2026-09-07 06:25:48</td><td>brute_force</td><td>24</td><td>24 failed logins from 185.90.79.211 against web-01 (account: admin_meera) within 1m 26s</td></tr><tr><td>2026-09-07 06:25:53</td><td>2026-09-07 06:25:53</td><td>login_success</td><td>1</td><td>successful login to web-01 by admin_meera from 185.90.79.211 after 24 failed attempts in the preceding 10 min</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>185.90.79.211</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0014-F1 &mdash; Brute-force authentication attempts</b> <span class="badge sev-high">High</span>
+<p class="muted">high severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-03</code> Users, services and hardware are authenticated; <code>DE.CM-03</code> Personnel activity and technology usage are monitored; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.5</code> Secure authentication; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>24 failed logins from 185.90.79.211 against web-01 (account: admin_meera) within 1m 26s</li><li>first alert 2026-09-07 06:24:23, last alert 2026-09-07 06:25:48</li><li>mean model score 0.99; example reason: model score 0.98; 11 failed logins from this source in a 5-min window</li><li>Sample event IDs: 23762, 23763, 23764, 23765, 23766, 23767, 23768, 23769, 23770, 23771</li></ul>
+<b>Recommended remediation</b><ul><li>Block or rate-limit the offending source IP at the firewall/WAF</li><li>Enforce account lockout or progressive delays and require MFA on the targeted service</li><li>Alert on N failed logins per source/account per window</li><li>Reset credentials of any account that received a successful login after the failures</li></ul>
+</div>
+<div class="finding">
+<b>INC-0014-F2 &mdash; Successful login after repeated failures (possible account compromise)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">critical severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-03</code> Users, services and hardware are authenticated; <code>PR.AA-05</code> Access permissions are managed with least privilege and separation of duties; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity; <code>DE.AE-03</code> Information on adverse events is correlated from multiple sources; <code>DE.AE-08</code> Incidents are declared when events meet defined incident criteria</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.5</code> Secure authentication; <code>A.5.15</code> Access control; <code>A.5.26</code> Response to information security incidents</p>
+<b>Evidence</b><ul><li>successful login to web-01 by admin_meera from 185.90.79.211 after 24 failed attempts in the preceding 10 min</li><li>first alert 2026-09-07 06:25:53, last alert 2026-09-07 06:25:53</li><li>mean model score 0.95; example reason: model score 0.95; successful login preceded by 24 failures in 10 min</li><li>Sample event IDs: 23786</li></ul>
+<b>Recommended remediation</b><ul><li>Immediately disable the account, revoke active sessions/tokens and force a password reset</li><li>Review everything the account did after the login (commands, files, new accounts)</li><li>Enforce MFA and restrict the service to trusted source networks</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0015">
+<h3>INC-0015 <span class="badge sev-high">high</span></h3>
+<p class="muted">2026-09-07 06:35:01 &rarr; 2026-09-07 07:35:40 (3639s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;high&#39; (single stage)</p>
+<p><b>Explanation:</b> [06:35:01] 31 outbound connections from 10.0.10.41 to 45.79.94.231 at a regular ~122s interval (small payloads, ~210 bytes each)</p>
+<p><b>Affected assets:</b> mail-01, web-01 &middot; <b>Accounts:</b> user01, user05, user06, user07, user09</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-07 06:35:01</td><td>2026-09-07 07:35:40</td><td>c2_beaconing</td><td>31</td><td>31 outbound connections from 10.0.10.41 to 45.79.94.231 at a regular ~122s interval (small payloads, ~210 bytes each)</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>45.79.94.231</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0015-F1 &mdash; Periodic outbound connections consistent with C2 beaconing</b> <span class="badge sev-high">High</span>
+<p class="muted">high severity</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity; <code>DE.AE-07</code> Threat intelligence and context are integrated into analysis</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities; <code>A.8.20</code> Networks security; <code>A.5.7</code> Threat intelligence</p>
+<b>Evidence</b><ul><li>31 outbound connections from 10.0.10.41 to 45.79.94.231 at a regular ~122s interval (small payloads, ~210 bytes each)</li><li>first alert 2026-09-07 06:35:01, last alert 2026-09-07 07:35:40</li><li>mean model score 0.89; example reason: model score 0.93; 13 connections to the same external IP in 1 h, interval ~120s (std 15.8s)</li><li>Sample event IDs: 23789, 23790, 23791, 23793, 23794, 23795, 23798, 23799, 23802, 23804</li></ul>
+<b>Recommended remediation</b><ul><li>Isolate the host and run EDR/malware triage</li><li>Block the destination IP/domain at the proxy or firewall and check threat-intel reputation</li><li>Hunt for the same destination across other hosts</li><li>Confirm the traffic is not a legitimate monitoring/update agent before blocking</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0016">
+<h3>INC-0016 <span class="badge sev-critical">critical</span></h3>
+<p class="muted">2026-09-07 07:16:05 &rarr; 2026-09-07 07:16:05 (0s) &middot; correlation: single_alert_group</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;critical&#39; (single stage)</p>
+<p><b>Explanation:</b> [07:16:05] 1 large outbound transfers (3.9 MB total) from file-01 (10.0.10.36) to external 203.44.137.187</p>
+<p><b>Affected assets:</b> file-01 &middot; <b>Accounts:</b> user34</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-07 07:16:05</td><td>2026-09-07 07:16:05</td><td>exfiltration</td><td>1</td><td>1 large outbound transfers (3.9 MB total) from file-01 (10.0.10.36) to external 203.44.137.187</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>203.44.137.187</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0016-F1 &mdash; Large outbound data transfer to an external destination (possible exfiltration)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">critical severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.DS-02</code> Data in transit is protected (confidentiality, integrity, availability); <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.12</code> Data leakage prevention; <code>A.5.14</code> Information transfer; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>1 large outbound transfers (3.9 MB total) from file-01 (10.0.10.36) to external 203.44.137.187</li><li>first alert 2026-09-07 07:16:05, last alert 2026-09-07 07:16:05</li><li>mean model score 0.57; example reason: model score 0.57; 4,125,170 bytes sent from an internal host to an external IP</li><li>Sample event IDs: 23826</li></ul>
+<b>Recommended remediation</b><ul><li>Block egress to the destination and isolate the source system</li><li>Identify what data was transferred and assess breach-notification obligations</li><li>Apply egress filtering and DLP rules for large transfers from database/file servers</li><li>Rotate credentials used on the affected system</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0017">
+<h3>INC-0017 <span class="badge sev-high">high</span></h3>
+<p class="muted">2026-09-07 08:04:28 &rarr; 2026-09-07 08:14:13 (585s) &middot; correlation: same_source_ip_15m</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;high&#39; (single stage)</p>
+<p><b>Explanation:</b> [08:05:02] 23 failed logins from 194.125.161.62 against db-01 (account: user26) within 9m 11s. Also 1 related alert(s) flagged by the model but not matching a specific rule</p>
+<p><b>Affected assets:</b> db-01 &middot; <b>Accounts:</b> user26</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-07 08:05:02</td><td>2026-09-07 08:14:13</td><td>brute_force</td><td>23</td><td>23 failed logins from 194.125.161.62 against db-01 (account: user26) within 9m 11s</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>194.125.161.62</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0017-F1 &mdash; Unclassified anomalous activity flagged by the model</b> <span class="badge sev-high">High</span>
+<p class="muted">medium severity raised one level: affects high-criticality asset(s) db-01</p>
+<p><b>NIST CSF 2.0:</b> <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>1 anomalous events from 194.125.161.62 on db-01</li><li>first alert 2026-09-07 08:04:28, last alert 2026-09-07 08:04:28</li><li>mean model score 0.92; example reason: model score 0.92; flagged by model, no specific rule matched</li><li>Sample event IDs: 24007</li></ul>
+<b>Recommended remediation</b><ul><li>Triage manually: review the raw events and surrounding context</li><li>Feed the analyst verdict back as a label for the next model retraining</li></ul>
+</div>
+<div class="finding">
+<b>INC-0017-F2 &mdash; Brute-force authentication attempts</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">high severity raised one level: affects high-criticality asset(s) db-01</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.AA-03</code> Users, services and hardware are authenticated; <code>DE.CM-03</code> Personnel activity and technology usage are monitored</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.5</code> Secure authentication; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>23 failed logins from 194.125.161.62 against db-01 (account: user26) within 9m 11s</li><li>first alert 2026-09-07 08:05:02, last alert 2026-09-07 08:14:13</li><li>mean model score 0.98; example reason: model score 0.99; 13 failed logins from this source in a 5-min window</li><li>Sample event IDs: 24008, 24010, 24013, 24015, 24017, 24018, 24020, 24022, 24024, 24026</li></ul>
+<b>Recommended remediation</b><ul><li>Block or rate-limit the offending source IP at the firewall/WAF</li><li>Enforce account lockout or progressive delays and require MFA on the targeted service</li><li>Alert on N failed logins per source/account per window</li><li>Reset credentials of any account that received a successful login after the failures</li></ul>
+</div>
+</div>
+
+<div class="incident" id="INC-0018">
+<h3>INC-0018 <span class="badge sev-critical">critical</span></h3>
+<p class="muted">2026-09-07 12:54:26 &rarr; 2026-09-07 12:54:26 (0s) &middot; correlation: single_alert_group</p>
+<p><b>Severity reasoning:</b> max alert severity &#39;critical&#39; (single stage)</p>
+<p><b>Explanation:</b> [12:54:26] 1 large outbound transfers (9.1 MB total) from file-01 (10.0.10.56) to external 203.159.227.221</p>
+<p><b>Affected assets:</b> file-01 &middot; <b>Accounts:</b> user04</p>
+<h4>Timeline</h4>
+<div class="wrap"><table><tr><th>Start</th><th>End</th><th>Stage</th><th>Alerts</th><th>Detail</th></tr>
+<tr><td>2026-09-07 12:54:26</td><td>2026-09-07 12:54:26</td><td>exfiltration</td><td>1</td><td>1 large outbound transfers (9.1 MB total) from file-01 (10.0.10.56) to external 203.159.227.221</td></tr></table></div>
+<h4>Threat intelligence</h4>
+<div class="wrap"><table><tr><th>IP</th><th>Source</th><th>Score</th><th>Country</th><th>Notes</th></tr>
+<tr><td>203.159.227.221</td><td>none</td><td>n/a</td>
+<td></td><td>unavailable</td></tr></table></div>
+<h4>Findings, compliance mapping and remediation</h4>
+
+<div class="finding">
+<b>INC-0018-F1 &mdash; Large outbound data transfer to an external destination (possible exfiltration)</b> <span class="badge sev-critical">Critical</span>
+<p class="muted">critical severity</p>
+<p><b>NIST CSF 2.0:</b> <code>PR.DS-02</code> Data in transit is protected (confidentiality, integrity, availability); <code>DE.CM-01</code> Networks and network services are monitored for adverse events; <code>DE.AE-02</code> Potentially adverse events are analysed to understand associated activity</p>
+<p><b>ISO/IEC 27001:2022:</b> <code>A.8.12</code> Data leakage prevention; <code>A.5.14</code> Information transfer; <code>A.8.16</code> Monitoring activities</p>
+<b>Evidence</b><ul><li>1 large outbound transfers (9.1 MB total) from file-01 (10.0.10.56) to external 203.159.227.221</li><li>first alert 2026-09-07 12:54:26, last alert 2026-09-07 12:54:26</li><li>mean model score 0.54; example reason: model score 0.54; 9,508,731 bytes sent from an internal host to an external IP</li><li>Sample event IDs: 25512</li></ul>
+<b>Recommended remediation</b><ul><li>Block egress to the destination and isolate the source system</li><li>Identify what data was transferred and assess breach-notification obligations</li><li>Apply egress filtering and DLP rules for large transfers from database/file servers</li><li>Rotate credentials used on the affected system</li></ul>
+</div>
+</div>
+
+
+<h2>4. Limitations</h2>
+<ul>
+<li>The model is trained on synthetic data; real-world accuracy is unknown. Metrics reflect the synthetic test window only.</li>
+<li>Alert types come from transparent rules applied to model-flagged events; legitimate periodic traffic (monitoring agents) can look like C2 beaconing.</li>
+<li>Correlation rules can merge unrelated activity on the same asset within 30 minutes.</li>
+<li>Control mappings are a static lookup table and should be reviewed by a security professional.</li>
+</ul>
+</body></html>

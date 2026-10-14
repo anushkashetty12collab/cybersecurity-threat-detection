@@ -1,0 +1,134 @@
+{
+  "framework": "NIST CSF 2.0",
+  "secondary_framework": "ISO/IEC 27001:2022 Annex A",
+  "note": "Control titles are short paraphrases. Verify IDs and copy exact wording from the official NIST CSF 2.0 document before submitting. CSF 1.1 PR.AC-x was replaced by PR.AA-x in CSF 2.0; ISO 27001:2013 A.9 became A.5.15-A.5.18 / A.8.x in the 2022 revision.",
+  "asset_criticality": {
+    "db-01": "high", "db-02": "high", "auth-01": "high", "file-01": "high",
+    "web-01": "medium", "web-02": "medium", "mail-01": "medium", "backup-01": "medium"
+  },
+  "multi_stage_extra_controls": [
+    {"id": "DE.AE-03", "title": "Information on adverse events is correlated from multiple sources"},
+    {"id": "DE.AE-08", "title": "Incidents are declared when events meet defined incident criteria"}
+  ],
+  "findings": {
+    "brute_force": {
+      "title": "Brute-force authentication attempts",
+      "nist_csf_2_0": [
+        {"id": "PR.AA-03", "title": "Users, services and hardware are authenticated"},
+        {"id": "DE.CM-03", "title": "Personnel activity and technology usage are monitored"}
+      ],
+      "iso_27001_2022": [
+        {"id": "A.8.5", "title": "Secure authentication"},
+        {"id": "A.8.16", "title": "Monitoring activities"}
+      ],
+      "remediation": [
+        "Block or rate-limit the offending source IP at the firewall/WAF",
+        "Enforce account lockout or progressive delays and require MFA on the targeted service",
+        "Alert on N failed logins per source/account per window",
+        "Reset credentials of any account that received a successful login after the failures"
+      ]
+    },
+    "login_success": {
+      "title": "Successful login after repeated failures (possible account compromise)",
+      "nist_csf_2_0": [
+        {"id": "PR.AA-03", "title": "Users, services and hardware are authenticated"},
+        {"id": "PR.AA-05", "title": "Access permissions are managed with least privilege and separation of duties"},
+        {"id": "DE.AE-02", "title": "Potentially adverse events are analysed to understand associated activity"}
+      ],
+      "iso_27001_2022": [
+        {"id": "A.8.5", "title": "Secure authentication"},
+        {"id": "A.5.15", "title": "Access control"},
+        {"id": "A.5.26", "title": "Response to information security incidents"}
+      ],
+      "remediation": [
+        "Immediately disable the account, revoke active sessions/tokens and force a password reset",
+        "Review everything the account did after the login (commands, files, new accounts)",
+        "Enforce MFA and restrict the service to trusted source networks"
+      ]
+    },
+    "port_scan": {
+      "title": "Network port scanning / reconnaissance",
+      "nist_csf_2_0": [
+        {"id": "DE.CM-01", "title": "Networks and network services are monitored for adverse events"},
+        {"id": "PR.IR-01", "title": "Networks and environments are protected from unauthorised logical access"}
+      ],
+      "iso_27001_2022": [
+        {"id": "A.8.20", "title": "Networks security"},
+        {"id": "A.8.16", "title": "Monitoring activities"}
+      ],
+      "remediation": [
+        "Block the scanning source and review firewall rules to expose only required ports",
+        "Add IDS/IPS or rate-based rules for sequential multi-port probing",
+        "Confirm whether the source is an authorised scanner; if so, allow-list it explicitly"
+      ]
+    },
+    "c2_beaconing": {
+      "title": "Periodic outbound connections consistent with C2 beaconing",
+      "nist_csf_2_0": [
+        {"id": "DE.CM-01", "title": "Networks and network services are monitored for adverse events"},
+        {"id": "DE.AE-02", "title": "Potentially adverse events are analysed to understand associated activity"},
+        {"id": "DE.AE-07", "title": "Threat intelligence and context are integrated into analysis"}
+      ],
+      "iso_27001_2022": [
+        {"id": "A.8.16", "title": "Monitoring activities"},
+        {"id": "A.8.20", "title": "Networks security"},
+        {"id": "A.5.7", "title": "Threat intelligence"}
+      ],
+      "remediation": [
+        "Isolate the host and run EDR/malware triage",
+        "Block the destination IP/domain at the proxy or firewall and check threat-intel reputation",
+        "Hunt for the same destination across other hosts",
+        "Confirm the traffic is not a legitimate monitoring/update agent before blocking"
+      ]
+    },
+    "exfiltration": {
+      "title": "Large outbound data transfer to an external destination (possible exfiltration)",
+      "nist_csf_2_0": [
+        {"id": "PR.DS-02", "title": "Data in transit is protected (confidentiality, integrity, availability)"},
+        {"id": "DE.CM-01", "title": "Networks and network services are monitored for adverse events"},
+        {"id": "DE.AE-02", "title": "Potentially adverse events are analysed to understand associated activity"}
+      ],
+      "iso_27001_2022": [
+        {"id": "A.8.12", "title": "Data leakage prevention"},
+        {"id": "A.5.14", "title": "Information transfer"},
+        {"id": "A.8.16", "title": "Monitoring activities"}
+      ],
+      "remediation": [
+        "Block egress to the destination and isolate the source system",
+        "Identify what data was transferred and assess breach-notification obligations",
+        "Apply egress filtering and DLP rules for large transfers from database/file servers",
+        "Rotate credentials used on the affected system"
+      ]
+    },
+    "priv_escalation": {
+      "title": "Suspicious administrative activity (possible privilege escalation)",
+      "nist_csf_2_0": [
+        {"id": "PR.AA-05", "title": "Access permissions are managed with least privilege and separation of duties"},
+        {"id": "DE.CM-03", "title": "Personnel activity and technology usage are monitored"}
+      ],
+      "iso_27001_2022": [
+        {"id": "A.8.2", "title": "Privileged access rights"},
+        {"id": "A.5.18", "title": "Access rights"},
+        {"id": "A.8.15", "title": "Logging"}
+      ],
+      "remediation": [
+        "Verify with the account owner; disable the account if the activity is not legitimate",
+        "Remove unnecessary admin rights and require just-in-time privileged access",
+        "Alert on admin actions by non-admin accounts or outside change windows"
+      ]
+    },
+    "anomalous_activity": {
+      "title": "Unclassified anomalous activity flagged by the model",
+      "nist_csf_2_0": [
+        {"id": "DE.AE-02", "title": "Potentially adverse events are analysed to understand associated activity"}
+      ],
+      "iso_27001_2022": [
+        {"id": "A.8.16", "title": "Monitoring activities"}
+      ],
+      "remediation": [
+        "Triage manually: review the raw events and surrounding context",
+        "Feed the analyst verdict back as a label for the next model retraining"
+      ]
+    }
+  }
+}

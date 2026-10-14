@@ -1,0 +1,5783 @@
+[
+  {
+    "start": "2026-09-01 00:03:03",
+    "end": "2026-09-01 00:05:02",
+    "duration_seconds": 119,
+    "alert_count": 130,
+    "source_ips": [
+      "91.193.119.146"
+    ],
+    "affected_assets": [
+      "backup-01"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "port_scan",
+      "anomalous_activity"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 3,
+    "timeline": [
+      {
+        "start": "2026-09-01 00:03:03",
+        "end": "2026-09-01 00:04:59",
+        "stage": "port_scan",
+        "alert_count": 127,
+        "detail": "127 blocked connection attempts across 127 distinct ports on backup-01 from 91.193.119.146 within 1m 57s"
+      }
+    ],
+    "explanation": "[00:03:03] 127 blocked connection attempts across 127 distinct ports on backup-01 from 91.193.119.146 within 1m 57s. Also 3 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "port_scan",
+        "alert_count": 127,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-01 00:03:03",
+        "last_seen": "2026-09-01 00:04:59",
+        "source_ips": [
+          "91.193.119.146"
+        ],
+        "assets": [
+          "backup-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "127 blocked connection attempts across 127 distinct ports on backup-01 from 91.193.119.146 within 1m 57s",
+          "first alert 2026-09-01 00:03:03, last alert 2026-09-01 00:04:59",
+          "mean model score 1.00; example reason: model score 1.00; 127 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "finding_id": "INC-0001-F1"
+      },
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 3,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-01 00:05:00",
+        "last_seen": "2026-09-01 00:05:02",
+        "source_ips": [
+          "91.193.119.146"
+        ],
+        "assets": [
+          "backup-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "3 anomalous events from 91.193.119.146 on backup-01",
+          "first alert 2026-09-01 00:05:00, last alert 2026-09-01 00:05:02",
+          "mean model score 0.99; example reason: model score 0.99; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          133,
+          134,
+          135
+        ],
+        "finding_id": "INC-0001-F2"
+      }
+    ],
+    "incident_id": "INC-0001"
+  },
+  {
+    "start": "2026-09-01 00:15:45",
+    "end": "2026-09-01 00:22:45",
+    "duration_seconds": 420,
+    "alert_count": 3,
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user04",
+      "user11",
+      "user15"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 00:15:45",
+        "end": "2026-09-01 00:22:45",
+        "stage": "exfiltration",
+        "alert_count": 3,
+        "detail": "3 large outbound transfers (4.3 MB total) from db-01 (10.0.4.40) to external 203.149.95.122"
+      }
+    ],
+    "explanation": "[00:15:45] 3 large outbound transfers (4.3 MB total) from db-01 (10.0.4.40) to external 203.149.95.122",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 3,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-01 00:15:45",
+        "last_seen": "2026-09-01 00:22:45",
+        "source_ips": [
+          "10.0.4.40"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user04",
+          "user11",
+          "user15"
+        ],
+        "evidence": [
+          "3 large outbound transfers (4.3 MB total) from db-01 (10.0.4.40) to external 203.149.95.122",
+          "first alert 2026-09-01 00:15:45, last alert 2026-09-01 00:22:45",
+          "mean model score 0.92; example reason: model score 0.88; 1,618,734 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          141,
+          144,
+          146
+        ],
+        "finding_id": "INC-0002-F1"
+      }
+    ],
+    "incident_id": "INC-0002"
+  },
+  {
+    "start": "2026-09-01 00:51:00",
+    "end": "2026-09-01 00:51:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.49"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user37"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 00:51:00",
+        "end": "2026-09-01 00:51:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on db-01 by user37 from 10.0.10.49 (1 by non-admin accounts, 1 outside business hours)"
+      }
+    ],
+    "explanation": "[00:51:00] 1 administrative action(s) on db-01 by user37 from 10.0.10.49 (1 by non-admin accounts, 1 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 00:51:00",
+        "last_seen": "2026-09-01 00:51:00",
+        "source_ips": [
+          "10.0.10.49"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user37"
+        ],
+        "evidence": [
+          "1 administrative action(s) on db-01 by user37 from 10.0.10.49 (1 by non-admin accounts, 1 outside business hours)",
+          "first alert 2026-09-01 00:51:00, last alert 2026-09-01 00:51:00",
+          "mean model score 0.68; example reason: model score 0.68; administrative action by non-admin account (user37) during off-hours"
+        ],
+        "sample_event_ids": [
+          156
+        ],
+        "finding_id": "INC-0003-F1"
+      }
+    ],
+    "incident_id": "INC-0003"
+  },
+  {
+    "start": "2026-09-01 02:49:00",
+    "end": "2026-09-01 02:49:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.58"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "admin_ravi"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 02:49:00",
+        "end": "2026-09-01 02:49:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-01 by admin_ravi from 10.0.10.58 (0 by non-admin accounts, 2 outside business hours)"
+      }
+    ],
+    "explanation": "[02:49:00] 2 administrative action(s) on db-01 by admin_ravi from 10.0.10.58 (0 by non-admin accounts, 2 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 02:49:00",
+        "last_seen": "2026-09-01 02:49:30",
+        "source_ips": [
+          "10.0.10.58"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "admin_ravi"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-01 by admin_ravi from 10.0.10.58 (0 by non-admin accounts, 2 outside business hours)",
+          "first alert 2026-09-01 02:49:00, last alert 2026-09-01 02:49:30",
+          "mean model score 0.94; example reason: model score 0.94; administrative action by admin account (admin_ravi) during off-hours"
+        ],
+        "sample_event_ids": [
+          199,
+          200
+        ],
+        "finding_id": "INC-0004-F1"
+      }
+    ],
+    "incident_id": "INC-0004"
+  },
+  {
+    "start": "2026-09-01 03:12:40",
+    "end": "2026-09-01 04:07:41",
+    "duration_seconds": 3301,
+    "alert_count": 28,
+    "source_ips": [
+      "10.0.10.33"
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "users": [
+      "user03",
+      "user04",
+      "user05",
+      "user07",
+      "user11",
+      "user12",
+      "user13",
+      "user15",
+      "user16",
+      "user21",
+      "user22",
+      "user23",
+      "user26",
+      "user27",
+      "user28",
+      "user29",
+      "user30",
+      "user37",
+      "user38",
+      "user40"
+    ],
+    "stages": [
+      "c2_beaconing",
+      "anomalous_activity"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 4,
+    "timeline": [
+      {
+        "start": "2026-09-01 03:12:40",
+        "end": "2026-09-01 03:59:53",
+        "stage": "c2_beaconing",
+        "alert_count": 24,
+        "detail": "24 outbound connections from 10.0.10.33 to 103.12.1.86 at a regular ~123s interval (small payloads, ~195 bytes each)"
+      }
+    ],
+    "explanation": "[03:12:40] 24 outbound connections from 10.0.10.33 to 103.12.1.86 at a regular ~123s interval (small payloads, ~195 bytes each). Also 4 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "c2_beaconing",
+        "alert_count": 24,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 03:12:40",
+        "last_seen": "2026-09-01 03:59:53",
+        "source_ips": [
+          "10.0.10.33"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user03",
+          "user05",
+          "user07",
+          "user11",
+          "user13",
+          "user15",
+          "user16",
+          "user21",
+          "user23",
+          "user26",
+          "user27",
+          "user28",
+          "user29",
+          "user30",
+          "user37",
+          "user38",
+          "user40"
+        ],
+        "evidence": [
+          "24 outbound connections from 10.0.10.33 to 103.12.1.86 at a regular ~123s interval (small payloads, ~195 bytes each)",
+          "first alert 2026-09-01 03:12:40, last alert 2026-09-01 03:59:53",
+          "mean model score 1.00; example reason: model score 1.00; 24 connections to the same external IP in 1 h, interval ~123s (std 17.9s)"
+        ],
+        "sample_event_ids": [
+          208,
+          212,
+          213,
+          216,
+          218,
+          221,
+          223,
+          226,
+          227,
+          228
+        ],
+        "finding_id": "INC-0005-F1"
+      },
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 4,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-01 04:01:53",
+        "last_seen": "2026-09-01 04:07:41",
+        "source_ips": [
+          "10.0.10.33"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user04",
+          "user12",
+          "user22",
+          "user23"
+        ],
+        "evidence": [
+          "4 anomalous events from 10.0.10.33 on mail-01, web-01",
+          "first alert 2026-09-01 04:01:53, last alert 2026-09-01 04:07:41",
+          "mean model score 0.96; example reason: model score 0.98; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          253,
+          256,
+          258,
+          260
+        ],
+        "finding_id": "INC-0005-F2"
+      }
+    ],
+    "incident_id": "INC-0005"
+  },
+  {
+    "start": "2026-09-01 03:19:00",
+    "end": "2026-09-01 03:19:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.52"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "user34"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 03:19:00",
+        "end": "2026-09-01 03:19:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on auth-01 by user34 from 10.0.10.52 (1 by non-admin accounts, 1 outside business hours)"
+      }
+    ],
+    "explanation": "[03:19:00] 1 administrative action(s) on auth-01 by user34 from 10.0.10.52 (1 by non-admin accounts, 1 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 03:19:00",
+        "last_seen": "2026-09-01 03:19:00",
+        "source_ips": [
+          "10.0.10.52"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "user34"
+        ],
+        "evidence": [
+          "1 administrative action(s) on auth-01 by user34 from 10.0.10.52 (1 by non-admin accounts, 1 outside business hours)",
+          "first alert 2026-09-01 03:19:00, last alert 2026-09-01 03:19:00",
+          "mean model score 0.88; example reason: model score 0.88; administrative action by non-admin account (user34) during off-hours"
+        ],
+        "sample_event_ids": [
+          215
+        ],
+        "finding_id": "INC-0006-F1"
+      }
+    ],
+    "incident_id": "INC-0006"
+  },
+  {
+    "start": "2026-09-01 04:08:21",
+    "end": "2026-09-01 05:36:20",
+    "duration_seconds": 5279,
+    "alert_count": 45,
+    "source_ips": [
+      "10.0.10.32"
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "users": [
+      "user02",
+      "user03",
+      "user04",
+      "user05",
+      "user06",
+      "user07",
+      "user08",
+      "user09",
+      "user10",
+      "user11",
+      "user12",
+      "user14",
+      "user15",
+      "user16",
+      "user18",
+      "user19",
+      "user20",
+      "user21",
+      "user23",
+      "user24",
+      "user26",
+      "user28",
+      "user29",
+      "user32",
+      "user33",
+      "user35",
+      "user36",
+      "user37",
+      "user40"
+    ],
+    "stages": [
+      "c2_beaconing"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 04:08:21",
+        "end": "2026-09-01 05:36:20",
+        "stage": "c2_beaconing",
+        "alert_count": 45,
+        "detail": "45 outbound connections from 10.0.10.32 to 45.3.118.160 at a regular ~120s interval (small payloads, ~199 bytes each)"
+      }
+    ],
+    "explanation": "[04:08:21] 45 outbound connections from 10.0.10.32 to 45.3.118.160 at a regular ~120s interval (small payloads, ~199 bytes each)",
+    "findings": [
+      {
+        "finding_type": "c2_beaconing",
+        "alert_count": 45,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 04:08:21",
+        "last_seen": "2026-09-01 05:36:20",
+        "source_ips": [
+          "10.0.10.32"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user02",
+          "user03",
+          "user04",
+          "user05",
+          "user06",
+          "user07",
+          "user08",
+          "user09",
+          "user10",
+          "user11",
+          "user12",
+          "user14",
+          "user15",
+          "user16",
+          "user18",
+          "user19",
+          "user20",
+          "user21",
+          "user23",
+          "user24",
+          "user26",
+          "user28",
+          "user29",
+          "user32",
+          "user33",
+          "user35",
+          "user36",
+          "user37",
+          "user40"
+        ],
+        "evidence": [
+          "45 outbound connections from 10.0.10.32 to 45.3.118.160 at a regular ~120s interval (small payloads, ~199 bytes each)",
+          "first alert 2026-09-01 04:08:21, last alert 2026-09-01 05:36:20",
+          "mean model score 1.00; example reason: model score 1.00; 26 connections to the same external IP in 1 h, interval ~120s (std 17.6s)"
+        ],
+        "sample_event_ids": [
+          263,
+          265,
+          266,
+          269,
+          270,
+          272,
+          275,
+          277,
+          279,
+          282
+        ],
+        "finding_id": "INC-0007-F1"
+      }
+    ],
+    "incident_id": "INC-0007"
+  },
+  {
+    "start": "2026-09-01 07:13:49",
+    "end": "2026-09-01 07:23:49",
+    "duration_seconds": 600,
+    "alert_count": 3,
+    "source_ips": [
+      "10.0.2.21"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user24",
+      "user31",
+      "user39"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 07:13:49",
+        "end": "2026-09-01 07:23:49",
+        "stage": "exfiltration",
+        "alert_count": 3,
+        "detail": "3 large outbound transfers (4.3 MB total) from file-01 (10.0.2.21) to external 103.10.28.153"
+      }
+    ],
+    "explanation": "[07:13:49] 3 large outbound transfers (4.3 MB total) from file-01 (10.0.2.21) to external 103.10.28.153",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 3,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-01 07:13:49",
+        "last_seen": "2026-09-01 07:23:49",
+        "source_ips": [
+          "10.0.2.21"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user24",
+          "user31",
+          "user39"
+        ],
+        "evidence": [
+          "3 large outbound transfers (4.3 MB total) from file-01 (10.0.2.21) to external 103.10.28.153",
+          "first alert 2026-09-01 07:13:49, last alert 2026-09-01 07:23:49",
+          "mean model score 0.86; example reason: model score 0.90; 670,980 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          381,
+          384,
+          393
+        ],
+        "finding_id": "INC-0008-F1"
+      }
+    ],
+    "incident_id": "INC-0008"
+  },
+  {
+    "start": "2026-09-01 11:10:00",
+    "end": "2026-09-01 11:10:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.41"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "user14"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 11:10:00",
+        "end": "2026-09-01 11:10:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on auth-01 by user14 from 10.0.10.41 (1 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[11:10:00] 1 administrative action(s) on auth-01 by user14 from 10.0.10.41 (1 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 11:10:00",
+        "last_seen": "2026-09-01 11:10:00",
+        "source_ips": [
+          "10.0.10.41"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "user14"
+        ],
+        "evidence": [
+          "1 administrative action(s) on auth-01 by user14 from 10.0.10.41 (1 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-01 11:10:00, last alert 2026-09-01 11:10:00",
+          "mean model score 0.92; example reason: model score 0.92; administrative action by non-admin account (user14) during business hours"
+        ],
+        "sample_event_ids": [
+          1377
+        ],
+        "finding_id": "INC-0009-F1"
+      }
+    ],
+    "incident_id": "INC-0009"
+  },
+  {
+    "start": "2026-09-01 11:57:45",
+    "end": "2026-09-01 12:04:18",
+    "duration_seconds": 393,
+    "alert_count": 23,
+    "source_ips": [
+      "103.53.176.163"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "user26"
+    ],
+    "stages": [
+      "brute_force",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 11:57:45",
+        "end": "2026-09-01 12:03:58",
+        "stage": "brute_force",
+        "alert_count": 22,
+        "detail": "22 failed logins from 103.53.176.163 against auth-01 (account: user26) within 6m 14s"
+      },
+      {
+        "start": "2026-09-01 12:04:18",
+        "end": "2026-09-01 12:04:18",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to auth-01 by user26 from 103.53.176.163 after 22 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[11:57:45] 22 failed logins from 103.53.176.163 against auth-01 (account: user26) within 6m 14s; then [12:04:18] successful login to auth-01 by user26 from 103.53.176.163 after 22 failed attempts in the preceding 10 min",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 22,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 11:57:45",
+        "last_seen": "2026-09-01 12:03:58",
+        "source_ips": [
+          "103.53.176.163"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "user26"
+        ],
+        "evidence": [
+          "22 failed logins from 103.53.176.163 against auth-01 (account: user26) within 6m 14s",
+          "first alert 2026-09-01 11:57:45, last alert 2026-09-01 12:03:58",
+          "mean model score 1.00; example reason: model score 1.00; 9 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          1678,
+          1680,
+          1683,
+          1685,
+          1688,
+          1690,
+          1692,
+          1693,
+          1695,
+          1699
+        ],
+        "finding_id": "INC-0010-F1"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-01 12:04:18",
+        "last_seen": "2026-09-01 12:04:18",
+        "source_ips": [
+          "103.53.176.163"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "user26"
+        ],
+        "evidence": [
+          "successful login to auth-01 by user26 from 103.53.176.163 after 22 failed attempts in the preceding 10 min",
+          "first alert 2026-09-01 12:04:18, last alert 2026-09-01 12:04:18",
+          "mean model score 0.92; example reason: model score 0.92; successful login preceded by 22 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          1745
+        ],
+        "finding_id": "INC-0010-F2"
+      }
+    ],
+    "incident_id": "INC-0010"
+  },
+  {
+    "start": "2026-09-01 12:36:22",
+    "end": "2026-09-01 12:36:22",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.51"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user05"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 12:36:22",
+        "end": "2026-09-01 12:36:22",
+        "stage": "exfiltration",
+        "alert_count": 1,
+        "detail": "1 large outbound transfers (12.0 MB total) from file-01 (10.0.10.51) to external 91.56.246.196"
+      }
+    ],
+    "explanation": "[12:36:22] 1 large outbound transfers (12.0 MB total) from file-01 (10.0.10.51) to external 91.56.246.196",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-01 12:36:22",
+        "last_seen": "2026-09-01 12:36:22",
+        "source_ips": [
+          "10.0.10.51"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user05"
+        ],
+        "evidence": [
+          "1 large outbound transfers (12.0 MB total) from file-01 (10.0.10.51) to external 91.56.246.196",
+          "first alert 2026-09-01 12:36:22, last alert 2026-09-01 12:36:22",
+          "mean model score 0.51; example reason: model score 0.51; 12,567,046 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          1982
+        ],
+        "finding_id": "INC-0011-F1"
+      }
+    ],
+    "incident_id": "INC-0011"
+  },
+  {
+    "start": "2026-09-01 14:42:00",
+    "end": "2026-09-01 14:42:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.12"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user04"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-01 14:42:00",
+        "end": "2026-09-01 14:42:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-02 by user04 from 10.0.10.12 (2 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[14:42:00] 2 administrative action(s) on db-02 by user04 from 10.0.10.12 (2 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 14:42:00",
+        "last_seen": "2026-09-01 14:42:30",
+        "source_ips": [
+          "10.0.10.12"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user04"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-02 by user04 from 10.0.10.12 (2 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-01 14:42:00, last alert 2026-09-01 14:42:30",
+          "mean model score 0.84; example reason: model score 0.81; administrative action by non-admin account (user04) during business hours"
+        ],
+        "sample_event_ids": [
+          2871,
+          2875
+        ],
+        "finding_id": "INC-0012-F1"
+      }
+    ],
+    "incident_id": "INC-0012"
+  },
+  {
+    "start": "2026-09-01 16:06:28",
+    "end": "2026-09-01 16:11:06",
+    "duration_seconds": 278,
+    "alert_count": 14,
+    "source_ips": [
+      "203.126.115.203"
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "users": [
+      "user11"
+    ],
+    "stages": [
+      "brute_force",
+      "anomalous_activity",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 2,
+    "timeline": [
+      {
+        "start": "2026-09-01 16:06:28",
+        "end": "2026-09-01 16:09:41",
+        "stage": "brute_force",
+        "alert_count": 11,
+        "detail": "11 failed logins from 203.126.115.203 against web-01 (account: user11) within 3m 14s"
+      },
+      {
+        "start": "2026-09-01 16:11:06",
+        "end": "2026-09-01 16:11:06",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to web-01 by user11 from 203.126.115.203 after 13 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[16:06:28] 11 failed logins from 203.126.115.203 against web-01 (account: user11) within 3m 14s; then [16:11:06] successful login to web-01 by user11 from 203.126.115.203 after 13 failed attempts in the preceding 10 min. Also 2 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 11,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 16:06:28",
+        "last_seen": "2026-09-01 16:09:41",
+        "source_ips": [
+          "203.126.115.203"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "user11"
+        ],
+        "evidence": [
+          "11 failed logins from 203.126.115.203 against web-01 (account: user11) within 3m 14s",
+          "first alert 2026-09-01 16:06:28, last alert 2026-09-01 16:09:41",
+          "mean model score 1.00; example reason: model score 1.00; 11 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          3327,
+          3332,
+          3333,
+          3335,
+          3338,
+          3342,
+          3345,
+          3347,
+          3348,
+          3349
+        ],
+        "finding_id": "INC-0013-F1"
+      },
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 2,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-01 16:10:21",
+        "last_seen": "2026-09-01 16:10:56",
+        "source_ips": [
+          "203.126.115.203"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "user11"
+        ],
+        "evidence": [
+          "2 anomalous events from 203.126.115.203 on web-01",
+          "first alert 2026-09-01 16:10:21, last alert 2026-09-01 16:10:56",
+          "mean model score 0.99; example reason: model score 0.99; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          3353,
+          3355
+        ],
+        "finding_id": "INC-0013-F2"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-01 16:11:06",
+        "last_seen": "2026-09-01 16:11:06",
+        "source_ips": [
+          "203.126.115.203"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "user11"
+        ],
+        "evidence": [
+          "successful login to web-01 by user11 from 203.126.115.203 after 13 failed attempts in the preceding 10 min",
+          "first alert 2026-09-01 16:11:06, last alert 2026-09-01 16:11:06",
+          "mean model score 0.95; example reason: model score 0.95; successful login preceded by 13 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          3356
+        ],
+        "finding_id": "INC-0013-F3"
+      }
+    ],
+    "incident_id": "INC-0013"
+  },
+  {
+    "start": "2026-09-01 22:32:21",
+    "end": "2026-09-01 22:35:20",
+    "duration_seconds": 179,
+    "alert_count": 8,
+    "source_ips": [
+      "103.132.170.163"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user25"
+    ],
+    "stages": [
+      "brute_force",
+      "anomalous_activity"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 2,
+    "timeline": [
+      {
+        "start": "2026-09-01 22:32:21",
+        "end": "2026-09-01 22:34:49",
+        "stage": "brute_force",
+        "alert_count": 6,
+        "detail": "6 failed logins from 103.132.170.163 against db-01 (account: user25) within 2m 28s"
+      }
+    ],
+    "explanation": "[22:32:21] 6 failed logins from 103.132.170.163 against db-01 (account: user25) within 2m 28s. Also 2 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 6,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-01 22:32:21",
+        "last_seen": "2026-09-01 22:34:49",
+        "source_ips": [
+          "103.132.170.163"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user25"
+        ],
+        "evidence": [
+          "6 failed logins from 103.132.170.163 against db-01 (account: user25) within 2m 28s",
+          "first alert 2026-09-01 22:32:21, last alert 2026-09-01 22:34:49",
+          "mean model score 1.00; example reason: model score 1.00; 6 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          3997,
+          3998,
+          4000,
+          4001,
+          4002,
+          4003
+        ],
+        "finding_id": "INC-0014-F1"
+      },
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 2,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-01 22:35:07",
+        "last_seen": "2026-09-01 22:35:20",
+        "source_ips": [
+          "103.132.170.163"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user25"
+        ],
+        "evidence": [
+          "2 anomalous events from 103.132.170.163 on db-01",
+          "first alert 2026-09-01 22:35:07, last alert 2026-09-01 22:35:20",
+          "mean model score 0.97; example reason: model score 0.97; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          4004,
+          4005
+        ],
+        "finding_id": "INC-0014-F2"
+      }
+    ],
+    "incident_id": "INC-0014"
+  },
+  {
+    "start": "2026-09-02 02:17:00",
+    "end": "2026-09-02 02:17:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.55"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "admin_john"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 02:17:00",
+        "end": "2026-09-02 02:17:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on auth-01 by admin_john from 10.0.10.55 (0 by non-admin accounts, 2 outside business hours)"
+      }
+    ],
+    "explanation": "[02:17:00] 2 administrative action(s) on auth-01 by admin_john from 10.0.10.55 (0 by non-admin accounts, 2 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-02 02:17:00",
+        "last_seen": "2026-09-02 02:17:30",
+        "source_ips": [
+          "10.0.10.55"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "admin_john"
+        ],
+        "evidence": [
+          "2 administrative action(s) on auth-01 by admin_john from 10.0.10.55 (0 by non-admin accounts, 2 outside business hours)",
+          "first alert 2026-09-02 02:17:00, last alert 2026-09-02 02:17:30",
+          "mean model score 0.89; example reason: model score 0.94; administrative action by admin account (admin_john) during off-hours"
+        ],
+        "sample_event_ids": [
+          4107,
+          4108
+        ],
+        "finding_id": "INC-0015-F1"
+      }
+    ],
+    "incident_id": "INC-0015"
+  },
+  {
+    "start": "2026-09-02 03:40:30",
+    "end": "2026-09-02 03:55:30",
+    "duration_seconds": 900,
+    "alert_count": 5,
+    "source_ips": [
+      "10.0.2.20"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user11",
+      "user22",
+      "user23",
+      "user35"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 03:40:30",
+        "end": "2026-09-02 03:55:30",
+        "stage": "exfiltration",
+        "alert_count": 5,
+        "detail": "5 large outbound transfers (9.2 MB total) from file-01 (10.0.2.20) to external 91.38.7.12"
+      }
+    ],
+    "explanation": "[03:40:30] 5 large outbound transfers (9.2 MB total) from file-01 (10.0.2.20) to external 91.38.7.12",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 5,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-02 03:40:30",
+        "last_seen": "2026-09-02 03:55:30",
+        "source_ips": [
+          "10.0.2.20"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user11",
+          "user22",
+          "user23",
+          "user35"
+        ],
+        "evidence": [
+          "5 large outbound transfers (9.2 MB total) from file-01 (10.0.2.20) to external 91.38.7.12",
+          "first alert 2026-09-02 03:40:30, last alert 2026-09-02 03:55:30",
+          "mean model score 0.98; example reason: model score 0.98; 2,048,407 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          4142,
+          4143,
+          4145,
+          4146,
+          4147
+        ],
+        "finding_id": "INC-0016-F1"
+      }
+    ],
+    "incident_id": "INC-0016"
+  },
+  {
+    "start": "2026-09-02 06:00:43",
+    "end": "2026-09-02 06:01:53",
+    "duration_seconds": 70,
+    "alert_count": 24,
+    "source_ips": [
+      "185.152.145.170"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user03"
+    ],
+    "stages": [
+      "brute_force",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 06:00:43",
+        "end": "2026-09-02 06:01:49",
+        "stage": "brute_force",
+        "alert_count": 23,
+        "detail": "23 failed logins from 185.152.145.170 against db-01 (account: user03) within 1m 7s"
+      },
+      {
+        "start": "2026-09-02 06:01:53",
+        "end": "2026-09-02 06:01:53",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to db-01 by user03 from 185.152.145.170 after 23 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[06:00:43] 23 failed logins from 185.152.145.170 against db-01 (account: user03) within 1m 7s; then [06:01:53] successful login to db-01 by user03 from 185.152.145.170 after 23 failed attempts in the preceding 10 min",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 23,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-02 06:00:43",
+        "last_seen": "2026-09-02 06:01:49",
+        "source_ips": [
+          "185.152.145.170"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user03"
+        ],
+        "evidence": [
+          "23 failed logins from 185.152.145.170 against db-01 (account: user03) within 1m 7s",
+          "first alert 2026-09-02 06:00:43, last alert 2026-09-02 06:01:49",
+          "mean model score 1.00; example reason: model score 1.00; 23 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          4201,
+          4202,
+          4203,
+          4205,
+          4206,
+          4207,
+          4208,
+          4209,
+          4210,
+          4211
+        ],
+        "finding_id": "INC-0017-F1"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-02 06:01:53",
+        "last_seen": "2026-09-02 06:01:53",
+        "source_ips": [
+          "185.152.145.170"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user03"
+        ],
+        "evidence": [
+          "successful login to db-01 by user03 from 185.152.145.170 after 23 failed attempts in the preceding 10 min",
+          "first alert 2026-09-02 06:01:53, last alert 2026-09-02 06:01:53",
+          "mean model score 0.97; example reason: model score 0.97; successful login preceded by 23 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          4225
+        ],
+        "finding_id": "INC-0017-F2"
+      }
+    ],
+    "incident_id": "INC-0017"
+  },
+  {
+    "start": "2026-09-02 06:09:04",
+    "end": "2026-09-02 06:12:44",
+    "duration_seconds": 220,
+    "alert_count": 60,
+    "source_ips": [
+      "185.250.159.192"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "user19"
+    ],
+    "stages": [
+      "brute_force"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 06:09:04",
+        "end": "2026-09-02 06:12:44",
+        "stage": "brute_force",
+        "alert_count": 60,
+        "detail": "60 failed logins from 185.250.159.192 against auth-01 (account: user19) within 3m 40s"
+      }
+    ],
+    "explanation": "[06:09:04] 60 failed logins from 185.250.159.192 against auth-01 (account: user19) within 3m 40s",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 60,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-02 06:09:04",
+        "last_seen": "2026-09-02 06:12:44",
+        "source_ips": [
+          "185.250.159.192"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "user19"
+        ],
+        "evidence": [
+          "60 failed logins from 185.250.159.192 against auth-01 (account: user19) within 3m 40s",
+          "first alert 2026-09-02 06:09:04, last alert 2026-09-02 06:12:44",
+          "mean model score 1.00; example reason: model score 1.00; 16 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          4232,
+          4233,
+          4234,
+          4235,
+          4236,
+          4237,
+          4238,
+          4239,
+          4240,
+          4241
+        ],
+        "finding_id": "INC-0018-F1"
+      }
+    ],
+    "incident_id": "INC-0018"
+  },
+  {
+    "start": "2026-09-02 09:12:00",
+    "end": "2026-09-02 09:12:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.44"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user22"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 09:12:00",
+        "end": "2026-09-02 09:12:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-01 by user22 from 10.0.10.44 (2 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[09:12:00] 2 administrative action(s) on db-01 by user22 from 10.0.10.44 (2 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-02 09:12:00",
+        "last_seen": "2026-09-02 09:12:30",
+        "source_ips": [
+          "10.0.10.44"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user22"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-01 by user22 from 10.0.10.44 (2 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-02 09:12:00, last alert 2026-09-02 09:12:30",
+          "mean model score 0.94; example reason: model score 0.94; administrative action by non-admin account (user22) during business hours"
+        ],
+        "sample_event_ids": [
+          4683,
+          4684
+        ],
+        "finding_id": "INC-0019-F1"
+      }
+    ],
+    "incident_id": "INC-0019"
+  },
+  {
+    "start": "2026-09-02 10:15:45",
+    "end": "2026-09-02 10:29:12",
+    "duration_seconds": 807,
+    "alert_count": 68,
+    "source_ips": [
+      "91.177.122.166"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "port_scan"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 10:15:45",
+        "end": "2026-09-02 10:29:12",
+        "stage": "port_scan",
+        "alert_count": 68,
+        "detail": "68 blocked connection attempts across 68 distinct ports on db-01 from 91.177.122.166 within 13m 27s"
+      }
+    ],
+    "explanation": "[10:15:45] 68 blocked connection attempts across 68 distinct ports on db-01 from 91.177.122.166 within 13m 27s",
+    "findings": [
+      {
+        "finding_type": "port_scan",
+        "alert_count": 68,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-02 10:15:45",
+        "last_seen": "2026-09-02 10:29:12",
+        "source_ips": [
+          "91.177.122.166"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "68 blocked connection attempts across 68 distinct ports on db-01 from 91.177.122.166 within 13m 27s",
+          "first alert 2026-09-02 10:15:45, last alert 2026-09-02 10:29:12",
+          "mean model score 1.00; example reason: model score 1.00; 23 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          4932,
+          4933,
+          4936,
+          4937,
+          4938,
+          4939,
+          4941,
+          4944,
+          4945,
+          4946
+        ],
+        "finding_id": "INC-0020-F1"
+      }
+    ],
+    "incident_id": "INC-0020"
+  },
+  {
+    "start": "2026-09-02 11:02:47",
+    "end": "2026-09-02 11:02:47",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.54"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user05"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 11:02:47",
+        "end": "2026-09-02 11:02:47",
+        "stage": "exfiltration",
+        "alert_count": 1,
+        "detail": "1 large outbound transfers (6.8 MB total) from file-01 (10.0.10.54) to external 91.234.242.146"
+      }
+    ],
+    "explanation": "[11:02:47] 1 large outbound transfers (6.8 MB total) from file-01 (10.0.10.54) to external 91.234.242.146",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-02 11:02:47",
+        "last_seen": "2026-09-02 11:02:47",
+        "source_ips": [
+          "10.0.10.54"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user05"
+        ],
+        "evidence": [
+          "1 large outbound transfers (6.8 MB total) from file-01 (10.0.10.54) to external 91.234.242.146",
+          "first alert 2026-09-02 11:02:47, last alert 2026-09-02 11:02:47",
+          "mean model score 0.55; example reason: model score 0.55; 7,122,029 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          5235
+        ],
+        "finding_id": "INC-0021-F1"
+      }
+    ],
+    "incident_id": "INC-0021"
+  },
+  {
+    "start": "2026-09-02 11:59:00",
+    "end": "2026-09-02 11:59:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.56"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "user33"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 11:59:00",
+        "end": "2026-09-02 11:59:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on auth-01 by user33 from 10.0.10.56 (1 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[11:59:00] 1 administrative action(s) on auth-01 by user33 from 10.0.10.56 (1 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-02 11:59:00",
+        "last_seen": "2026-09-02 11:59:00",
+        "source_ips": [
+          "10.0.10.56"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "user33"
+        ],
+        "evidence": [
+          "1 administrative action(s) on auth-01 by user33 from 10.0.10.56 (1 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-02 11:59:00, last alert 2026-09-02 11:59:00",
+          "mean model score 0.86; example reason: model score 0.86; administrative action by non-admin account (user33) during business hours"
+        ],
+        "sample_event_ids": [
+          5572
+        ],
+        "finding_id": "INC-0022-F1"
+      }
+    ],
+    "incident_id": "INC-0022"
+  },
+  {
+    "start": "2026-09-02 16:33:00",
+    "end": "2026-09-02 16:33:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.6"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "admin_john"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 16:33:00",
+        "end": "2026-09-02 16:33:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on db-02 by admin_john from 10.0.10.6 (0 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[16:33:00] 1 administrative action(s) on db-02 by admin_john from 10.0.10.6 (0 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-02 16:33:00",
+        "last_seen": "2026-09-02 16:33:00",
+        "source_ips": [
+          "10.0.10.6"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "admin_john"
+        ],
+        "evidence": [
+          "1 administrative action(s) on db-02 by admin_john from 10.0.10.6 (0 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-02 16:33:00, last alert 2026-09-02 16:33:00",
+          "mean model score 0.54; example reason: model score 0.54; administrative action by admin account (admin_john) during business hours"
+        ],
+        "sample_event_ids": [
+          7247
+        ],
+        "finding_id": "INC-0023-F1"
+      }
+    ],
+    "incident_id": "INC-0023"
+  },
+  {
+    "start": "2026-09-02 18:13:54",
+    "end": "2026-09-02 21:38:26",
+    "duration_seconds": 12272,
+    "alert_count": 42,
+    "source_ips": [
+      "10.0.10.44"
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "users": [
+      "user01",
+      "user02",
+      "user03",
+      "user04",
+      "user07",
+      "user08",
+      "user10",
+      "user11",
+      "user12",
+      "user13",
+      "user14",
+      "user15",
+      "user16",
+      "user17",
+      "user21",
+      "user26",
+      "user28",
+      "user29",
+      "user30",
+      "user31",
+      "user33",
+      "user34",
+      "user35",
+      "user36",
+      "user38",
+      "user39",
+      "user40"
+    ],
+    "stages": [
+      "c2_beaconing"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 18:13:54",
+        "end": "2026-09-02 21:38:26",
+        "stage": "c2_beaconing",
+        "alert_count": 42,
+        "detail": "42 outbound connections from 10.0.10.44 to 185.90.79.211 at a regular ~301s interval (small payloads, ~205 bytes each)"
+      }
+    ],
+    "explanation": "[18:13:54] 42 outbound connections from 10.0.10.44 to 185.90.79.211 at a regular ~301s interval (small payloads, ~205 bytes each)",
+    "findings": [
+      {
+        "finding_type": "c2_beaconing",
+        "alert_count": 42,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-02 18:13:54",
+        "last_seen": "2026-09-02 21:38:26",
+        "source_ips": [
+          "10.0.10.44"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user01",
+          "user02",
+          "user03",
+          "user04",
+          "user07",
+          "user08",
+          "user10",
+          "user11",
+          "user12",
+          "user13",
+          "user14",
+          "user15",
+          "user16",
+          "user17",
+          "user21",
+          "user26",
+          "user28",
+          "user29",
+          "user30",
+          "user31",
+          "user33",
+          "user34",
+          "user35",
+          "user36",
+          "user38",
+          "user39",
+          "user40"
+        ],
+        "evidence": [
+          "42 outbound connections from 10.0.10.44 to 185.90.79.211 at a regular ~301s interval (small payloads, ~205 bytes each)",
+          "first alert 2026-09-02 18:13:54, last alert 2026-09-02 21:38:26",
+          "mean model score 0.99; example reason: model score 1.00; 10 connections to the same external IP in 1 h, interval ~301s (std 12.6s)"
+        ],
+        "sample_event_ids": [
+          7532,
+          7545,
+          7552,
+          7558,
+          7568,
+          7574,
+          7584,
+          7716,
+          7729,
+          7740
+        ],
+        "finding_id": "INC-0024-F1"
+      }
+    ],
+    "incident_id": "INC-0024"
+  },
+  {
+    "start": "2026-09-02 18:44:35",
+    "end": "2026-09-02 18:46:32",
+    "duration_seconds": 117,
+    "alert_count": 125,
+    "source_ips": [
+      "185.186.43.216"
+    ],
+    "affected_assets": [
+      "mail-01"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "port_scan"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 18:44:35",
+        "end": "2026-09-02 18:46:32",
+        "stage": "port_scan",
+        "alert_count": 125,
+        "detail": "125 blocked connection attempts across 125 distinct ports on mail-01 from 185.186.43.216 within 1m 57s"
+      }
+    ],
+    "explanation": "[18:44:35] 125 blocked connection attempts across 125 distinct ports on mail-01 from 185.186.43.216 within 1m 57s",
+    "findings": [
+      {
+        "finding_type": "port_scan",
+        "alert_count": 125,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-02 18:44:35",
+        "last_seen": "2026-09-02 18:46:32",
+        "source_ips": [
+          "185.186.43.216"
+        ],
+        "assets": [
+          "mail-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "125 blocked connection attempts across 125 distinct ports on mail-01 from 185.186.43.216 within 1m 57s",
+          "first alert 2026-09-02 18:44:35, last alert 2026-09-02 18:46:32",
+          "mean model score 1.00; example reason: model score 1.00; 25 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          7585,
+          7586,
+          7587,
+          7588,
+          7589,
+          7590,
+          7591,
+          7592,
+          7593,
+          7594
+        ],
+        "finding_id": "INC-0025-F1"
+      }
+    ],
+    "incident_id": "INC-0025"
+  },
+  {
+    "start": "2026-09-02 19:02:08",
+    "end": "2026-09-02 19:08:08",
+    "duration_seconds": 360,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.2.20"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user20",
+      "user31"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-02 19:02:08",
+        "end": "2026-09-02 19:08:08",
+        "stage": "exfiltration",
+        "alert_count": 2,
+        "detail": "2 large outbound transfers (14.6 MB total) from file-01 (10.0.2.20) to external 185.236.33.252"
+      }
+    ],
+    "explanation": "[19:02:08] 2 large outbound transfers (14.6 MB total) from file-01 (10.0.2.20) to external 185.236.33.252",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 2,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-02 19:02:08",
+        "last_seen": "2026-09-02 19:08:08",
+        "source_ips": [
+          "10.0.2.20"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user20",
+          "user31"
+        ],
+        "evidence": [
+          "2 large outbound transfers (14.6 MB total) from file-01 (10.0.2.20) to external 185.236.33.252",
+          "first alert 2026-09-02 19:02:08, last alert 2026-09-02 19:08:08",
+          "mean model score 0.84; example reason: model score 0.85; 2,707,460 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          7809,
+          7814
+        ],
+        "finding_id": "INC-0026-F1"
+      }
+    ],
+    "incident_id": "INC-0026"
+  },
+  {
+    "start": "2026-09-03 02:37:00",
+    "end": "2026-09-03 02:37:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.59"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user12"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 02:37:00",
+        "end": "2026-09-03 02:37:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-02 by user12 from 10.0.10.59 (2 by non-admin accounts, 2 outside business hours)"
+      }
+    ],
+    "explanation": "[02:37:00] 2 administrative action(s) on db-02 by user12 from 10.0.10.59 (2 by non-admin accounts, 2 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 02:37:00",
+        "last_seen": "2026-09-03 02:37:30",
+        "source_ips": [
+          "10.0.10.59"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user12"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-02 by user12 from 10.0.10.59 (2 by non-admin accounts, 2 outside business hours)",
+          "first alert 2026-09-03 02:37:00, last alert 2026-09-03 02:37:30",
+          "mean model score 0.98; example reason: model score 0.98; administrative action by non-admin account (user12) during off-hours"
+        ],
+        "sample_event_ids": [
+          8025,
+          8026
+        ],
+        "finding_id": "INC-0027-F1"
+      }
+    ],
+    "incident_id": "INC-0027"
+  },
+  {
+    "start": "2026-09-03 02:55:00",
+    "end": "2026-09-03 02:55:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.47"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user06"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 02:55:00",
+        "end": "2026-09-03 02:55:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on db-01 by user06 from 10.0.10.47 (1 by non-admin accounts, 1 outside business hours)"
+      }
+    ],
+    "explanation": "[02:55:00] 1 administrative action(s) on db-01 by user06 from 10.0.10.47 (1 by non-admin accounts, 1 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 02:55:00",
+        "last_seen": "2026-09-03 02:55:00",
+        "source_ips": [
+          "10.0.10.47"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user06"
+        ],
+        "evidence": [
+          "1 administrative action(s) on db-01 by user06 from 10.0.10.47 (1 by non-admin accounts, 1 outside business hours)",
+          "first alert 2026-09-03 02:55:00, last alert 2026-09-03 02:55:00",
+          "mean model score 0.83; example reason: model score 0.83; administrative action by non-admin account (user06) during off-hours"
+        ],
+        "sample_event_ids": [
+          8034
+        ],
+        "finding_id": "INC-0028-F1"
+      }
+    ],
+    "incident_id": "INC-0028"
+  },
+  {
+    "start": "2026-09-03 03:17:00",
+    "end": "2026-09-03 03:17:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.37"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user23"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 03:17:00",
+        "end": "2026-09-03 03:17:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-02 by user23 from 10.0.10.37 (2 by non-admin accounts, 2 outside business hours)"
+      }
+    ],
+    "explanation": "[03:17:00] 2 administrative action(s) on db-02 by user23 from 10.0.10.37 (2 by non-admin accounts, 2 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 03:17:00",
+        "last_seen": "2026-09-03 03:17:30",
+        "source_ips": [
+          "10.0.10.37"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user23"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-02 by user23 from 10.0.10.37 (2 by non-admin accounts, 2 outside business hours)",
+          "first alert 2026-09-03 03:17:00, last alert 2026-09-03 03:17:30",
+          "mean model score 0.96; example reason: model score 0.96; administrative action by non-admin account (user23) during off-hours"
+        ],
+        "sample_event_ids": [
+          8042,
+          8043
+        ],
+        "finding_id": "INC-0029-F1"
+      }
+    ],
+    "incident_id": "INC-0029"
+  },
+  {
+    "start": "2026-09-03 07:17:00",
+    "end": "2026-09-03 07:18:57",
+    "duration_seconds": 117,
+    "alert_count": 33,
+    "source_ips": [
+      "194.110.213.233"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user11"
+    ],
+    "stages": [
+      "brute_force",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 07:17:00",
+        "end": "2026-09-03 07:18:52",
+        "stage": "brute_force",
+        "alert_count": 32,
+        "detail": "32 failed logins from 194.110.213.233 against db-01 (account: user11) within 1m 52s"
+      },
+      {
+        "start": "2026-09-03 07:18:57",
+        "end": "2026-09-03 07:18:57",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to db-01 by user11 from 194.110.213.233 after 32 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[07:17:00] 32 failed logins from 194.110.213.233 against db-01 (account: user11) within 1m 52s; then [07:18:57] successful login to db-01 by user11 from 194.110.213.233 after 32 failed attempts in the preceding 10 min",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 32,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 07:17:00",
+        "last_seen": "2026-09-03 07:18:52",
+        "source_ips": [
+          "194.110.213.233"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user11"
+        ],
+        "evidence": [
+          "32 failed logins from 194.110.213.233 against db-01 (account: user11) within 1m 52s",
+          "first alert 2026-09-03 07:17:00, last alert 2026-09-03 07:18:52",
+          "mean model score 1.00; example reason: model score 1.00; 32 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          8129,
+          8130,
+          8131,
+          8132,
+          8133,
+          8134,
+          8135,
+          8136,
+          8137,
+          8138
+        ],
+        "finding_id": "INC-0030-F1"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-03 07:18:57",
+        "last_seen": "2026-09-03 07:18:57",
+        "source_ips": [
+          "194.110.213.233"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user11"
+        ],
+        "evidence": [
+          "successful login to db-01 by user11 from 194.110.213.233 after 32 failed attempts in the preceding 10 min",
+          "first alert 2026-09-03 07:18:57, last alert 2026-09-03 07:18:57",
+          "mean model score 0.97; example reason: model score 0.97; successful login preceded by 32 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          8161
+        ],
+        "finding_id": "INC-0030-F2"
+      }
+    ],
+    "incident_id": "INC-0030"
+  },
+  {
+    "start": "2026-09-03 10:02:31",
+    "end": "2026-09-03 10:52:06",
+    "duration_seconds": 2975,
+    "alert_count": 50,
+    "source_ips": [
+      "10.0.10.49"
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "users": [
+      "user01",
+      "user03",
+      "user04",
+      "user05",
+      "user07",
+      "user08",
+      "user09",
+      "user10",
+      "user11",
+      "user12",
+      "user18",
+      "user19",
+      "user20",
+      "user21",
+      "user22",
+      "user24",
+      "user25",
+      "user26",
+      "user27",
+      "user28",
+      "user29",
+      "user30",
+      "user32",
+      "user34",
+      "user35",
+      "user36",
+      "user37",
+      "user38",
+      "user40"
+    ],
+    "stages": [
+      "c2_beaconing"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 10:02:31",
+        "end": "2026-09-03 10:52:06",
+        "stage": "c2_beaconing",
+        "alert_count": 50,
+        "detail": "50 outbound connections from 10.0.10.49 to 185.224.10.220 at a regular ~61s interval (small payloads, ~203 bytes each)"
+      }
+    ],
+    "explanation": "[10:02:31] 50 outbound connections from 10.0.10.49 to 185.224.10.220 at a regular ~61s interval (small payloads, ~203 bytes each)",
+    "findings": [
+      {
+        "finding_type": "c2_beaconing",
+        "alert_count": 50,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 10:02:31",
+        "last_seen": "2026-09-03 10:52:06",
+        "source_ips": [
+          "10.0.10.49"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user01",
+          "user03",
+          "user04",
+          "user05",
+          "user07",
+          "user08",
+          "user09",
+          "user10",
+          "user11",
+          "user12",
+          "user18",
+          "user19",
+          "user20",
+          "user21",
+          "user22",
+          "user24",
+          "user25",
+          "user26",
+          "user27",
+          "user28",
+          "user29",
+          "user30",
+          "user32",
+          "user34",
+          "user35",
+          "user36",
+          "user37",
+          "user38",
+          "user40"
+        ],
+        "evidence": [
+          "50 outbound connections from 10.0.10.49 to 185.224.10.220 at a regular ~61s interval (small payloads, ~203 bytes each)",
+          "first alert 2026-09-03 10:02:31, last alert 2026-09-03 10:52:06",
+          "mean model score 1.00; example reason: model score 1.00; 50 connections to the same external IP in 1 h, interval ~61s (std 7.9s)"
+        ],
+        "sample_event_ids": [
+          8717,
+          8720,
+          8723,
+          8729,
+          8734,
+          8742,
+          8752,
+          8759,
+          8765,
+          8774
+        ],
+        "finding_id": "INC-0031-F1"
+      }
+    ],
+    "incident_id": "INC-0031"
+  },
+  {
+    "start": "2026-09-03 11:59:28",
+    "end": "2026-09-03 12:03:28",
+    "duration_seconds": 240,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user28",
+      "user40"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 11:59:28",
+        "end": "2026-09-03 12:03:28",
+        "stage": "exfiltration",
+        "alert_count": 2,
+        "detail": "2 large outbound transfers (4.3 MB total) from db-02 (10.0.4.40) to external 91.247.80.28"
+      }
+    ],
+    "explanation": "[11:59:28] 2 large outbound transfers (4.3 MB total) from db-02 (10.0.4.40) to external 91.247.80.28",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 2,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-03 11:59:28",
+        "last_seen": "2026-09-03 12:03:28",
+        "source_ips": [
+          "10.0.4.40"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user28",
+          "user40"
+        ],
+        "evidence": [
+          "2 large outbound transfers (4.3 MB total) from db-02 (10.0.4.40) to external 91.247.80.28",
+          "first alert 2026-09-03 11:59:28, last alert 2026-09-03 12:03:28",
+          "mean model score 0.67; example reason: model score 0.66; 888,100 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          9425,
+          9462
+        ],
+        "finding_id": "INC-0032-F1"
+      }
+    ],
+    "incident_id": "INC-0032"
+  },
+  {
+    "start": "2026-09-03 14:29:00",
+    "end": "2026-09-03 14:29:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.37"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user39"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 14:29:00",
+        "end": "2026-09-03 14:29:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on db-01 by user39 from 10.0.10.37 (1 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[14:29:00] 1 administrative action(s) on db-01 by user39 from 10.0.10.37 (1 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 14:29:00",
+        "last_seen": "2026-09-03 14:29:00",
+        "source_ips": [
+          "10.0.10.37"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user39"
+        ],
+        "evidence": [
+          "1 administrative action(s) on db-01 by user39 from 10.0.10.37 (1 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-03 14:29:00, last alert 2026-09-03 14:29:00",
+          "mean model score 0.93; example reason: model score 0.93; administrative action by non-admin account (user39) during business hours"
+        ],
+        "sample_event_ids": [
+          10555
+        ],
+        "finding_id": "INC-0033-F1"
+      }
+    ],
+    "incident_id": "INC-0033"
+  },
+  {
+    "start": "2026-09-03 14:49:00",
+    "end": "2026-09-03 14:49:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.52"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user21"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 14:49:00",
+        "end": "2026-09-03 14:49:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on db-02 by user21 from 10.0.10.52 (1 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[14:49:00] 1 administrative action(s) on db-02 by user21 from 10.0.10.52 (1 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 14:49:00",
+        "last_seen": "2026-09-03 14:49:00",
+        "source_ips": [
+          "10.0.10.52"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user21"
+        ],
+        "evidence": [
+          "1 administrative action(s) on db-02 by user21 from 10.0.10.52 (1 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-03 14:49:00, last alert 2026-09-03 14:49:00",
+          "mean model score 0.93; example reason: model score 0.93; administrative action by non-admin account (user21) during business hours"
+        ],
+        "sample_event_ids": [
+          10676
+        ],
+        "finding_id": "INC-0034-F1"
+      }
+    ],
+    "incident_id": "INC-0034"
+  },
+  {
+    "start": "2026-09-03 16:16:00",
+    "end": "2026-09-03 16:16:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.38"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user04"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 16:16:00",
+        "end": "2026-09-03 16:16:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-02 by user04 from 10.0.10.38 (2 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[16:16:00] 2 administrative action(s) on db-02 by user04 from 10.0.10.38 (2 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 16:16:00",
+        "last_seen": "2026-09-03 16:16:30",
+        "source_ips": [
+          "10.0.10.38"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user04"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-02 by user04 from 10.0.10.38 (2 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-03 16:16:00, last alert 2026-09-03 16:16:30",
+          "mean model score 0.93; example reason: model score 0.87; administrative action by non-admin account (user04) during business hours"
+        ],
+        "sample_event_ids": [
+          11092,
+          11094
+        ],
+        "finding_id": "INC-0035-F1"
+      }
+    ],
+    "incident_id": "INC-0035"
+  },
+  {
+    "start": "2026-09-03 17:42:10",
+    "end": "2026-09-03 17:51:26",
+    "duration_seconds": 556,
+    "alert_count": 25,
+    "source_ips": [
+      "91.38.7.12"
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "users": [
+      "admin_meera"
+    ],
+    "stages": [
+      "brute_force",
+      "anomalous_activity",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 2,
+    "timeline": [
+      {
+        "start": "2026-09-03 17:42:10",
+        "end": "2026-09-03 17:49:55",
+        "stage": "brute_force",
+        "alert_count": 22,
+        "detail": "22 failed logins from 91.38.7.12 against web-01 (account: admin_meera) within 7m 46s"
+      },
+      {
+        "start": "2026-09-03 17:51:26",
+        "end": "2026-09-03 17:51:26",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to web-01 by admin_meera from 91.38.7.12 after 24 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[17:42:10] 22 failed logins from 91.38.7.12 against web-01 (account: admin_meera) within 7m 46s; then [17:51:26] successful login to web-01 by admin_meera from 91.38.7.12 after 24 failed attempts in the preceding 10 min. Also 2 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 22,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 17:42:10",
+        "last_seen": "2026-09-03 17:49:55",
+        "source_ips": [
+          "91.38.7.12"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "admin_meera"
+        ],
+        "evidence": [
+          "22 failed logins from 91.38.7.12 against web-01 (account: admin_meera) within 7m 46s",
+          "first alert 2026-09-03 17:42:10, last alert 2026-09-03 17:49:55",
+          "mean model score 1.00; example reason: model score 1.00; 9 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          11408,
+          11411,
+          11413,
+          11414,
+          11415,
+          11417,
+          11418,
+          11421,
+          11422,
+          11423
+        ],
+        "finding_id": "INC-0036-F1"
+      },
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 2,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-03 17:50:31",
+        "last_seen": "2026-09-03 17:50:58",
+        "source_ips": [
+          "91.38.7.12"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "admin_meera"
+        ],
+        "evidence": [
+          "2 anomalous events from 91.38.7.12 on web-01",
+          "first alert 2026-09-03 17:50:31, last alert 2026-09-03 17:50:58",
+          "mean model score 1.00; example reason: model score 1.00; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          11446,
+          11448
+        ],
+        "finding_id": "INC-0036-F2"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-03 17:51:26",
+        "last_seen": "2026-09-03 17:51:26",
+        "source_ips": [
+          "91.38.7.12"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "admin_meera"
+        ],
+        "evidence": [
+          "successful login to web-01 by admin_meera from 91.38.7.12 after 24 failed attempts in the preceding 10 min",
+          "first alert 2026-09-03 17:51:26, last alert 2026-09-03 17:51:26",
+          "mean model score 0.97; example reason: model score 0.97; successful login preceded by 24 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          11450
+        ],
+        "finding_id": "INC-0036-F3"
+      }
+    ],
+    "incident_id": "INC-0036"
+  },
+  {
+    "start": "2026-09-03 22:11:01",
+    "end": "2026-09-03 22:14:01",
+    "duration_seconds": 180,
+    "alert_count": 3,
+    "source_ips": [
+      "10.0.2.21"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user09",
+      "user16",
+      "user37"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 22:11:01",
+        "end": "2026-09-03 22:14:01",
+        "stage": "exfiltration",
+        "alert_count": 3,
+        "detail": "3 large outbound transfers (7.5 MB total) from file-01 (10.0.2.21) to external 185.65.214.21"
+      }
+    ],
+    "explanation": "[22:11:01] 3 large outbound transfers (7.5 MB total) from file-01 (10.0.2.21) to external 185.65.214.21",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 3,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-03 22:11:01",
+        "last_seen": "2026-09-03 22:14:01",
+        "source_ips": [
+          "10.0.2.21"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user09",
+          "user16",
+          "user37"
+        ],
+        "evidence": [
+          "3 large outbound transfers (7.5 MB total) from file-01 (10.0.2.21) to external 185.65.214.21",
+          "first alert 2026-09-03 22:11:01, last alert 2026-09-03 22:14:01",
+          "mean model score 0.95; example reason: model score 0.95; 1,800,945 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          11776,
+          11777,
+          11780
+        ],
+        "finding_id": "INC-0037-F1"
+      }
+    ],
+    "incident_id": "INC-0037"
+  },
+  {
+    "start": "2026-09-03 23:00:00",
+    "end": "2026-09-03 23:00:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.6"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "admin_meera"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-03 23:00:00",
+        "end": "2026-09-03 23:00:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on auth-01 by admin_meera from 10.0.10.6 (0 by non-admin accounts, 1 outside business hours)"
+      }
+    ],
+    "explanation": "[23:00:00] 1 administrative action(s) on auth-01 by admin_meera from 10.0.10.6 (0 by non-admin accounts, 1 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-03 23:00:00",
+        "last_seen": "2026-09-03 23:00:00",
+        "source_ips": [
+          "10.0.10.6"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "admin_meera"
+        ],
+        "evidence": [
+          "1 administrative action(s) on auth-01 by admin_meera from 10.0.10.6 (0 by non-admin accounts, 1 outside business hours)",
+          "first alert 2026-09-03 23:00:00, last alert 2026-09-03 23:00:00",
+          "mean model score 0.54; example reason: model score 0.54; administrative action by admin account (admin_meera) during off-hours"
+        ],
+        "sample_event_ids": [
+          11801
+        ],
+        "finding_id": "INC-0038-F1"
+      }
+    ],
+    "incident_id": "INC-0038"
+  },
+  {
+    "start": "2026-09-04 03:00:50",
+    "end": "2026-09-04 04:02:33",
+    "duration_seconds": 3703,
+    "alert_count": 32,
+    "source_ips": [
+      "10.0.10.30"
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "users": [
+      "user01",
+      "user02",
+      "user03",
+      "user04",
+      "user06",
+      "user07",
+      "user09",
+      "user11",
+      "user13",
+      "user14",
+      "user15",
+      "user18",
+      "user20",
+      "user21",
+      "user22",
+      "user23",
+      "user24",
+      "user25",
+      "user28",
+      "user32",
+      "user33",
+      "user34",
+      "user35",
+      "user36"
+    ],
+    "stages": [
+      "c2_beaconing",
+      "anomalous_activity"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 2,
+    "timeline": [
+      {
+        "start": "2026-09-04 03:00:50",
+        "end": "2026-09-04 03:58:35",
+        "stage": "c2_beaconing",
+        "alert_count": 30,
+        "detail": "30 outbound connections from 10.0.10.30 to 185.214.140.181 at a regular ~120s interval (small payloads, ~215 bytes each)"
+      }
+    ],
+    "explanation": "[03:00:50] 30 outbound connections from 10.0.10.30 to 185.214.140.181 at a regular ~120s interval (small payloads, ~215 bytes each). Also 2 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "c2_beaconing",
+        "alert_count": 30,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-04 03:00:50",
+        "last_seen": "2026-09-04 03:58:35",
+        "source_ips": [
+          "10.0.10.30"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user01",
+          "user02",
+          "user03",
+          "user04",
+          "user06",
+          "user07",
+          "user09",
+          "user11",
+          "user13",
+          "user14",
+          "user15",
+          "user18",
+          "user20",
+          "user21",
+          "user22",
+          "user23",
+          "user24",
+          "user25",
+          "user32",
+          "user33",
+          "user34",
+          "user35",
+          "user36"
+        ],
+        "evidence": [
+          "30 outbound connections from 10.0.10.30 to 185.214.140.181 at a regular ~120s interval (small payloads, ~215 bytes each)",
+          "first alert 2026-09-04 03:00:50, last alert 2026-09-04 03:58:35",
+          "mean model score 1.00; example reason: model score 1.00; 30 connections to the same external IP in 1 h, interval ~120s (std 4.6s)"
+        ],
+        "sample_event_ids": [
+          11881,
+          11883,
+          11884,
+          11885,
+          11887,
+          11889,
+          11890,
+          11891,
+          11893,
+          11894
+        ],
+        "finding_id": "INC-0039-F1"
+      },
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 2,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-04 04:00:39",
+        "last_seen": "2026-09-04 04:02:33",
+        "source_ips": [
+          "10.0.10.30"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "user02",
+          "user28"
+        ],
+        "evidence": [
+          "2 anomalous events from 10.0.10.30 on web-01",
+          "first alert 2026-09-04 04:00:39, last alert 2026-09-04 04:02:33",
+          "mean model score 0.91; example reason: model score 0.92; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          11938,
+          11940
+        ],
+        "finding_id": "INC-0039-F2"
+      }
+    ],
+    "incident_id": "INC-0039"
+  },
+  {
+    "start": "2026-09-04 03:27:00",
+    "end": "2026-09-04 03:27:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.48"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user32"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-04 03:27:00",
+        "end": "2026-09-04 03:27:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on db-02 by user32 from 10.0.10.48 (1 by non-admin accounts, 1 outside business hours)"
+      }
+    ],
+    "explanation": "[03:27:00] 1 administrative action(s) on db-02 by user32 from 10.0.10.48 (1 by non-admin accounts, 1 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-04 03:27:00",
+        "last_seen": "2026-09-04 03:27:00",
+        "source_ips": [
+          "10.0.10.48"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user32"
+        ],
+        "evidence": [
+          "1 administrative action(s) on db-02 by user32 from 10.0.10.48 (1 by non-admin accounts, 1 outside business hours)",
+          "first alert 2026-09-04 03:27:00, last alert 2026-09-04 03:27:00",
+          "mean model score 0.89; example reason: model score 0.89; administrative action by non-admin account (user32) during off-hours"
+        ],
+        "sample_event_ids": [
+          11904
+        ],
+        "finding_id": "INC-0040-F1"
+      }
+    ],
+    "incident_id": "INC-0040"
+  },
+  {
+    "start": "2026-09-04 11:07:00",
+    "end": "2026-09-04 11:07:00",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.4"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "user11"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-04 11:07:00",
+        "end": "2026-09-04 11:07:00",
+        "stage": "priv_escalation",
+        "alert_count": 1,
+        "detail": "1 administrative action(s) on auth-01 by user11 from 10.0.10.4 (1 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[11:07:00] 1 administrative action(s) on auth-01 by user11 from 10.0.10.4 (1 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 1,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-04 11:07:00",
+        "last_seen": "2026-09-04 11:07:00",
+        "source_ips": [
+          "10.0.10.4"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "user11"
+        ],
+        "evidence": [
+          "1 administrative action(s) on auth-01 by user11 from 10.0.10.4 (1 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-04 11:07:00, last alert 2026-09-04 11:07:00",
+          "mean model score 0.76; example reason: model score 0.76; administrative action by non-admin account (user11) during business hours"
+        ],
+        "sample_event_ids": [
+          12943
+        ],
+        "finding_id": "INC-0041-F1"
+      }
+    ],
+    "incident_id": "INC-0041"
+  },
+  {
+    "start": "2026-09-04 11:55:59",
+    "end": "2026-09-04 12:02:54",
+    "duration_seconds": 415,
+    "alert_count": 34,
+    "source_ips": [
+      "185.89.187.202"
+    ],
+    "affected_assets": [
+      "backup-01"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "anomalous_activity"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-04 11:55:59",
+        "end": "2026-09-04 12:02:54",
+        "stage": "anomalous_activity",
+        "alert_count": 34,
+        "detail": "34 anomalous events from 185.89.187.202 on backup-01"
+      }
+    ],
+    "explanation": "[11:55:59] 34 anomalous events from 185.89.187.202 on backup-01",
+    "findings": [
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 34,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-04 11:55:59",
+        "last_seen": "2026-09-04 12:02:54",
+        "source_ips": [
+          "185.89.187.202"
+        ],
+        "assets": [
+          "backup-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "34 anomalous events from 185.89.187.202 on backup-01",
+          "first alert 2026-09-04 11:55:59, last alert 2026-09-04 12:02:54",
+          "mean model score 1.00; example reason: model score 1.00; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          13263,
+          13264,
+          13266,
+          13267,
+          13271,
+          13272,
+          13276,
+          13278,
+          13281,
+          13282
+        ],
+        "finding_id": "INC-0042-F1"
+      }
+    ],
+    "incident_id": "INC-0042"
+  },
+  {
+    "start": "2026-09-04 16:20:00",
+    "end": "2026-09-04 16:20:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.31"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user30"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-04 16:20:00",
+        "end": "2026-09-04 16:20:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-01 by user30 from 10.0.10.31 (2 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[16:20:00] 2 administrative action(s) on db-01 by user30 from 10.0.10.31 (2 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-04 16:20:00",
+        "last_seen": "2026-09-04 16:20:30",
+        "source_ips": [
+          "10.0.10.31"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user30"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-01 by user30 from 10.0.10.31 (2 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-04 16:20:00, last alert 2026-09-04 16:20:30",
+          "mean model score 0.97; example reason: model score 0.98; administrative action by non-admin account (user30) during business hours"
+        ],
+        "sample_event_ids": [
+          15000,
+          15004
+        ],
+        "finding_id": "INC-0043-F1"
+      }
+    ],
+    "incident_id": "INC-0043"
+  },
+  {
+    "start": "2026-09-04 19:50:43",
+    "end": "2026-09-04 19:52:54",
+    "duration_seconds": 131,
+    "alert_count": 39,
+    "source_ips": [
+      "203.64.171.27"
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "users": [
+      "user18"
+    ],
+    "stages": [
+      "brute_force",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-04 19:50:43",
+        "end": "2026-09-04 19:52:53",
+        "stage": "brute_force",
+        "alert_count": 38,
+        "detail": "38 failed logins from 203.64.171.27 against web-01 (account: user18) within 2m 10s"
+      },
+      {
+        "start": "2026-09-04 19:52:54",
+        "end": "2026-09-04 19:52:54",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to web-01 by user18 from 203.64.171.27 after 38 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[19:50:43] 38 failed logins from 203.64.171.27 against web-01 (account: user18) within 2m 10s; then [19:52:54] successful login to web-01 by user18 from 203.64.171.27 after 38 failed attempts in the preceding 10 min",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 38,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-04 19:50:43",
+        "last_seen": "2026-09-04 19:52:53",
+        "source_ips": [
+          "203.64.171.27"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "user18"
+        ],
+        "evidence": [
+          "38 failed logins from 203.64.171.27 against web-01 (account: user18) within 2m 10s",
+          "first alert 2026-09-04 19:50:43, last alert 2026-09-04 19:52:53",
+          "mean model score 1.00; example reason: model score 1.00; 38 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          15496,
+          15497,
+          15498,
+          15499,
+          15500,
+          15501,
+          15502,
+          15503,
+          15504,
+          15505
+        ],
+        "finding_id": "INC-0044-F1"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-04 19:52:54",
+        "last_seen": "2026-09-04 19:52:54",
+        "source_ips": [
+          "203.64.171.27"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "user18"
+        ],
+        "evidence": [
+          "successful login to web-01 by user18 from 203.64.171.27 after 38 failed attempts in the preceding 10 min",
+          "first alert 2026-09-04 19:52:54, last alert 2026-09-04 19:52:54",
+          "mean model score 0.98; example reason: model score 0.98; successful login preceded by 38 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          15535
+        ],
+        "finding_id": "INC-0044-F2"
+      }
+    ],
+    "incident_id": "INC-0044"
+  },
+  {
+    "start": "2026-09-04 20:05:59",
+    "end": "2026-09-04 20:15:59",
+    "duration_seconds": 600,
+    "alert_count": 3,
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user04",
+      "user10",
+      "user22"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-04 20:05:59",
+        "end": "2026-09-04 20:15:59",
+        "stage": "exfiltration",
+        "alert_count": 3,
+        "detail": "3 large outbound transfers (14.0 MB total) from file-01 (10.0.4.40) to external 91.125.55.91"
+      }
+    ],
+    "explanation": "[20:05:59] 3 large outbound transfers (14.0 MB total) from file-01 (10.0.4.40) to external 91.125.55.91",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 3,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-04 20:05:59",
+        "last_seen": "2026-09-04 20:15:59",
+        "source_ips": [
+          "10.0.4.40"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user04",
+          "user10",
+          "user22"
+        ],
+        "evidence": [
+          "3 large outbound transfers (14.0 MB total) from file-01 (10.0.4.40) to external 91.125.55.91",
+          "first alert 2026-09-04 20:05:59, last alert 2026-09-04 20:15:59",
+          "mean model score 0.96; example reason: model score 0.96; 4,667,914 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          15542,
+          15546,
+          15547
+        ],
+        "finding_id": "INC-0045-F1"
+      }
+    ],
+    "incident_id": "INC-0045"
+  },
+  {
+    "start": "2026-09-04 20:41:59",
+    "end": "2026-09-04 20:50:00",
+    "duration_seconds": 481,
+    "alert_count": 21,
+    "source_ips": [
+      "103.200.144.227"
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "users": [
+      "user10"
+    ],
+    "stages": [
+      "brute_force",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-04 20:41:59",
+        "end": "2026-09-04 20:49:21",
+        "stage": "brute_force",
+        "alert_count": 20,
+        "detail": "20 failed logins from 103.200.144.227 against web-01 (account: user10) within 7m 23s"
+      },
+      {
+        "start": "2026-09-04 20:50:00",
+        "end": "2026-09-04 20:50:00",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to web-01 by user10 from 103.200.144.227 after 20 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[20:41:59] 20 failed logins from 103.200.144.227 against web-01 (account: user10) within 7m 23s; then [20:50:00] successful login to web-01 by user10 from 103.200.144.227 after 20 failed attempts in the preceding 10 min",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 20,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-04 20:41:59",
+        "last_seen": "2026-09-04 20:49:21",
+        "source_ips": [
+          "103.200.144.227"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "user10"
+        ],
+        "evidence": [
+          "20 failed logins from 103.200.144.227 against web-01 (account: user10) within 7m 23s",
+          "first alert 2026-09-04 20:41:59, last alert 2026-09-04 20:49:21",
+          "mean model score 1.00; example reason: model score 1.00; 8 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          15554,
+          15555,
+          15556,
+          15557,
+          15559,
+          15561,
+          15562,
+          15563,
+          15564,
+          15565
+        ],
+        "finding_id": "INC-0046-F1"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-04 20:50:00",
+        "last_seen": "2026-09-04 20:50:00",
+        "source_ips": [
+          "103.200.144.227"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "user10"
+        ],
+        "evidence": [
+          "successful login to web-01 by user10 from 103.200.144.227 after 20 failed attempts in the preceding 10 min",
+          "first alert 2026-09-04 20:50:00, last alert 2026-09-04 20:50:00",
+          "mean model score 0.96; example reason: model score 0.96; successful login preceded by 20 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          15577
+        ],
+        "finding_id": "INC-0046-F2"
+      }
+    ],
+    "incident_id": "INC-0046"
+  },
+  {
+    "start": "2026-09-04 21:58:47",
+    "end": "2026-09-04 22:07:19",
+    "duration_seconds": 512,
+    "alert_count": 22,
+    "source_ips": [
+      "185.88.48.248"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user04"
+    ],
+    "stages": [
+      "anomalous_activity",
+      "brute_force",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 4,
+    "timeline": [
+      {
+        "start": "2026-09-04 22:00:32",
+        "end": "2026-09-04 22:07:01",
+        "stage": "brute_force",
+        "alert_count": 17,
+        "detail": "17 failed logins from 185.88.48.248 against db-01 (account: user04) within 6m 29s"
+      },
+      {
+        "start": "2026-09-04 22:07:19",
+        "end": "2026-09-04 22:07:19",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to db-01 by user04 from 185.88.48.248 after 21 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[22:00:32] 17 failed logins from 185.88.48.248 against db-01 (account: user04) within 6m 29s; then [22:07:19] successful login to db-01 by user04 from 185.88.48.248 after 21 failed attempts in the preceding 10 min. Also 4 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 4,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-04 21:58:47",
+        "last_seen": "2026-09-04 21:59:54",
+        "source_ips": [
+          "185.88.48.248"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user04"
+        ],
+        "evidence": [
+          "4 anomalous events from 185.88.48.248 on db-01",
+          "first alert 2026-09-04 21:58:47, last alert 2026-09-04 21:59:54",
+          "mean model score 0.94; example reason: model score 0.96; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          15601,
+          15602,
+          15603,
+          15604
+        ],
+        "finding_id": "INC-0047-F1"
+      },
+      {
+        "finding_type": "brute_force",
+        "alert_count": 17,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-04 22:00:32",
+        "last_seen": "2026-09-04 22:07:01",
+        "source_ips": [
+          "185.88.48.248"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user04"
+        ],
+        "evidence": [
+          "17 failed logins from 185.88.48.248 against db-01 (account: user04) within 6m 29s",
+          "first alert 2026-09-04 22:00:32, last alert 2026-09-04 22:07:01",
+          "mean model score 1.00; example reason: model score 1.00; 12 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          15605,
+          15606,
+          15607,
+          15608,
+          15609,
+          15610,
+          15611,
+          15613,
+          15614,
+          15615
+        ],
+        "finding_id": "INC-0047-F2"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-04 22:07:19",
+        "last_seen": "2026-09-04 22:07:19",
+        "source_ips": [
+          "185.88.48.248"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user04"
+        ],
+        "evidence": [
+          "successful login to db-01 by user04 from 185.88.48.248 after 21 failed attempts in the preceding 10 min",
+          "first alert 2026-09-04 22:07:19, last alert 2026-09-04 22:07:19",
+          "mean model score 0.97; example reason: model score 0.97; successful login preceded by 21 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          15626
+        ],
+        "finding_id": "INC-0047-F3"
+      }
+    ],
+    "incident_id": "INC-0047"
+  },
+  {
+    "start": "2026-09-05 10:08:15",
+    "end": "2026-09-05 11:46:51",
+    "duration_seconds": 5916,
+    "alert_count": 50,
+    "source_ips": [
+      "10.0.10.57"
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "users": [
+      "user02",
+      "user04",
+      "user05",
+      "user07",
+      "user08",
+      "user09",
+      "user10",
+      "user12",
+      "user13",
+      "user14",
+      "user15",
+      "user17",
+      "user18",
+      "user22",
+      "user23",
+      "user24",
+      "user25",
+      "user26",
+      "user28",
+      "user29",
+      "user31",
+      "user32",
+      "user34",
+      "user35",
+      "user37",
+      "user38",
+      "user39"
+    ],
+    "stages": [
+      "c2_beaconing"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-05 10:08:15",
+        "end": "2026-09-05 11:46:51",
+        "stage": "c2_beaconing",
+        "alert_count": 50,
+        "detail": "50 outbound connections from 10.0.10.57 to 91.237.239.61 at a regular ~122s interval (small payloads, ~202 bytes each)"
+      }
+    ],
+    "explanation": "[10:08:15] 50 outbound connections from 10.0.10.57 to 91.237.239.61 at a regular ~122s interval (small payloads, ~202 bytes each)",
+    "findings": [
+      {
+        "finding_type": "c2_beaconing",
+        "alert_count": 50,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-05 10:08:15",
+        "last_seen": "2026-09-05 11:46:51",
+        "source_ips": [
+          "10.0.10.57"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user02",
+          "user04",
+          "user05",
+          "user07",
+          "user08",
+          "user09",
+          "user10",
+          "user12",
+          "user13",
+          "user14",
+          "user15",
+          "user17",
+          "user18",
+          "user22",
+          "user23",
+          "user24",
+          "user25",
+          "user26",
+          "user28",
+          "user29",
+          "user31",
+          "user32",
+          "user34",
+          "user35",
+          "user37",
+          "user38",
+          "user39"
+        ],
+        "evidence": [
+          "50 outbound connections from 10.0.10.57 to 91.237.239.61 at a regular ~122s interval (small payloads, ~202 bytes each)",
+          "first alert 2026-09-05 10:08:15, last alert 2026-09-05 11:46:51",
+          "mean model score 1.00; example reason: model score 1.00; 26 connections to the same external IP in 1 h, interval ~122s (std 4.7s)"
+        ],
+        "sample_event_ids": [
+          16425,
+          16435,
+          16443,
+          16449,
+          16455,
+          16472,
+          16481,
+          16497,
+          16506,
+          16525
+        ],
+        "finding_id": "INC-0048-F1"
+      }
+    ],
+    "incident_id": "INC-0048"
+  },
+  {
+    "start": "2026-09-05 14:01:00",
+    "end": "2026-09-05 14:01:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.51"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "admin_ravi"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-05 14:01:00",
+        "end": "2026-09-05 14:01:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-02 by admin_ravi from 10.0.10.51 (0 by non-admin accounts, 0 outside business hours)"
+      }
+    ],
+    "explanation": "[14:01:00] 2 administrative action(s) on db-02 by admin_ravi from 10.0.10.51 (0 by non-admin accounts, 0 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-05 14:01:00",
+        "last_seen": "2026-09-05 14:01:30",
+        "source_ips": [
+          "10.0.10.51"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "admin_ravi"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-02 by admin_ravi from 10.0.10.51 (0 by non-admin accounts, 0 outside business hours)",
+          "first alert 2026-09-05 14:01:00, last alert 2026-09-05 14:01:30",
+          "mean model score 0.71; example reason: model score 0.63; administrative action by admin account (admin_ravi) during business hours"
+        ],
+        "sample_event_ids": [
+          17986,
+          17990
+        ],
+        "finding_id": "INC-0049-F1"
+      }
+    ],
+    "incident_id": "INC-0049"
+  },
+  {
+    "start": "2026-09-05 15:31:36",
+    "end": "2026-09-05 15:44:19",
+    "duration_seconds": 763,
+    "alert_count": 70,
+    "source_ips": [
+      "194.26.19.138"
+    ],
+    "affected_assets": [
+      "web-02"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "anomalous_activity",
+      "port_scan"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 17,
+    "timeline": [
+      {
+        "start": "2026-09-05 15:35:01",
+        "end": "2026-09-05 15:44:19",
+        "stage": "port_scan",
+        "alert_count": 53,
+        "detail": "53 blocked connection attempts across 53 distinct ports on web-02 from 194.26.19.138 within 9m 18s"
+      }
+    ],
+    "explanation": "[15:35:01] 53 blocked connection attempts across 53 distinct ports on web-02 from 194.26.19.138 within 9m 18s. Also 17 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 17,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-05 15:31:36",
+        "last_seen": "2026-09-05 15:34:57",
+        "source_ips": [
+          "194.26.19.138"
+        ],
+        "assets": [
+          "web-02"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "17 anomalous events from 194.26.19.138 on web-02",
+          "first alert 2026-09-05 15:31:36, last alert 2026-09-05 15:34:57",
+          "mean model score 1.00; example reason: model score 1.00; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          18485,
+          18486,
+          18490,
+          18491,
+          18493,
+          18494,
+          18496,
+          18497,
+          18499,
+          18500
+        ],
+        "finding_id": "INC-0050-F1"
+      },
+      {
+        "finding_type": "port_scan",
+        "alert_count": 53,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-05 15:35:01",
+        "last_seen": "2026-09-05 15:44:19",
+        "source_ips": [
+          "194.26.19.138"
+        ],
+        "assets": [
+          "web-02"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "53 blocked connection attempts across 53 distinct ports on web-02 from 194.26.19.138 within 9m 18s",
+          "first alert 2026-09-05 15:35:01, last alert 2026-09-05 15:44:19",
+          "mean model score 1.00; example reason: model score 1.00; 29 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          18518,
+          18521,
+          18527,
+          18529,
+          18530,
+          18533,
+          18536,
+          18537,
+          18538,
+          18541
+        ],
+        "finding_id": "INC-0050-F2"
+      }
+    ],
+    "incident_id": "INC-0050"
+  },
+  {
+    "start": "2026-09-06 00:35:05",
+    "end": "2026-09-06 00:59:02",
+    "duration_seconds": 1437,
+    "alert_count": 13,
+    "source_ips": [
+      "10.0.10.46"
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "users": [
+      "svc_monitor"
+    ],
+    "stages": [
+      "anomalous_activity"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-06 00:35:05",
+        "end": "2026-09-06 00:59:02",
+        "stage": "anomalous_activity",
+        "alert_count": 13,
+        "detail": "13 anomalous events from 10.0.10.46 on web-01"
+      }
+    ],
+    "explanation": "[00:35:05] 13 anomalous events from 10.0.10.46 on web-01",
+    "findings": [
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 13,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 00:35:05",
+        "last_seen": "2026-09-06 00:59:02",
+        "source_ips": [
+          "10.0.10.46"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "svc_monitor"
+        ],
+        "evidence": [
+          "13 anomalous events from 10.0.10.46 on web-01",
+          "first alert 2026-09-06 00:35:05, last alert 2026-09-06 00:59:02",
+          "mean model score 0.53; example reason: model score 0.53; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          19379,
+          19380,
+          19383,
+          19384,
+          19385,
+          19386,
+          19388,
+          19389,
+          19391,
+          19392
+        ],
+        "finding_id": "INC-0051-F1"
+      }
+    ],
+    "incident_id": "INC-0051"
+  },
+  {
+    "start": "2026-09-06 03:05:00",
+    "end": "2026-09-06 03:05:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.47"
+    ],
+    "affected_assets": [
+      "auth-01"
+    ],
+    "users": [
+      "admin_ravi"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-06 03:05:00",
+        "end": "2026-09-06 03:05:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on auth-01 by admin_ravi from 10.0.10.47 (0 by non-admin accounts, 2 outside business hours)"
+      }
+    ],
+    "explanation": "[03:05:00] 2 administrative action(s) on auth-01 by admin_ravi from 10.0.10.47 (0 by non-admin accounts, 2 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-06 03:05:00",
+        "last_seen": "2026-09-06 03:05:30",
+        "source_ips": [
+          "10.0.10.47"
+        ],
+        "assets": [
+          "auth-01"
+        ],
+        "users": [
+          "admin_ravi"
+        ],
+        "evidence": [
+          "2 administrative action(s) on auth-01 by admin_ravi from 10.0.10.47 (0 by non-admin accounts, 2 outside business hours)",
+          "first alert 2026-09-06 03:05:00, last alert 2026-09-06 03:05:30",
+          "mean model score 0.59; example reason: model score 0.57; administrative action by admin account (admin_ravi) during off-hours"
+        ],
+        "sample_event_ids": [
+          19495,
+          19497
+        ],
+        "finding_id": "INC-0052-F1"
+      }
+    ],
+    "incident_id": "INC-0052"
+  },
+  {
+    "start": "2026-09-06 03:37:50",
+    "end": "2026-09-06 03:39:22",
+    "duration_seconds": 92,
+    "alert_count": 107,
+    "source_ips": [
+      "91.52.215.6"
+    ],
+    "affected_assets": [
+      "backup-01"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "port_scan"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-06 03:37:50",
+        "end": "2026-09-06 03:39:22",
+        "stage": "port_scan",
+        "alert_count": 107,
+        "detail": "107 blocked connection attempts across 107 distinct ports on backup-01 from 91.52.215.6 within 1m 33s"
+      }
+    ],
+    "explanation": "[03:37:50] 107 blocked connection attempts across 107 distinct ports on backup-01 from 91.52.215.6 within 1m 33s",
+    "findings": [
+      {
+        "finding_type": "port_scan",
+        "alert_count": 107,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 03:37:50",
+        "last_seen": "2026-09-06 03:39:22",
+        "source_ips": [
+          "91.52.215.6"
+        ],
+        "assets": [
+          "backup-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "107 blocked connection attempts across 107 distinct ports on backup-01 from 91.52.215.6 within 1m 33s",
+          "first alert 2026-09-06 03:37:50, last alert 2026-09-06 03:39:22",
+          "mean model score 0.99; example reason: model score 0.99; 107 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          19513,
+          19514,
+          19515,
+          19516,
+          19517,
+          19518,
+          19519,
+          19520,
+          19521,
+          19522
+        ],
+        "finding_id": "INC-0053-F1"
+      }
+    ],
+    "incident_id": "INC-0053"
+  },
+  {
+    "start": "2026-09-06 07:31:44",
+    "end": "2026-09-06 07:43:01",
+    "duration_seconds": 677,
+    "alert_count": 66,
+    "source_ips": [
+      "185.246.93.163"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "port_scan",
+      "anomalous_activity"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 17,
+    "timeline": [
+      {
+        "start": "2026-09-06 07:31:44",
+        "end": "2026-09-06 07:39:57",
+        "stage": "port_scan",
+        "alert_count": 49,
+        "detail": "49 blocked connection attempts across 49 distinct ports on db-02 from 185.246.93.163 within 8m 13s"
+      }
+    ],
+    "explanation": "[07:31:44] 49 blocked connection attempts across 49 distinct ports on db-02 from 185.246.93.163 within 8m 13s. Also 17 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "port_scan",
+        "alert_count": 49,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 07:31:44",
+        "last_seen": "2026-09-06 07:39:57",
+        "source_ips": [
+          "185.246.93.163"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "49 blocked connection attempts across 49 distinct ports on db-02 from 185.246.93.163 within 8m 13s",
+          "first alert 2026-09-06 07:31:44, last alert 2026-09-06 07:39:57",
+          "mean model score 0.98; example reason: model score 0.98; 21 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          19708,
+          19709,
+          19710,
+          19711,
+          19712,
+          19713,
+          19714,
+          19715,
+          19716,
+          19717
+        ],
+        "finding_id": "INC-0054-F1"
+      },
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 17,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 07:40:13",
+        "last_seen": "2026-09-06 07:43:01",
+        "source_ips": [
+          "185.246.93.163"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "17 anomalous events from 185.246.93.163 on db-02",
+          "first alert 2026-09-06 07:40:13, last alert 2026-09-06 07:43:01",
+          "mean model score 0.98; example reason: model score 0.98; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          19762,
+          19763,
+          19764,
+          19765,
+          19766,
+          19767,
+          19768,
+          19769,
+          19770,
+          19771
+        ],
+        "finding_id": "INC-0054-F2"
+      }
+    ],
+    "incident_id": "INC-0054"
+  },
+  {
+    "start": "2026-09-06 12:13:38",
+    "end": "2026-09-06 12:18:59",
+    "duration_seconds": 321,
+    "alert_count": 32,
+    "source_ips": [
+      "103.132.170.163"
+    ],
+    "affected_assets": [
+      "web-02"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "anomalous_activity",
+      "port_scan"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 10,
+    "timeline": [
+      {
+        "start": "2026-09-06 12:15:08",
+        "end": "2026-09-06 12:18:59",
+        "stage": "port_scan",
+        "alert_count": 22,
+        "detail": "22 blocked connection attempts across 22 distinct ports on web-02 from 103.132.170.163 within 3m 51s"
+      }
+    ],
+    "explanation": "[12:15:08] 22 blocked connection attempts across 22 distinct ports on web-02 from 103.132.170.163 within 3m 51s. Also 10 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 10,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 12:13:38",
+        "last_seen": "2026-09-06 12:14:50",
+        "source_ips": [
+          "103.132.170.163"
+        ],
+        "assets": [
+          "web-02"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "10 anomalous events from 103.132.170.163 on web-02",
+          "first alert 2026-09-06 12:13:38, last alert 2026-09-06 12:14:50",
+          "mean model score 0.97; example reason: model score 0.97; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          21094,
+          21096,
+          21097,
+          21098,
+          21099,
+          21100,
+          21103,
+          21106,
+          21109,
+          21112
+        ],
+        "finding_id": "INC-0055-F1"
+      },
+      {
+        "finding_type": "port_scan",
+        "alert_count": 22,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 12:15:08",
+        "last_seen": "2026-09-06 12:18:59",
+        "source_ips": [
+          "103.132.170.163"
+        ],
+        "assets": [
+          "web-02"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "22 blocked connection attempts across 22 distinct ports on web-02 from 103.132.170.163 within 3m 51s",
+          "first alert 2026-09-06 12:15:08, last alert 2026-09-06 12:18:59",
+          "mean model score 1.00; example reason: model score 1.00; 22 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          21116,
+          21117,
+          21119,
+          21121,
+          21124,
+          21125,
+          21127,
+          21129,
+          21130,
+          21131
+        ],
+        "finding_id": "INC-0055-F2"
+      }
+    ],
+    "incident_id": "INC-0055"
+  },
+  {
+    "start": "2026-09-06 13:39:48",
+    "end": "2026-09-06 13:45:58",
+    "duration_seconds": 370,
+    "alert_count": 20,
+    "source_ips": [
+      "194.64.149.153"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user32"
+    ],
+    "stages": [
+      "anomalous_activity",
+      "brute_force",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 4,
+    "timeline": [
+      {
+        "start": "2026-09-06 13:40:22",
+        "end": "2026-09-06 13:44:44",
+        "stage": "brute_force",
+        "alert_count": 15,
+        "detail": "15 failed logins from 194.64.149.153 against db-01 (account: user32) within 4m 22s"
+      },
+      {
+        "start": "2026-09-06 13:45:58",
+        "end": "2026-09-06 13:45:58",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to db-01 by user32 from 194.64.149.153 after 19 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[13:40:22] 15 failed logins from 194.64.149.153 against db-01 (account: user32) within 4m 22s; then [13:45:58] successful login to db-01 by user32 from 194.64.149.153 after 19 failed attempts in the preceding 10 min. Also 4 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 4,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 13:39:48",
+        "last_seen": "2026-09-06 13:45:27",
+        "source_ips": [
+          "194.64.149.153"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user32"
+        ],
+        "evidence": [
+          "4 anomalous events from 194.64.149.153 on db-01",
+          "first alert 2026-09-06 13:39:48, last alert 2026-09-06 13:45:27",
+          "mean model score 0.94; example reason: model score 0.89; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          21715,
+          21761,
+          21762,
+          21765
+        ],
+        "finding_id": "INC-0056-F1"
+      },
+      {
+        "finding_type": "brute_force",
+        "alert_count": 15,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-06 13:40:22",
+        "last_seen": "2026-09-06 13:44:44",
+        "source_ips": [
+          "194.64.149.153"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user32"
+        ],
+        "evidence": [
+          "15 failed logins from 194.64.149.153 against db-01 (account: user32) within 4m 22s",
+          "first alert 2026-09-06 13:40:22, last alert 2026-09-06 13:44:44",
+          "mean model score 1.00; example reason: model score 1.00; 15 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          21717,
+          21721,
+          21723,
+          21727,
+          21731,
+          21732,
+          21734,
+          21735,
+          21737,
+          21743
+        ],
+        "finding_id": "INC-0056-F2"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-06 13:45:58",
+        "last_seen": "2026-09-06 13:45:58",
+        "source_ips": [
+          "194.64.149.153"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user32"
+        ],
+        "evidence": [
+          "successful login to db-01 by user32 from 194.64.149.153 after 19 failed attempts in the preceding 10 min",
+          "first alert 2026-09-06 13:45:58, last alert 2026-09-06 13:45:58",
+          "mean model score 0.90; example reason: model score 0.90; successful login preceded by 19 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          21767
+        ],
+        "finding_id": "INC-0056-F3"
+      }
+    ],
+    "incident_id": "INC-0056"
+  },
+  {
+    "start": "2026-09-06 14:26:23",
+    "end": "2026-09-06 17:56:26",
+    "duration_seconds": 12603,
+    "alert_count": 45,
+    "source_ips": [
+      "10.0.10.3"
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "users": [
+      "user01",
+      "user02",
+      "user04",
+      "user05",
+      "user06",
+      "user07",
+      "user09",
+      "user10",
+      "user12",
+      "user13",
+      "user15",
+      "user16",
+      "user17",
+      "user19",
+      "user20",
+      "user21",
+      "user22",
+      "user23",
+      "user24",
+      "user25",
+      "user27",
+      "user28",
+      "user29",
+      "user34",
+      "user35",
+      "user37",
+      "user39"
+    ],
+    "stages": [
+      "c2_beaconing"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-06 14:26:23",
+        "end": "2026-09-06 17:56:26",
+        "stage": "c2_beaconing",
+        "alert_count": 45,
+        "detail": "45 outbound connections from 10.0.10.3 to 91.131.122.204 at a regular ~291s interval (small payloads, ~208 bytes each)"
+      }
+    ],
+    "explanation": "[14:26:23] 45 outbound connections from 10.0.10.3 to 91.131.122.204 at a regular ~291s interval (small payloads, ~208 bytes each)",
+    "findings": [
+      {
+        "finding_type": "c2_beaconing",
+        "alert_count": 45,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-06 14:26:23",
+        "last_seen": "2026-09-06 17:56:26",
+        "source_ips": [
+          "10.0.10.3"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user01",
+          "user02",
+          "user04",
+          "user05",
+          "user06",
+          "user07",
+          "user09",
+          "user10",
+          "user12",
+          "user13",
+          "user15",
+          "user16",
+          "user17",
+          "user19",
+          "user20",
+          "user21",
+          "user22",
+          "user23",
+          "user24",
+          "user25",
+          "user27",
+          "user28",
+          "user29",
+          "user34",
+          "user35",
+          "user37",
+          "user39"
+        ],
+        "evidence": [
+          "45 outbound connections from 10.0.10.3 to 91.131.122.204 at a regular ~291s interval (small payloads, ~208 bytes each)",
+          "first alert 2026-09-06 14:26:23, last alert 2026-09-06 17:56:26",
+          "mean model score 0.94; example reason: model score 0.95; 8 connections to the same external IP in 1 h, interval ~273s (std 36.7s)"
+        ],
+        "sample_event_ids": [
+          21999,
+          22036,
+          22071,
+          22100,
+          22119,
+          22143,
+          22189,
+          22215,
+          22243,
+          22279
+        ],
+        "finding_id": "INC-0057-F1"
+      }
+    ],
+    "incident_id": "INC-0057"
+  },
+  {
+    "start": "2026-09-06 17:21:11",
+    "end": "2026-09-06 17:26:11",
+    "duration_seconds": 300,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user29",
+      "user39"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-06 17:21:11",
+        "end": "2026-09-06 17:26:11",
+        "stage": "exfiltration",
+        "alert_count": 2,
+        "detail": "2 large outbound transfers (10.5 MB total) from db-01 (10.0.4.40) to external 45.65.241.221"
+      }
+    ],
+    "explanation": "[17:21:11] 2 large outbound transfers (10.5 MB total) from db-01 (10.0.4.40) to external 45.65.241.221",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 2,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-06 17:21:11",
+        "last_seen": "2026-09-06 17:26:11",
+        "source_ips": [
+          "10.0.4.40"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user29",
+          "user39"
+        ],
+        "evidence": [
+          "2 large outbound transfers (10.5 MB total) from db-01 (10.0.4.40) to external 45.65.241.221",
+          "first alert 2026-09-06 17:21:11, last alert 2026-09-06 17:26:11",
+          "mean model score 0.58; example reason: model score 0.59; 4,194,228 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          22904,
+          22927
+        ],
+        "finding_id": "INC-0058-F1"
+      }
+    ],
+    "incident_id": "INC-0058"
+  },
+  {
+    "start": "2026-09-06 18:28:53",
+    "end": "2026-09-06 18:41:12",
+    "duration_seconds": 739,
+    "alert_count": 63,
+    "source_ips": [
+      "91.50.108.171"
+    ],
+    "affected_assets": [
+      "mail-01"
+    ],
+    "users": [
+      "unknown"
+    ],
+    "stages": [
+      "anomalous_activity",
+      "port_scan"
+    ],
+    "severity": "medium",
+    "severity_reason": "max alert severity 'medium' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 13,
+    "timeline": [
+      {
+        "start": "2026-09-06 18:30:09",
+        "end": "2026-09-06 18:39:49",
+        "stage": "port_scan",
+        "alert_count": 50,
+        "detail": "50 blocked connection attempts across 50 distinct ports on mail-01 from 91.50.108.171 within 9m 39s"
+      }
+    ],
+    "explanation": "[18:30:09] 50 blocked connection attempts across 50 distinct ports on mail-01 from 91.50.108.171 within 9m 39s. Also 13 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 13,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 18:28:53",
+        "last_seen": "2026-09-06 18:41:12",
+        "source_ips": [
+          "91.50.108.171"
+        ],
+        "assets": [
+          "mail-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "13 anomalous events from 91.50.108.171 on mail-01",
+          "first alert 2026-09-06 18:28:53, last alert 2026-09-06 18:41:12",
+          "mean model score 0.98; example reason: model score 0.98; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          23079,
+          23080,
+          23081,
+          23082,
+          23083,
+          23085,
+          23152,
+          23153,
+          23155,
+          23156
+        ],
+        "finding_id": "INC-0059-F1"
+      },
+      {
+        "finding_type": "port_scan",
+        "alert_count": 50,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-06 18:30:09",
+        "last_seen": "2026-09-06 18:39:49",
+        "source_ips": [
+          "91.50.108.171"
+        ],
+        "assets": [
+          "mail-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "50 blocked connection attempts across 50 distinct ports on mail-01 from 91.50.108.171 within 9m 39s",
+          "first alert 2026-09-06 18:30:09, last alert 2026-09-06 18:39:49",
+          "mean model score 1.00; example reason: model score 1.00; 26 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          23087,
+          23088,
+          23089,
+          23090,
+          23092,
+          23095,
+          23096,
+          23097,
+          23099,
+          23100
+        ],
+        "finding_id": "INC-0059-F2"
+      }
+    ],
+    "incident_id": "INC-0059"
+  },
+  {
+    "start": "2026-09-07 00:44:00",
+    "end": "2026-09-07 00:44:30",
+    "duration_seconds": 30,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.10.14"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user07"
+    ],
+    "stages": [
+      "priv_escalation"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-07 00:44:00",
+        "end": "2026-09-07 00:44:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-02 by user07 from 10.0.10.14 (2 by non-admin accounts, 2 outside business hours)"
+      }
+    ],
+    "explanation": "[00:44:00] 2 administrative action(s) on db-02 by user07 from 10.0.10.14 (2 by non-admin accounts, 2 outside business hours)",
+    "findings": [
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-07 00:44:00",
+        "last_seen": "2026-09-07 00:44:30",
+        "source_ips": [
+          "10.0.10.14"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user07"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-02 by user07 from 10.0.10.14 (2 by non-admin accounts, 2 outside business hours)",
+          "first alert 2026-09-07 00:44:00, last alert 2026-09-07 00:44:30",
+          "mean model score 0.80; example reason: model score 0.69; administrative action by non-admin account (user07) during off-hours"
+        ],
+        "sample_event_ids": [
+          23478,
+          23479
+        ],
+        "finding_id": "INC-0060-F1"
+      }
+    ],
+    "incident_id": "INC-0060"
+  },
+  {
+    "start": "2026-09-07 03:00:00",
+    "end": "2026-09-07 03:41:00",
+    "duration_seconds": 2460,
+    "alert_count": 142,
+    "source_ips": [
+      "10.0.2.20",
+      "203.0.113.77"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "unknown",
+      "user17"
+    ],
+    "stages": [
+      "port_scan",
+      "brute_force",
+      "login_success",
+      "priv_escalation",
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: port_scan -> brute_force -> login_success -> priv_escalation -> exfiltration; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-07 03:00:00",
+        "end": "2026-09-07 03:01:29",
+        "stage": "port_scan",
+        "alert_count": 90,
+        "detail": "90 blocked connection attempts across 90 distinct ports on db-01 from 203.0.113.77 within 1m 29s"
+      },
+      {
+        "start": "2026-09-07 03:08:00",
+        "end": "2026-09-07 03:10:12",
+        "stage": "brute_force",
+        "alert_count": 45,
+        "detail": "45 failed logins from 203.0.113.77 against db-01 (account: user17) within 2m 12s"
+      },
+      {
+        "start": "2026-09-07 03:10:15",
+        "end": "2026-09-07 03:10:15",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to db-01 by user17 from 203.0.113.77 after 45 failed attempts in the preceding 10 min"
+      },
+      {
+        "start": "2026-09-07 03:22:00",
+        "end": "2026-09-07 03:22:30",
+        "stage": "priv_escalation",
+        "alert_count": 2,
+        "detail": "2 administrative action(s) on db-01 by user17 from 203.0.113.77 (2 by non-admin accounts, 2 outside business hours)"
+      },
+      {
+        "start": "2026-09-07 03:35:00",
+        "end": "2026-09-07 03:41:00",
+        "stage": "exfiltration",
+        "alert_count": 4,
+        "detail": "4 large outbound transfers (77.4 MB total) from db-01 (10.0.2.20) to external 198.51.100.23"
+      }
+    ],
+    "explanation": "[03:00:00] 90 blocked connection attempts across 90 distinct ports on db-01 from 203.0.113.77 within 1m 29s; then [03:08:00] 45 failed logins from 203.0.113.77 against db-01 (account: user17) within 2m 12s; then [03:10:15] successful login to db-01 by user17 from 203.0.113.77 after 45 failed attempts in the preceding 10 min; then [03:22:00] 2 administrative action(s) on db-01 by user17 from 203.0.113.77 (2 by non-admin accounts, 2 outside business hours); then [03:35:00] 4 large outbound transfers (77.4 MB total) from db-01 (10.0.2.20) to external 198.51.100.23",
+    "findings": [
+      {
+        "finding_type": "port_scan",
+        "alert_count": 90,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-07 03:00:00",
+        "last_seen": "2026-09-07 03:01:29",
+        "source_ips": [
+          "203.0.113.77"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "unknown"
+        ],
+        "evidence": [
+          "90 blocked connection attempts across 90 distinct ports on db-01 from 203.0.113.77 within 1m 29s",
+          "first alert 2026-09-07 03:00:00, last alert 2026-09-07 03:01:29",
+          "mean model score 0.95; example reason: model score 0.95; 90 distinct ports probed by this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          23546,
+          23547,
+          23548,
+          23549,
+          23550,
+          23551,
+          23552,
+          23553,
+          23554,
+          23555
+        ],
+        "finding_id": "INC-0061-F1"
+      },
+      {
+        "finding_type": "brute_force",
+        "alert_count": 45,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-07 03:08:00",
+        "last_seen": "2026-09-07 03:10:12",
+        "source_ips": [
+          "203.0.113.77"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user17"
+        ],
+        "evidence": [
+          "45 failed logins from 203.0.113.77 against db-01 (account: user17) within 2m 12s",
+          "first alert 2026-09-07 03:08:00, last alert 2026-09-07 03:10:12",
+          "mean model score 0.87; example reason: model score 0.87; 40 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          23639,
+          23640,
+          23641,
+          23642,
+          23643,
+          23644,
+          23645,
+          23646,
+          23647,
+          23648
+        ],
+        "finding_id": "INC-0061-F2"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-07 03:10:15",
+        "last_seen": "2026-09-07 03:10:15",
+        "source_ips": [
+          "203.0.113.77"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user17"
+        ],
+        "evidence": [
+          "successful login to db-01 by user17 from 203.0.113.77 after 45 failed attempts in the preceding 10 min",
+          "first alert 2026-09-07 03:10:15, last alert 2026-09-07 03:10:15",
+          "mean model score 0.78; example reason: model score 0.78; successful login preceded by 45 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          23685
+        ],
+        "finding_id": "INC-0061-F3"
+      },
+      {
+        "finding_type": "priv_escalation",
+        "alert_count": 2,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-07 03:22:00",
+        "last_seen": "2026-09-07 03:22:30",
+        "source_ips": [
+          "203.0.113.77"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user17"
+        ],
+        "evidence": [
+          "2 administrative action(s) on db-01 by user17 from 203.0.113.77 (2 by non-admin accounts, 2 outside business hours)",
+          "first alert 2026-09-07 03:22:00, last alert 2026-09-07 03:22:30",
+          "mean model score 0.82; example reason: model score 0.82; administrative action by non-admin account (user17) during off-hours"
+        ],
+        "sample_event_ids": [
+          23696,
+          23697
+        ],
+        "finding_id": "INC-0061-F4"
+      },
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 4,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-07 03:35:00",
+        "last_seen": "2026-09-07 03:41:00",
+        "source_ips": [
+          "10.0.2.20"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user17"
+        ],
+        "evidence": [
+          "4 large outbound transfers (77.4 MB total) from db-01 (10.0.2.20) to external 198.51.100.23",
+          "first alert 2026-09-07 03:35:00, last alert 2026-09-07 03:41:00",
+          "mean model score 0.75; example reason: model score 0.76; 12,846,076 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          23700,
+          23701,
+          23704,
+          23706
+        ],
+        "finding_id": "INC-0061-F5"
+      }
+    ],
+    "incident_id": "INC-0061"
+  },
+  {
+    "start": "2026-09-07 05:21:01",
+    "end": "2026-09-07 05:24:01",
+    "duration_seconds": 180,
+    "alert_count": 2,
+    "source_ips": [
+      "10.0.4.40"
+    ],
+    "affected_assets": [
+      "db-02"
+    ],
+    "users": [
+      "user01",
+      "user21"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-07 05:21:01",
+        "end": "2026-09-07 05:24:01",
+        "stage": "exfiltration",
+        "alert_count": 2,
+        "detail": "2 large outbound transfers (2.7 MB total) from db-02 (10.0.4.40) to external 203.112.1.134"
+      }
+    ],
+    "explanation": "[05:21:01] 2 large outbound transfers (2.7 MB total) from db-02 (10.0.4.40) to external 203.112.1.134",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 2,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-07 05:21:01",
+        "last_seen": "2026-09-07 05:24:01",
+        "source_ips": [
+          "10.0.4.40"
+        ],
+        "assets": [
+          "db-02"
+        ],
+        "users": [
+          "user01",
+          "user21"
+        ],
+        "evidence": [
+          "2 large outbound transfers (2.7 MB total) from db-02 (10.0.4.40) to external 203.112.1.134",
+          "first alert 2026-09-07 05:21:01, last alert 2026-09-07 05:24:01",
+          "mean model score 0.78; example reason: model score 0.79; 1,778,123 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          23733,
+          23734
+        ],
+        "finding_id": "INC-0062-F1"
+      }
+    ],
+    "incident_id": "INC-0062"
+  },
+  {
+    "start": "2026-09-07 06:24:23",
+    "end": "2026-09-07 06:25:53",
+    "duration_seconds": 90,
+    "alert_count": 25,
+    "source_ips": [
+      "185.90.79.211"
+    ],
+    "affected_assets": [
+      "web-01"
+    ],
+    "users": [
+      "admin_meera"
+    ],
+    "stages": [
+      "brute_force",
+      "login_success"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (multi-stage: brute_force -> login_success; already at maximum level)",
+    "correlation_rules": [
+      "asset_chain_30m",
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-07 06:24:23",
+        "end": "2026-09-07 06:25:48",
+        "stage": "brute_force",
+        "alert_count": 24,
+        "detail": "24 failed logins from 185.90.79.211 against web-01 (account: admin_meera) within 1m 26s"
+      },
+      {
+        "start": "2026-09-07 06:25:53",
+        "end": "2026-09-07 06:25:53",
+        "stage": "login_success",
+        "alert_count": 1,
+        "detail": "successful login to web-01 by admin_meera from 185.90.79.211 after 24 failed attempts in the preceding 10 min"
+      }
+    ],
+    "explanation": "[06:24:23] 24 failed logins from 185.90.79.211 against web-01 (account: admin_meera) within 1m 26s; then [06:25:53] successful login to web-01 by admin_meera from 185.90.79.211 after 24 failed attempts in the preceding 10 min",
+    "findings": [
+      {
+        "finding_type": "brute_force",
+        "alert_count": 24,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-07 06:24:23",
+        "last_seen": "2026-09-07 06:25:48",
+        "source_ips": [
+          "185.90.79.211"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "admin_meera"
+        ],
+        "evidence": [
+          "24 failed logins from 185.90.79.211 against web-01 (account: admin_meera) within 1m 26s",
+          "first alert 2026-09-07 06:24:23, last alert 2026-09-07 06:25:48",
+          "mean model score 0.99; example reason: model score 0.98; 11 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          23762,
+          23763,
+          23764,
+          23765,
+          23766,
+          23767,
+          23768,
+          23769,
+          23770,
+          23771
+        ],
+        "finding_id": "INC-0063-F1"
+      },
+      {
+        "finding_type": "login_success",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-07 06:25:53",
+        "last_seen": "2026-09-07 06:25:53",
+        "source_ips": [
+          "185.90.79.211"
+        ],
+        "assets": [
+          "web-01"
+        ],
+        "users": [
+          "admin_meera"
+        ],
+        "evidence": [
+          "successful login to web-01 by admin_meera from 185.90.79.211 after 24 failed attempts in the preceding 10 min",
+          "first alert 2026-09-07 06:25:53, last alert 2026-09-07 06:25:53",
+          "mean model score 0.95; example reason: model score 0.95; successful login preceded by 24 failures in 10 min"
+        ],
+        "sample_event_ids": [
+          23786
+        ],
+        "finding_id": "INC-0063-F2"
+      }
+    ],
+    "incident_id": "INC-0063"
+  },
+  {
+    "start": "2026-09-07 06:35:01",
+    "end": "2026-09-07 07:35:40",
+    "duration_seconds": 3639,
+    "alert_count": 31,
+    "source_ips": [
+      "10.0.10.41"
+    ],
+    "affected_assets": [
+      "mail-01",
+      "web-01"
+    ],
+    "users": [
+      "user01",
+      "user05",
+      "user06",
+      "user07",
+      "user09",
+      "user10",
+      "user16",
+      "user17",
+      "user20",
+      "user21",
+      "user22",
+      "user24",
+      "user26",
+      "user27",
+      "user28",
+      "user29",
+      "user32",
+      "user35",
+      "user36",
+      "user38",
+      "user39"
+    ],
+    "stages": [
+      "c2_beaconing"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-07 06:35:01",
+        "end": "2026-09-07 07:35:40",
+        "stage": "c2_beaconing",
+        "alert_count": 31,
+        "detail": "31 outbound connections from 10.0.10.41 to 45.79.94.231 at a regular ~122s interval (small payloads, ~210 bytes each)"
+      }
+    ],
+    "explanation": "[06:35:01] 31 outbound connections from 10.0.10.41 to 45.79.94.231 at a regular ~122s interval (small payloads, ~210 bytes each)",
+    "findings": [
+      {
+        "finding_type": "c2_beaconing",
+        "alert_count": 31,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-07 06:35:01",
+        "last_seen": "2026-09-07 07:35:40",
+        "source_ips": [
+          "10.0.10.41"
+        ],
+        "assets": [
+          "mail-01",
+          "web-01"
+        ],
+        "users": [
+          "user01",
+          "user05",
+          "user06",
+          "user07",
+          "user09",
+          "user10",
+          "user16",
+          "user17",
+          "user20",
+          "user21",
+          "user22",
+          "user24",
+          "user26",
+          "user27",
+          "user28",
+          "user29",
+          "user32",
+          "user35",
+          "user36",
+          "user38",
+          "user39"
+        ],
+        "evidence": [
+          "31 outbound connections from 10.0.10.41 to 45.79.94.231 at a regular ~122s interval (small payloads, ~210 bytes each)",
+          "first alert 2026-09-07 06:35:01, last alert 2026-09-07 07:35:40",
+          "mean model score 0.89; example reason: model score 0.90; 13 connections to the same external IP in 1 h, interval ~120s (std 15.8s)"
+        ],
+        "sample_event_ids": [
+          23789,
+          23790,
+          23791,
+          23793,
+          23794,
+          23795,
+          23798,
+          23799,
+          23802,
+          23804
+        ],
+        "finding_id": "INC-0064-F1"
+      }
+    ],
+    "incident_id": "INC-0064"
+  },
+  {
+    "start": "2026-09-07 07:16:05",
+    "end": "2026-09-07 07:16:05",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.36"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user34"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-07 07:16:05",
+        "end": "2026-09-07 07:16:05",
+        "stage": "exfiltration",
+        "alert_count": 1,
+        "detail": "1 large outbound transfers (3.9 MB total) from file-01 (10.0.10.36) to external 203.44.137.187"
+      }
+    ],
+    "explanation": "[07:16:05] 1 large outbound transfers (3.9 MB total) from file-01 (10.0.10.36) to external 203.44.137.187",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-07 07:16:05",
+        "last_seen": "2026-09-07 07:16:05",
+        "source_ips": [
+          "10.0.10.36"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user34"
+        ],
+        "evidence": [
+          "1 large outbound transfers (3.9 MB total) from file-01 (10.0.10.36) to external 203.44.137.187",
+          "first alert 2026-09-07 07:16:05, last alert 2026-09-07 07:16:05",
+          "mean model score 0.57; example reason: model score 0.57; 4,125,170 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          23826
+        ],
+        "finding_id": "INC-0065-F1"
+      }
+    ],
+    "incident_id": "INC-0065"
+  },
+  {
+    "start": "2026-09-07 08:04:28",
+    "end": "2026-09-07 08:14:13",
+    "duration_seconds": 585,
+    "alert_count": 24,
+    "source_ips": [
+      "194.125.161.62"
+    ],
+    "affected_assets": [
+      "db-01"
+    ],
+    "users": [
+      "user26"
+    ],
+    "stages": [
+      "anomalous_activity",
+      "brute_force"
+    ],
+    "severity": "high",
+    "severity_reason": "max alert severity 'high' (single stage)",
+    "correlation_rules": [
+      "same_source_ip_15m"
+    ],
+    "unclassified_alerts": 1,
+    "timeline": [
+      {
+        "start": "2026-09-07 08:05:02",
+        "end": "2026-09-07 08:14:13",
+        "stage": "brute_force",
+        "alert_count": 23,
+        "detail": "23 failed logins from 194.125.161.62 against db-01 (account: user26) within 9m 11s"
+      }
+    ],
+    "explanation": "[08:05:02] 23 failed logins from 194.125.161.62 against db-01 (account: user26) within 9m 11s. Also 1 related alert(s) flagged by the model but not matching a specific rule",
+    "findings": [
+      {
+        "finding_type": "anomalous_activity",
+        "alert_count": 1,
+        "max_alert_severity": "medium",
+        "first_seen": "2026-09-07 08:04:28",
+        "last_seen": "2026-09-07 08:04:28",
+        "source_ips": [
+          "194.125.161.62"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user26"
+        ],
+        "evidence": [
+          "1 anomalous events from 194.125.161.62 on db-01",
+          "first alert 2026-09-07 08:04:28, last alert 2026-09-07 08:04:28",
+          "mean model score 0.92; example reason: model score 0.92; flagged by model, no specific rule matched"
+        ],
+        "sample_event_ids": [
+          24007
+        ],
+        "finding_id": "INC-0066-F1"
+      },
+      {
+        "finding_type": "brute_force",
+        "alert_count": 23,
+        "max_alert_severity": "high",
+        "first_seen": "2026-09-07 08:05:02",
+        "last_seen": "2026-09-07 08:14:13",
+        "source_ips": [
+          "194.125.161.62"
+        ],
+        "assets": [
+          "db-01"
+        ],
+        "users": [
+          "user26"
+        ],
+        "evidence": [
+          "23 failed logins from 194.125.161.62 against db-01 (account: user26) within 9m 11s",
+          "first alert 2026-09-07 08:05:02, last alert 2026-09-07 08:14:13",
+          "mean model score 0.97; example reason: model score 0.98; 13 failed logins from this source in a 5-min window"
+        ],
+        "sample_event_ids": [
+          24008,
+          24010,
+          24013,
+          24015,
+          24017,
+          24018,
+          24020,
+          24022,
+          24024,
+          24026
+        ],
+        "finding_id": "INC-0066-F2"
+      }
+    ],
+    "incident_id": "INC-0066"
+  },
+  {
+    "start": "2026-09-07 12:54:26",
+    "end": "2026-09-07 12:54:26",
+    "duration_seconds": 0,
+    "alert_count": 1,
+    "source_ips": [
+      "10.0.10.56"
+    ],
+    "affected_assets": [
+      "file-01"
+    ],
+    "users": [
+      "user04"
+    ],
+    "stages": [
+      "exfiltration"
+    ],
+    "severity": "critical",
+    "severity_reason": "max alert severity 'critical' (single stage)",
+    "correlation_rules": [
+      "single_alert_group"
+    ],
+    "unclassified_alerts": 0,
+    "timeline": [
+      {
+        "start": "2026-09-07 12:54:26",
+        "end": "2026-09-07 12:54:26",
+        "stage": "exfiltration",
+        "alert_count": 1,
+        "detail": "1 large outbound transfers (9.1 MB total) from file-01 (10.0.10.56) to external 203.159.227.221"
+      }
+    ],
+    "explanation": "[12:54:26] 1 large outbound transfers (9.1 MB total) from file-01 (10.0.10.56) to external 203.159.227.221",
+    "findings": [
+      {
+        "finding_type": "exfiltration",
+        "alert_count": 1,
+        "max_alert_severity": "critical",
+        "first_seen": "2026-09-07 12:54:26",
+        "last_seen": "2026-09-07 12:54:26",
+        "source_ips": [
+          "10.0.10.56"
+        ],
+        "assets": [
+          "file-01"
+        ],
+        "users": [
+          "user04"
+        ],
+        "evidence": [
+          "1 large outbound transfers (9.1 MB total) from file-01 (10.0.10.56) to external 203.159.227.221",
+          "first alert 2026-09-07 12:54:26, last alert 2026-09-07 12:54:26",
+          "mean model score 0.51; example reason: model score 0.51; 9,508,731 bytes sent from an internal host to an external IP"
+        ],
+        "sample_event_ids": [
+          25512
+        ],
+        "finding_id": "INC-0067-F1"
+      }
+    ],
+    "incident_id": "INC-0067"
+  }
+]
